@@ -29,6 +29,7 @@ def pattern_based_pii_scan(text: str) -> list[dict]:
 
 Pattern matching reliably catches structured PII (emails, phone numbers, SSNs) but misses unstructured personal information — names, addresses, or context-dependent sensitive details ("the patient with the rare condition diagnosed last Tuesday") that only a model-based approach can reasonably catch.
 
+{% raw %}
 ```python
 def model_based_pii_scan(text: str) -> list[dict]:
     response = llm.chat([{
@@ -38,6 +39,7 @@ def model_based_pii_scan(text: str) -> list[dict]:
     }], temperature=0)
     return json.loads(response.content)
 ```
+{% endraw %}
 
 Combining both — pattern matching for high-confidence structured PII, model-based scanning for unstructured or contextual PII — catches more than either alone, at the added cost and latency of an extra model call for the second layer.
 

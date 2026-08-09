@@ -9,6 +9,7 @@ Human evaluation doesn't scale to thousands of examples on every prompt change. 
 
 ## A Basic Judge Prompt
 
+{% raw %}
 ```python
 def judge_response(input_text: str, response: str, criteria: list[str]) -> dict:
     resp = llm.chat([{
@@ -25,6 +26,7 @@ Return JSON: {{"criteria_results": [{{"criterion": str, "met": bool, "reason": s
     }], temperature=0)
     return json.loads(resp.content)
 ```
+{% endraw %}
 
 Checking against explicit criteria, not asking for a vague 1-10 quality score, produces far more consistent and actionable judgments — a criteria checklist is something the judge model can reason about concretely, where a holistic score invites noisy, hard-to-interpret variance.
 

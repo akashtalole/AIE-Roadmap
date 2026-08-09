@@ -45,6 +45,7 @@ async def generate_argument(question: str, position: str, opponent_args: list[st
 
 ## The Judge: A Specialized Evaluation Role
 
+{% raw %}
 ```python
 async def judge_debate(question: str, transcripts: dict) -> dict:
     full_debate = format_debate_transcript(transcripts)
@@ -56,6 +57,7 @@ async def judge_debate(question: str, transcripts: dict) -> dict:
     }], temperature=0)
     return json.loads(response.content)
 ```
+{% endraw %}
 
 This is a specialized application of June's LLM-as-judge pattern — judging not a single response but a structured argument, with the same position-bias caution from June applying here too (randomize which position argues first across repeated runs to control for order effects).
 

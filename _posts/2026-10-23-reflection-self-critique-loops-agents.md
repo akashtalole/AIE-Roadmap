@@ -23,6 +23,7 @@ The core mechanic is always the same: generate, critique with a deliberately dif
 
 ## Implementing a General-Purpose Reflection Loop
 
+{% raw %}
 ```python
 async def generate_with_reflection(task: str, max_iterations: int = 3) -> dict:
     output = await generate(task)
@@ -42,6 +43,7 @@ async def reflect(task: str, output: str) -> dict:
     }], temperature=0.4)
     return json.loads(response.content)
 ```
+{% endraw %}
 
 ## Why Reflection Works: The Asymmetry Between Generating and Critiquing
 

@@ -22,6 +22,7 @@ flowchart TD
 
 ## Intent Classification with Confidence
 
+{% raw %}
 ```python
 def classify_intent(message: str) -> dict:
     resp = llm.chat([{
@@ -32,6 +33,7 @@ def classify_intent(message: str) -> dict:
     }], temperature=0)
     return json.loads(resp.content)
 ```
+{% endraw %}
 
 ## The Escalation Gate
 

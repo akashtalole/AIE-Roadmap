@@ -394,6 +394,7 @@ if __name__ == "__main__":
 
 ## RAGAS Evaluation in CI/CD
 
+{% raw %}
 ```yaml
 # .github/workflows/rag-eval.yml
 name: RAG Quality Evaluation
@@ -426,6 +427,7 @@ jobs:
           name: ragas-report-${{ github.sha }}
           path: eval/reports/
 ```
+{% endraw %}
 
 ## Key Takeaways
 

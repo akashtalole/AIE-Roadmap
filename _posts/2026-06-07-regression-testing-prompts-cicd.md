@@ -36,6 +36,7 @@ Reporting the *specific* newly-failing examples, not just an aggregate score dro
 
 ## GitHub Actions Integration
 
+{% raw %}
 ```yaml
 name: Prompt Regression Check
 on:
@@ -56,6 +57,7 @@ jobs:
         if: always()
         run: python eval/post_pr_comment.py --results eval/results.json
 ```
+{% endraw %}
 
 This mirrors the RAGAS CI pattern from March's evaluation post, generalized to any prompt change, not just RAG-specific ones.
 

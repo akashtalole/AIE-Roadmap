@@ -67,6 +67,7 @@ Custom components implement a simple `run` method with typed outputs — inserti
 
 ## Branching and Conditional Pipelines
 
+{% raw %}
 ```python
 from haystack.components.routers import ConditionalRouter
 
@@ -76,6 +77,7 @@ router = ConditionalRouter(routes=[
 ])
 pipeline.add_component("router", router)
 ```
+{% endraw %}
 
 Conditional routing within a Haystack pipeline mirrors LangGraph's conditional edges — different query types can flow through entirely different sub-pipelines, useful for the same complexity-based routing pattern from August's model-routing post, expressed within Haystack's pipeline abstraction.
 

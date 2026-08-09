@@ -105,4 +105,4 @@ Every one of these mistakes is easy to understand intellectually and easy to mak
 
 ---
 
-*Part of the [Career series]({{ site.baseurl }}/tags/career-series/) — next: [the AI Engineer Roadmap: six months in review]({{ site.baseurl }}/posts/ai-engineer-roadmap-six-months-review/), beginning the roadmap's own retrospective.*
+*Part of the [Career series]({{ site.baseurl }}/tags/career-series/) — next: [the AI Engineer Roadmap: the year in review]({{ site.baseurl }}/posts/ai-engineer-roadmap-year-in-review/), beginning the roadmap's own retrospective.*

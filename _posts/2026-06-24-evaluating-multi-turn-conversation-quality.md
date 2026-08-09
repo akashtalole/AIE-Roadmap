@@ -34,6 +34,7 @@ def check_no_contradictions(turns: list[dict]) -> bool:
 
 ## LLM-as-Judge for Conversation-Level Quality
 
+{% raw %}
 ```python
 def judge_conversation_progress(turns: list[dict]) -> dict:
     transcript = format_conversation(turns)
@@ -46,6 +47,7 @@ def judge_conversation_progress(turns: list[dict]) -> dict:
     }], temperature=0)
     return json.loads(resp.content)
 ```
+{% endraw %}
 
 Judging the full transcript at once, rather than each turn independently, is what lets the judge actually catch context-loss and repetition — these are properties of the *sequence*, invisible to any single-turn evaluation no matter how good.
 

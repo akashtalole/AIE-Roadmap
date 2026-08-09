@@ -160,6 +160,11 @@ pwa:
 
 paginate: 10
 
+# Publish posts with a future date immediately instead of waiting for that date to arrive.
+# The AI Engineer Roadmap series is dated as a full-year daily calendar (Mar-Dec 2026); this
+# keeps the whole series browsable now rather than trickling out day by day.
+future: true
+
 # The base URL of your site
 baseurl: "/AIE-Roadmap"
 

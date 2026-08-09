@@ -41,6 +41,7 @@ def apply_and_test(diff: str) -> dict:
 
 The review step deliberately uses a *different* prompt framing than the one that wrote the code — reviewing your own work with the same mental frame that produced it catches far fewer bugs than reviewing with a fresh, adversarial lens:
 
+{% raw %}
 ```python
 def self_review(diff: str, task: str) -> dict:
     resp = llm.chat([{
@@ -52,6 +53,7 @@ def self_review(diff: str, task: str) -> dict:
     }], temperature=0.3)
     return json.loads(resp.content)
 ```
+{% endraw %}
 
 ## The Fix-Review Loop
 

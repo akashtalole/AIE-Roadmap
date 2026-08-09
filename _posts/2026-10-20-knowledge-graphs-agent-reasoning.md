@@ -10,6 +10,7 @@ Yesterday's comparison established when a knowledge graph is the right tool. Thi
 
 ## Extracting a Knowledge Graph from Unstructured Text
 
+{% raw %}
 ```python
 class Entity(BaseModel):
     name: str
@@ -28,6 +29,7 @@ def extract_graph_from_text(text: str) -> dict:
     }], temperature=0)
     return json.loads(response.content)
 ```
+{% endraw %}
 
 This is the practical, LLM-based approach to the extraction problem yesterday's post flagged as knowledge graphs' main setup cost — using a model to extract structured entities and relationships from text, rather than a purely rule-based NLP pipeline, trading some accuracy for dramatically less upfront engineering.
 
@@ -45,6 +47,7 @@ Using `merge` rather than `create` matters — entities and relationships extrac
 
 ## Querying the Graph for Multi-Hop Reasoning
 
+{% raw %}
 ```python
 def query_multi_hop(start_entity: str, max_hops: int = 2) -> list[dict]:
     return graph_db.query(f"""
@@ -52,6 +55,7 @@ def query_multi_hop(start_entity: str, max_hops: int = 2) -> list[dict]:
         RETURN path
     """, start_entity=start_entity)
 ```
+{% endraw %}
 
 This is the capability yesterday's post identified as the graph's core advantage — traversing explicit relationships up to N hops away from a starting entity, answering exactly the "who does the manager of X report to" class of question a vector store structurally can't handle.
 
