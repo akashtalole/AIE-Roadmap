@@ -3,9 +3,24 @@ title: "When Fine-Tuning Goes Wrong: Common Failure Modes"
 date: 2026-05-27 08:00:00 +0530
 categories: [AI, Fine-Tuning]
 tags: [fine-tuning, fine-tuning-series, debugging, mlops]
+mermaid: true
 ---
 
 Every technique this month can go wrong in specific, recognizable ways. This is a field guide to the most common fine-tuning failures, how to recognize each one, and the fix — pattern-matched against the mitigations already covered this month.
+
+```mermaid
+flowchart TD
+    A[Symptom observed] --> B{Loss never decreases?}
+    B -->|yes| C[Check chat template, raise LR]
+    A --> D{Loss down, output garbage?}
+    D -->|yes| E[Inspect raw training examples]
+    A --> F{Great on training, bad elsewhere?}
+    F -->|yes| G[Widen data diversity, fewer epochs]
+    A --> H{Task up, general capability down?}
+    H -->|yes| I[Apply catastrophic-forgetting mitigations]
+```
+
+Each failure mode has a distinct symptom and a targeted fix rather than a generic "retrain and hope" response — the diagram maps the four most common symptoms straight to the diagnostic step that identifies the actual cause.
 
 ## Failure: Training Loss Never Decreases
 

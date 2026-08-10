@@ -3,9 +3,22 @@ title: "Canary Releases for LLM-Powered Features"
 date: 2026-06-23 08:00:00 +0530
 categories: [AI, Evaluation]
 tags: [evaluation, evaluation-series, canary-release, deployment]
+mermaid: true
 ---
 
 Shadow testing validates a candidate against real traffic with zero user impact. Canary release is the next step: real users, real impact, but deliberately limited in blast radius and instrumented for fast rollback — the bridge between shadow testing and a full rollout.
+
+```mermaid
+flowchart LR
+    A[1% traffic] -->|guardrails hold| B[5% traffic]
+    B -->|guardrails hold| C[25% traffic]
+    C -->|guardrails hold| D[100% rollout]
+    A -->|guardrail violated| E[Auto-rollback to 0%]
+    B -->|guardrail violated| E
+    C -->|guardrail violated| E
+```
+
+Starting at 1%, not 10%, matters specifically for LLM features — a bad prompt or model regression can affect every request it touches — and the rollback at any stage has to be a fast feature-flag flip, not a redeploy, since it needs to bound damage within minutes.
 
 ## Canary Rollout Stages
 

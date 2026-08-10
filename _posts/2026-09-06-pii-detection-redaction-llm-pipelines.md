@@ -3,9 +3,23 @@ title: "PII Detection and Redaction in LLM Pipelines"
 date: 2026-09-06 08:00:00 +0530
 categories: [AI, Security]
 tags: [security, ai-security-series, pii, python]
+mermaid: true
 ---
 
 PII handling has been referenced as a to-do across this roadmap — training data cleaning in May, trace logging in June — without a dedicated implementation. This post is that implementation, covering detection and redaction as a reusable pipeline component.
+
+```mermaid
+flowchart LR
+    A[Raw text] --> B[Pattern-based scan]
+    A --> C[Model-based scan]
+    B --> D[Combined findings]
+    C --> D
+    D --> E{Redaction strategy}
+    E -->|mask| F[REDACTED token]
+    E -->|hash| G[Consistent hashed token]
+```
+
+Pattern matching and model-based scanning catch different kinds of PII — structured values like SSNs versus unstructured, contextual mentions — and the combined findings feed into whichever redaction strategy fits the downstream use, `hash` when referential consistency matters for training data, `mask` otherwise.
 
 ## Detection: Pattern-Based and Model-Based, Combined
 

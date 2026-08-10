@@ -3,9 +3,22 @@ title: "Building a Red Team Test Suite"
 date: 2026-09-15 08:00:00 +0530
 categories: [AI, Security]
 tags: [security, ai-security-series, red-teaming, python, ci-cd]
+mermaid: true
 ---
 
 Yesterday's red-team exercise produces findings. This post turns those findings into a maintained, versioned test suite — the security equivalent of June's golden dataset, gating every deploy against previously-found attack techniques regressing back into the system.
+
+```mermaid
+flowchart LR
+    A[Red-team finding / incident / disclosure] --> B[Versioned test case]
+    B --> C[Red-team test suite]
+    C --> D[CI regression gate]
+    D --> E{Any case succeeds?}
+    E -->|yes, severity >= threshold| F[Block merge]
+    E -->|no| G[Merge allowed]
+```
+
+Every successful attack, whether found internally or reported externally, becomes a permanent test case here — the same "never regress on a known failure" discipline as June's golden dataset, just applied to security findings instead of quality ones.
 
 ## The Test Suite as a Living Artifact
 

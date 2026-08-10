@@ -3,9 +3,22 @@ title: "Arize Phoenix for LLM Tracing and Debugging"
 date: 2026-06-15 08:00:00 +0530
 categories: [AI, Evaluation]
 tags: [evaluation, evaluation-series, arize-phoenix, observability, python]
+mermaid: true
 ---
 
 Arize Phoenix comes from an ML observability background, and it shows in its strengths — it's the option in this comparison most focused on embedding-space analysis and drift detection, on top of the same tracing capability the last two posts covered.
+
+```mermaid
+flowchart LR
+    A[OpenTelemetry instrumentation] --> B[Trace tree]
+    A --> C[Query + retrieved-doc embeddings]
+    C --> D[UMAP 2D/3D projection]
+    D --> E[Outlier retrieval spotted visually]
+    C --> F[Population stability index]
+    F --> G[Drift score over time]
+```
+
+Where LangSmith and Langfuse center on the trace tree, Phoenix's distinctive strength is projecting embeddings into a visual space — an outlier retrieval becomes visible as a stray point rather than something you'd have to catch example-by-example in faithfulness scores.
 
 ## Tracing with OpenTelemetry
 

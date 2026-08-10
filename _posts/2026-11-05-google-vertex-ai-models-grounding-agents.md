@@ -3,9 +3,22 @@ title: "Google Vertex AI: Models, Grounding, and Agent Builder"
 date: 2026-11-05 08:00:00 +0530
 categories: [AI, Cloud AI]
 tags: [cloud-business-series, gcp, vertex-ai, python]
+mermaid: true
 ---
 
 Completing the major-cloud survey: Google Vertex AI, GCP's unified AI platform — worth understanding for its distinctive grounding features and its position as the platform most tightly integrated with Google's own search and knowledge infrastructure.
+
+```mermaid
+flowchart LR
+    A[Gemini Model] --> B[Google Search Grounding]
+    A --> C[Vertex AI Search - your documents]
+    A --> D[BigQuery - structured data]
+    B --> E[Grounded Response]
+    C --> E
+    D --> E
+```
+
+Vertex's distinctive strength is having three genuinely different grounding sources available to the same model — live web search, a managed RAG pipeline over your own documents, and direct grounding against structured BigQuery data without a separate ETL step.
 
 ## Model Access
 

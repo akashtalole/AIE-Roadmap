@@ -3,9 +3,21 @@ title: "Building an Instruction-Tuning Dataset from Scratch"
 date: 2026-05-05 08:00:00 +0530
 categories: [AI, Fine-Tuning]
 tags: [fine-tuning, fine-tuning-series, datasets, python]
+mermaid: true
 ---
 
 Every fine-tuning technique this month is downstream of one bottleneck: dataset quality. A pristine LoRA setup trained on 200 inconsistent, low-quality examples will underperform a naive full fine-tune trained on 2,000 excellent ones. This is where the real effort in a fine-tuning project should go.
+
+```mermaid
+flowchart LR
+    A[Curated production transcripts] --> D[Quality bar filter]
+    B[Expert-written examples] --> D
+    C[Verified synthetic examples] --> D
+    D --> E[Held-out validation split]
+    D --> F[Versioned training set]
+```
+
+Three sources feed the same quality gate before anything is split for validation — the rest of this post walks through each source and why coverage of the input distribution matters more than raw example count.
 
 ## The Format
 

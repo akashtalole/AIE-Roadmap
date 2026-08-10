@@ -3,9 +3,22 @@ title: "Evaluating AI Agents: Benchmarks, Metrics, and Failure Modes"
 date: 2026-03-30 08:00:00 +0530
 categories: [AI, Agents]
 tags: [agents, agents-series, evaluation, benchmarks]
+mermaid: true
 ---
 
 RAG evaluation asks "was the retrieved context relevant and was the answer faithful to it." Agent evaluation asks a harder question: across a whole multi-step trajectory, did the agent accomplish the goal, and did it do so efficiently and safely? A single output-quality score can't answer that.
+
+```mermaid
+flowchart LR
+    A[Test goal] --> B[Run agent, capture full trace]
+    B --> C[LLM-as-judge: goal accomplished?]
+    B --> D[Efficiency metrics: steps, cost, redundant calls]
+    C --> E[Success rate]
+    D --> E
+    E --> F[Failure mode analysis]
+```
+
+Because the path an agent takes varies run to run, grading has to look at the outcome of the whole trajectory — not just a single output — which is why success rate, efficiency, and failure-mode analysis all sit downstream of the same trace. The sections below break down each piece.
 
 ## Task Success Rate: The Core Metric
 

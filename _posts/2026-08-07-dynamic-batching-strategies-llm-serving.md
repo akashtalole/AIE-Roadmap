@@ -3,9 +3,24 @@ title: "Dynamic Batching Strategies for LLM Serving"
 date: 2026-08-07 08:00:00 +0530
 categories: [AI, Infrastructure]
 tags: [infrastructure, ai-infra-series, batching, python]
+mermaid: true
 ---
 
 Continuous batching (Sunday's vLLM post) solved the core scheduling problem. This post covers the tuning layer on top of it — the specific parameters that determine how a real deployment balances throughput against latency for your actual traffic pattern.
+
+```mermaid
+flowchart LR
+    A[Observe P95 latency vs target] --> B{Latency above target and queue deep?}
+    B -->|yes| C[Shrink batch size]
+    B -->|no| D{Latency well under target?}
+    D -->|yes| E[Grow batch size]
+    D -->|no| F[Keep current batch size]
+    C --> A
+    E --> A
+    F --> A
+```
+
+Adjusting batch size dynamically based on observed P95 latency, rather than a fixed static configuration, is what lets one deployment automatically trade throughput for latency as load varies through the day — the loop in this diagram runs continuously against live metrics.
 
 ## The Key Tuning Parameters
 

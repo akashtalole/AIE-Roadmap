@@ -3,9 +3,21 @@ title: "Edge Deployment: Running Small Models on Device"
 date: 2026-08-23 08:00:00 +0530
 categories: [AI, Infrastructure]
 tags: [infrastructure, ai-infra-series, edge-ai, quantization]
+mermaid: true
 ---
 
 Every serving pattern this month assumed a server the client talks to over a network. Edge deployment removes that entirely — running a model directly on a user's device, trading capability for zero network latency, offline availability, and stronger data privacy.
+
+```mermaid
+flowchart LR
+    A[Request] --> B{Simple enough for edge?}
+    B -->|yes| C[On-device quantized model]
+    C --> D[Instant, offline, private response]
+    B -->|no| E[Server-side gateway]
+    E --> F[Full-capability model response]
+```
+
+This hybrid split is the practical pattern this post lands on — a small, aggressively quantized on-device model handles common simple cases instantly and offline, while genuinely complex requests fall back across the network to the full-capability server-side gateway from earlier this month.
 
 ## Why Run On-Device At All
 

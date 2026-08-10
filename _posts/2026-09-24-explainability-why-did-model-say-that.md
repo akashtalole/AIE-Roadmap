@@ -3,9 +3,22 @@ title: "Explainability: Why Did the Model Say That?"
 date: 2026-09-24 08:00:00 +0530
 categories: [AI, Security]
 tags: [security, ai-security-series, explainability, python]
+mermaid: true
 ---
 
 Yesterday's bias testing needs to answer "did this happen," but a full investigation often needs to answer "why did the model produce this specific output." Explainability is that harder question, and it's worth being honest about what's genuinely achievable with today's LLMs versus what remains aspirational.
+
+```mermaid
+flowchart LR
+    A[Why did the model say that?] --> B[Chain-of-thought: post-hoc reasoning]
+    A --> C[Source attribution: which docs drove it]
+    A --> D[Counterfactual testing: vary one input]
+    B --> E[User-facing explanation]
+    C --> E
+    D --> E
+```
+
+None of these three techniques is a true mechanistic account of the model's internals — each is a practical interpretability aid, and the honest framing (useful but not a guarantee) matters as much as the technique itself, especially when explainability output feeds a regulatory requirement.
 
 ## What "Explainability" Actually Means for an LLM
 

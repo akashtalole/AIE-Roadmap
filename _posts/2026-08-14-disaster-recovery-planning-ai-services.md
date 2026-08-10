@@ -3,9 +3,24 @@ title: "Disaster Recovery Planning for AI Services"
 date: 2026-08-14 08:00:00 +0530
 categories: [AI, Infrastructure]
 tags: [infrastructure, ai-infra-series, disaster-recovery]
+mermaid: true
 ---
 
 Every pattern this week helps with routine failures — a bad deploy, a traffic spike, a single backend going unhealthy. Disaster recovery plans for the larger failures: a full region outage, a provider-wide incident, data loss — the scenarios where the mitigations covered so far aren't enough on their own.
+
+```mermaid
+flowchart TD
+    A[Disaster: region/provider outage, data loss] --> B{Which asset is at risk?}
+    B -->|fine-tuned weights| C[Restore from checkpoint backup]
+    B -->|golden datasets| D[Restore from evaluation backup]
+    B -->|vector index| E[Re-index from source documents]
+    C --> F[Verify against RTO/RPO target]
+    D --> F
+    E --> F
+    F --> G[Restore drill confirms it actually works]
+```
+
+Each AI-specific asset class needs its own backup and restore path, and each is checked against an explicit RTO/RPO target set per service rather than assumed uniform — the restore-drill step matters because a backup that's never been tested for restoration isn't a reliable one.
 
 ## Defining RTO and RPO for AI Services
 

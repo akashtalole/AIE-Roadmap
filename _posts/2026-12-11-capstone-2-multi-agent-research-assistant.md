@@ -3,9 +3,20 @@ title: "Capstone Project 2: Build a Multi-Agent Research Assistant"
 date: 2026-12-11 08:00:00 +0530
 categories: [AI, Career]
 tags: [career, career-series, capstone, agents, python]
+mermaid: true
 ---
 
 Second capstone: a multi-agent system that researches a topic across multiple sources and produces a cited report — drawing on March/April's agent series and October's deep dives.
+
+```mermaid
+flowchart LR
+    A[Topic] --> B[Research agent:<br/>search & gather]
+    B --> C[Critique agent:<br/>reviews gaps]
+    C --> D[Writing agent:<br/>synthesizes report]
+    D --> E[Cited report]
+```
+
+This three-agent pipeline is the suggested architecture below — the critique agent is the piece that distinguishes it from a simple two-step pipeline, demonstrating October 23's reflection pattern rather than just basic agent coordination.
 
 ## Project Brief
 

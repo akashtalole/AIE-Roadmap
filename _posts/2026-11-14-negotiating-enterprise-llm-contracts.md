@@ -3,9 +3,20 @@ title: "Negotiating Enterprise LLM API Contracts"
 date: 2026-11-14 08:00:00 +0530
 categories: [AI, Cloud AI]
 tags: [cloud-business-series, business, vendor-management]
+mermaid: true
 ---
 
 Yesterday's build-vs-buy framework often lands on "buy" for infrastructure-layer capability. This post covers the specifics of negotiating an enterprise LLM provider contract well — a distinct skill from the technical integration work this roadmap has otherwise focused on.
+
+```mermaid
+flowchart LR
+    A[Cost Model + Growth Forecast] --> B[Committed Volume Ask]
+    C[Evaluated Alternatives] --> D[Negotiating Leverage]
+    B --> D
+    D --> E[Pricing, SLA, Data Handling Terms]
+```
+
+Real negotiating leverage comes from having a genuinely evaluated alternative, not just a bluff — enabled directly by August's provider-portability and fallback-strategy posts, which is what turns a vendor conversation from a price-taking exercise into an actual negotiation.
 
 ## What's Actually Negotiable
 

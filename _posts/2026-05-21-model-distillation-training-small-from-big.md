@@ -3,9 +3,21 @@ title: "Model Distillation: Training Small Models from Big Ones"
 date: 2026-05-21 08:00:00 +0530
 categories: [AI, Fine-Tuning]
 tags: [fine-tuning, fine-tuning-series, distillation, python]
+mermaid: true
 ---
 
 Quantization shrinks an existing model. Distillation trains a genuinely smaller model, from scratch or from a small pretrained base, to approximate a larger "teacher" model's behavior on your specific task — often reaching much of the teacher's quality on that narrow task at a fraction of its inference cost.
+
+```mermaid
+flowchart LR
+    A[Teacher model] --> B[Generate responses to prompts]
+    B --> C[Distillation dataset]
+    C --> D[Fine-tune student model]
+    D --> E{Quality retained vs cost reduced?}
+    E -->|worth it| F[Ship smaller, cheaper model]
+```
+
+Response distillation is just synthetic data generation applied to one specific goal — capturing a teacher's behavior for a student to learn from — so the same verification discipline from earlier this month still applies.
 
 ## The Basic Recipe
 

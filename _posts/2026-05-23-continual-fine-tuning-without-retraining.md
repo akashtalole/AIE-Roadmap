@@ -3,9 +3,23 @@ title: "Continual Fine-Tuning Without Retraining from Scratch"
 date: 2026-05-23 08:00:00 +0530
 categories: [AI, Fine-Tuning]
 tags: [fine-tuning, fine-tuning-series, continual-learning, python]
+mermaid: true
 ---
 
 A fine-tuned model in production accumulates new examples of things it got wrong — exactly the feedback loop that should improve it over time. Continual fine-tuning is about incorporating that new data without paying the full cost of retraining from the original dataset every time.
+
+```mermaid
+flowchart LR
+    A[Previous adapter] --> D[Warm-start training]
+    B[New examples] --> D
+    C[Rehearsal buffer of original data] --> D
+    D --> E[New checkpoint version]
+    E --> F{Beats production on both metrics?}
+    F -->|yes| G[Promote]
+    F -->|no| H[Roll back]
+```
+
+Warm-starting from the previous checkpoint keeps training cheap, but the rehearsal buffer of original data is what keeps successive rounds from drifting away from general capability — and every new version passes through the same promote-or-rollback gate.
 
 ## The Naive Approach and Why It's Wasteful
 

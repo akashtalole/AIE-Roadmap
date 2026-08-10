@@ -3,9 +3,22 @@ title: "Token Budget Management Across a Multi-Team Organization"
 date: 2026-08-18 08:00:00 +0530
 categories: [AI, Infrastructure]
 tags: [infrastructure, ai-infra-series, cost-optimization, python]
+mermaid: true
 ---
 
 Yesterday's gateway introduced per-team budgets in passing. This post covers the organizational side of that problem — how token budgets actually get allocated, enforced fairly, and adjusted as an organization's AI usage grows across many teams with very different needs.
+
+```mermaid
+flowchart LR
+    A[Team request] --> B{Usage + request vs budget}
+    B -->|under 80%| C[Allowed]
+    B -->|80-100%| D[Soft warn: request more budget]
+    B -->|over 100%| E[Hard block]
+    D --> F[Budget increase request]
+    F --> G[Platform team review]
+```
+
+A hard block at 100% protects against runaway spend but can halt a critical feature mid-month, which is why the soft warning at 80% — giving a team time to request more budget before hitting the wall — is the better default for anything user-facing, with hard limits reserved for bounded experimental workloads.
 
 ## Allocation Models
 

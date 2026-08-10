@@ -3,9 +3,24 @@ title: "Reward Modeling: Teaching a Model What \"Good\" Means"
 date: 2026-05-14 08:00:00 +0530
 categories: [AI, Fine-Tuning]
 tags: [fine-tuning, fine-tuning-series, reward-model, rlhf]
+mermaid: true
 ---
 
 Whether you train one explicitly for full RLHF or not, understanding reward modeling clarifies what preference data — the `chosen`/`rejected` pairs from yesterday's DPO post — is actually teaching a model, and why the quality of that signal caps everything downstream.
+
+```mermaid
+flowchart LR
+    A[Prompt] --> B[Chosen response]
+    A --> C[Rejected response]
+    B --> D[Reward model score]
+    C --> E[Reward model score]
+    D --> F[Bradley-Terry loss]
+    E --> F
+    F --> G{Scores diverge from human judgment?}
+    G -->|yes| H[Reward hacking]
+```
+
+The reward model scores both responses in a pair and the Bradley-Terry loss pushes the chosen score above the rejected one — the same preference pairs DPO trains on directly, just routed through an explicit scoring step here.
 
 ## What a Reward Model Is
 

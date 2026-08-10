@@ -3,9 +3,23 @@ title: "Claude Agent SDK: Building Production Claude Agents"
 date: 2026-04-08 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [anthropic, claude, agentic-frameworks-series, python, agents]
+mermaid: true
 ---
 
 The Claude Agent SDK packages the same agentic loop pattern that powers Claude Code — a model with file, bash, and search tools, running in a permissioned execution loop — into a library you can build your own agents on top of.
+
+```mermaid
+flowchart LR
+    A[Agent reasons] --> B{Wants to call a tool?}
+    B -->|yes| C{Permission mode allows it?}
+    C -->|auto-approved| D[Execute tool]
+    C -->|needs approval| E[Prompt for approval]
+    E -->|approved| D
+    D --> A
+    B -->|no| F[Final response]
+```
+
+Permissioning is the piece that distinguishes this from a bare function-calling loop — every tool call passes through a policy check before it runs, which is what makes it safe to hand the agent tools with real side effects. Subagents and hooks, covered below, build on the same loop.
 
 ## The Core Loop
 

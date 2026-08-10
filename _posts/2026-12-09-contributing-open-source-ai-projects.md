@@ -3,9 +3,20 @@ title: "Contributing to Open-Source AI Projects"
 date: 2026-12-09 08:00:00 +0530
 categories: [AI, Career]
 tags: [career, career-series, open-source]
+mermaid: true
 ---
 
 Nearly every framework and tool this roadmap has covered — LangGraph, vLLM, DSPy, Haystack, MCP servers — is open source. Contributing to them is both a genuine way to give back and a high-signal career-building activity distinct from yesterday's writing post.
+
+```mermaid
+flowchart LR
+    A[Doc gap / bug you hit] --> B[Small, focused PR]
+    B --> C[Merged contribution]
+    C --> D[Consistent engagement]
+    D --> E[Trusted contributor / maintainer]
+```
+
+This progression happens naturally over sustained, quality engagement, not as something to force — the sections below cover finding that first contribution and what maintainers actually look for at each stage.
 
 ## Why This Is High-Signal for Career Growth
 

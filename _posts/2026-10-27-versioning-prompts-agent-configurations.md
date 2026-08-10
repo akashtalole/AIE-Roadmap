@@ -3,9 +3,22 @@ title: "Versioning Prompts and Agent Configurations"
 date: 2026-10-27 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [agents, deep-dive-series, python, mlops]
+mermaid: true
 ---
 
 August's model registry tracked model versions. This post covers the parallel practice for prompts and agent configurations — system prompts, tool sets, and orchestration parameters change just as often as models do, and need the same version discipline.
+
+```mermaid
+flowchart LR
+    A[New AgentConfig] --> B[Immutable Config Store]
+    B --> C{Passes eval + security gate?}
+    C -->|yes| D[Active Version Pointer]
+    C -->|no| E[Rejected]
+    D --> F[Production Agent]
+    D -.rollback.-> G[Previous Version]
+```
+
+Separating the immutable config store from the active-version pointer is what makes rollback instant — repointing to a previous version rather than reconstructing it, the same instant-rollback property as August's blue-green deployment pattern applied one layer up the stack.
 
 ## What Counts as an Agent Configuration
 

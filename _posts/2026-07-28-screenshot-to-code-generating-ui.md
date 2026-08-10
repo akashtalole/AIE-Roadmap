@@ -3,9 +3,23 @@ title: "Screenshot-to-Code: Generating UI from Images"
 date: 2026-07-28 08:00:00 +0530
 categories: [AI, Multimodal]
 tags: [multimodal, multimodal-series, code-generation, python]
+mermaid: true
 ---
 
 A VLM reading a UI mockup or screenshot and generating working code for it combines this month's vision understanding with the coding-agent techniques from April — a genuinely practical use case for design-to-development handoff.
+
+```mermaid
+flowchart LR
+    A[Original screenshot] --> B[Generate code]
+    B --> C[Render + screenshot result]
+    C --> D[VLM compares original vs rendered]
+    D --> E{Match score > 0.9?}
+    E -->|no| F[Refine code with diff issues]
+    F --> B
+    E -->|yes| G[Final code]
+```
+
+Closing the loop visually — rendering the generated code and diffing it back against the original screenshot — is what separates a rough first pass from production-usable output, since a single-shot generation rarely matches spacing and alignment precisely.
 
 ## Basic Screenshot-to-Code
 

@@ -3,9 +3,21 @@ title: "Code-Generating Agents: Sandboxing and Execution Safety"
 date: 2026-04-23 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [agents, agentic-frameworks-series, sandboxing, security, python]
+mermaid: true
 ---
 
 AutoGen's `code_execution_config` from earlier this month treated code execution as a first-class tool. That's genuinely powerful — a model writing and running code can solve problems no fixed toolset anticipated — and genuinely dangerous if the execution environment isn't properly isolated.
+
+```mermaid
+flowchart LR
+    A[Model-generated code] --> B{Isolation level}
+    B -->|exec on host| C[Arbitrary code execution risk]
+    B -->|subprocess + limits| D[Shares the kernel]
+    B -->|container, no network| E[Strong isolation]
+    B -->|microVM| F[Kernel-level isolation]
+```
+
+The diagram lines up the four isolation options from weakest to strongest, exactly as they escalate below — most production agents land on the container tier, reserving microVMs for genuinely untrusted input.
 
 ## Never Execute Generated Code on Your Host
 

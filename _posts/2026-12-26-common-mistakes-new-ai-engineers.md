@@ -3,9 +3,24 @@ title: "Common Mistakes New AI Engineers Make (and How to Avoid Them)"
 date: 2026-12-26 08:00:00 +0530
 categories: [AI, Career]
 tags: [career, career-series, best-practices]
+mermaid: true
 ---
 
 Yesterday's mentoring post referenced common sticking points. This post is the full, consolidated list — the mistakes that show up repeatedly enough across this entire roadmap's content that they deserve a dedicated, direct treatment.
+
+```mermaid
+flowchart TD
+    A[New AI engineer habits] --> B{Skips evaluation?}
+    A --> C{Reaches for the most<br/>sophisticated technique?}
+    A --> D{Guardrails only<br/>after an incident?}
+    A --> E{No cost monitoring<br/>until a crisis?}
+    B --> F[Self-audit checklist]
+    C --> F
+    D --> F
+    E --> F
+```
+
+These four are the highest-frequency mistakes across this whole roadmap's content, and the self-audit function later in this post turns the checklist into something you can actually run against a real project.
 
 ## Mistake 1: Skipping Evaluation Because "It Seems to Work"
 

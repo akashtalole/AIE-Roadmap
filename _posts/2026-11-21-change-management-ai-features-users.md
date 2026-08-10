@@ -3,9 +3,19 @@ title: "Change Management: Rolling Out AI Features to Users"
 date: 2026-11-21 08:00:00 +0530
 categories: [AI, Cloud AI]
 tags: [cloud-business-series, change-management, product]
+mermaid: true
 ---
 
 June and August covered technical rollout mechanics — canary releases, shadow testing. This post covers the user-facing side of a rollout: how people actually adopt (or reject) a new AI feature, which needs deliberate management distinct from the technical deployment safety already covered.
+
+```mermaid
+flowchart LR
+    A[Internal Dogfooding] --> B[Opt-in Beta]
+    B --> C[Default-on, Easy Opt-out]
+    C --> D[Default-on, No Opt-out]
+```
+
+This user-facing phasing runs on top of, not in place of, June and August's technical canary percentage — the two are separate dimensions that should be managed together, with the most forgiving audience (dogfooding, eager early adopters) seeing the feature first.
 
 ## Why AI Feature Rollouts Need Different Change Management
 

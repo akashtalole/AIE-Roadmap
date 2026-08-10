@@ -3,9 +3,20 @@ title: "The Economics of Fine-Tuning: Cost vs Benefit"
 date: 2026-05-29 08:00:00 +0530
 categories: [AI, Fine-Tuning]
 tags: [fine-tuning, fine-tuning-series, cost-optimization]
+mermaid: true
 ---
 
 Every technique this month has a real cost — data curation time, training compute, evaluation effort, ongoing maintenance. This post puts a framework around the question that should have been asked before any of it started: does the fine-tuning investment actually pay for itself?
+
+```mermaid
+flowchart LR
+    A[Data curation + training + eval + retraining cost] --> C{Break-even requests vs projected volume}
+    B[Per-request savings + prompt token savings] --> C
+    C -->|breaks even fast| D[Proceed with fine-tuning]
+    C -->|breaks even slow or never| E[Stick with prompting/RAG/bigger model]
+```
+
+The break-even calculation below is the whole decision compressed into one number — total project cost divided by per-request savings, checked against real projected volume before committing any engineering time.
 
 ## The Full Cost Accounting, Not Just Training Compute
 

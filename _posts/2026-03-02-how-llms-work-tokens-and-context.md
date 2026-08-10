@@ -3,9 +3,21 @@ title: "How LLMs Work: Tokens, Context Windows, and Sampling Parameters"
 date: 2026-03-02 08:00:00 +0530
 categories: [AI, LLMs]
 tags: [llm, tokens, context-window, sampling, roadmap]
+mermaid: true
 ---
 
 Before you can engineer prompts or build reliable AI systems, you need to understand what's actually happening under the hood of a large language model. This post covers the core mechanics every AI Engineer must know.
+
+```mermaid
+flowchart LR
+    A[Raw text] --> B[Tokenizer]
+    B --> C[Tokens fill context window]
+    C --> D{Sampling params}
+    D -->|temperature, top-p| E[Next token predicted]
+    E -->|repeat until done| C
+```
+
+Everything downstream of a request — cost, context limits, and output quality — traces back to these two mechanics: how text is chopped into tokens, and how sampling parameters pick the next one. The rest of this post walks through each stage.
 
 ## What is a Token?
 

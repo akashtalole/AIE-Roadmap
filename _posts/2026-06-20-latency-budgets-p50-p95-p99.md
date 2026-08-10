@@ -3,9 +3,22 @@ title: "Latency Budgets: P50, P95, and P99 for LLM Endpoints"
 date: 2026-06-20 08:00:00 +0530
 categories: [AI, Evaluation]
 tags: [evaluation, evaluation-series, latency, observability, python]
+mermaid: true
 ---
 
 Average latency hides the experience of your worst-served users. A feature with a 400ms average and a 8-second P99 feels broken to one in a hundred users every single time, no matter how good the average looks on a dashboard.
+
+```mermaid
+flowchart LR
+    A[Request] --> B[Retrieval: 200ms budget]
+    B --> C[Time to first token: 800ms budget]
+    C --> D[Full generation: 4000ms budget]
+    D --> E[Total request: 4500ms budget]
+    E --> F{P50 / P95 / P99 within SLO?}
+    F -->|no| G[Alert on burn rate]
+```
+
+Per-stage budgets, not just an end-to-end number, tell you which stage blew the budget when a request is slow, and tracking P95/P99 instead of the mean surfaces the "one in a hundred" experience that a fine-looking average completely hides.
 
 ## Why Percentiles, Not Averages
 

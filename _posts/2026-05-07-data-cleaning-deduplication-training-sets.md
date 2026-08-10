@@ -3,9 +3,23 @@ title: "Data Cleaning and Deduplication for Training Sets"
 date: 2026-05-07 08:00:00 +0530
 categories: [AI, Fine-Tuning]
 tags: [fine-tuning, fine-tuning-series, data-quality, python]
+mermaid: true
 ---
 
 A dataset combining curated real examples and generated synthetic ones from the last two posts almost always has duplicates, near-duplicates, and quality outliers hiding in it. Cleaning this before training isn't optional busywork — duplicate-heavy training data measurably skews a fine-tuned model toward overfitting on whatever's overrepresented.
+
+```mermaid
+flowchart LR
+    A[Combined real + synthetic data] --> B[Exact dedup]
+    B --> C[Near dedup]
+    C --> D[Quality filter]
+    D --> E[Balance categories]
+    E --> F[PII scrub]
+    F --> G[Manual sanity read]
+    G --> H[Clean training set]
+```
+
+Each stage removes a specific failure mode — duplicates skew overfitting, low-quality examples teach bad habits, imbalance biases the model toward the majority category, and the final manual read catches systematic issues no automated check will flag.
 
 ## Exact and Near-Duplicate Detection
 

@@ -3,9 +3,19 @@ title: "Fine-Tuning for Style vs Fine-Tuning for Knowledge"
 date: 2026-05-30 08:00:00 +0530
 categories: [AI, Fine-Tuning]
 tags: [fine-tuning, fine-tuning-series, prompt-engineering, rag]
+mermaid: true
 ---
 
 The very first post this month drew a line between facts (belong in RAG) and behavior (fair game for fine-tuning). This post sharpens that further: within "behavior," style and knowledge respond very differently to fine-tuning, and conflating them is a common source of disappointing results.
+
+```mermaid
+flowchart LR
+    A[Training example] --> B{Would a fact update break this?}
+    B -->|yes| C[Knowledge — belongs in RAG]
+    B -->|no| D[Style — fine-tune it]
+```
+
+The heuristic from later in this post reduces to a single routing question: does the example encode a volatile fact, or a reusable response pattern? Everything below walks through why that split matters and how to apply it in practice.
 
 ## Style: What Fine-Tuning Is Genuinely Good At
 

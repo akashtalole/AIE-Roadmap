@@ -3,9 +3,22 @@ title: "Building Custom Tool Schemas Agents Actually Use"
 date: 2026-04-13 09:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [agents, agentic-frameworks-series, tool-use, python, function-calling]
+mermaid: true
 ---
 
 Every framework this month hands you a way to register a tool. None of them stop you from registering a *badly designed* one — and a badly designed tool is the single most common reason a working framework still produces an unreliable agent.
+
+```mermaid
+flowchart TD
+    A[Model reads tool description] --> B{Description is specific?}
+    B -->|vague, swiss-army tool| C[Wrong tool or wrong mode picked]
+    B -->|narrow, single-purpose| D[Correct tool picked]
+    D --> E{Args match schema?}
+    E -->|Literal + bounds| F[Valid call]
+    F --> G[Structured return, easy to reason over]
+```
+
+Nearly every tool-selection failure traces back to one of these forks — a vague description, an overloaded `action` parameter, or an unconstrained argument schema. The sections below fix each one.
 
 ## Descriptions Are Prompts, Not Documentation
 

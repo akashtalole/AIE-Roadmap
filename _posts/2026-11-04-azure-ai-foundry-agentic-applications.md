@@ -8,6 +8,17 @@ mermaid: true
 
 Yesterday's post covered Azure OpenAI's model access layer. Azure AI Foundry sits above it — Microsoft's platform specifically for building, evaluating, and deploying agentic applications, worth understanding as a distinct layer from raw model access.
 
+```mermaid
+flowchart LR
+    A[Azure OpenAI: raw model access] --> B[Azure AI Foundry]
+    B --> C[Agent Service: orchestration + tools]
+    B --> D[Prompt Flow: multi-step pipelines]
+    B --> E[Built-in evaluation]
+    B --> F[Content Safety integration]
+```
+
+Foundry doesn't replace the raw model access from yesterday's post — it wraps it with the agent-specific tooling (orchestration, evaluation, safety) that most teams would otherwise have to build themselves on top of the base API.
+
 ## What Foundry Adds Beyond Raw Model Access
 
 ```python

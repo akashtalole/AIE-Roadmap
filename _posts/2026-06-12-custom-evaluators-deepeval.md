@@ -3,9 +3,22 @@ title: "Building Custom Evaluators with DeepEval"
 date: 2026-06-12 08:00:00 +0530
 categories: [AI, Evaluation]
 tags: [evaluation, evaluation-series, deepeval, python]
+mermaid: true
 ---
 
 Every evaluation pattern this month — LLM-as-judge, reference-based scoring, golden set gating — has been hand-rolled so far. DeepEval packages these patterns into a testable, pytest-compatible framework, which matters for wiring evaluation into the same CI infrastructure your team already trusts for regular code.
+
+```mermaid
+flowchart LR
+    A[Golden dataset] --> B["@pytest.mark.parametrize"]
+    B --> C[LLMTestCase per example]
+    C --> D[FaithfulnessMetric / GEval / custom]
+    D --> E{assert_test}
+    E -->|pass| F[CI green]
+    E -->|fail| G[CI red — blocks deploy]
+```
+
+Parametrizing pytest over the whole golden dataset turns every golden example into its own individually-reported test case, plugging straight into a CI pipeline your team already trusts rather than needing separate eval infrastructure.
 
 ## Basic Metric Usage
 

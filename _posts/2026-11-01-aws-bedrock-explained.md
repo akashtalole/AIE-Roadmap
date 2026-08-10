@@ -3,9 +3,21 @@ title: "AWS Bedrock Explained: Models, Guardrails, and Knowledge Bases"
 date: 2026-11-01 08:00:00 +0530
 categories: [AI, Cloud AI]
 tags: [cloud-business-series, aws, bedrock, roadmap]
+mermaid: true
 ---
 
 Everything so far in this roadmap has called model provider APIs directly or self-hosted infrastructure (August's series). November covers the third common path: managed AI platforms from the major clouds, starting with AWS Bedrock — a unified API over multiple model providers plus a suite of managed AI infrastructure.
+
+```mermaid
+flowchart LR
+    A[Your Application] --> B[Bedrock converse API]
+    B --> C[Anthropic / Meta / Mistral / Amazon models]
+    A --> D[Guardrails]
+    A --> E[Knowledge Bases - managed RAG]
+    A --> F[Bedrock Agents]
+```
+
+The `converse` API is Bedrock's core value proposition — one request shape across every hosted model — while Guardrails, Knowledge Bases, and Agents package September's, March's, and March's agent patterns respectively as managed services on top of it.
 
 ## What Bedrock Actually Provides
 

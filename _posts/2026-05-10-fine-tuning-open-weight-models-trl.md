@@ -3,9 +3,23 @@ title: "Fine-Tuning Open-Weight Models with Hugging Face TRL"
 date: 2026-05-10 08:00:00 +0530
 categories: [AI, Fine-Tuning]
 tags: [fine-tuning, fine-tuning-series, huggingface, python, open-source]
+mermaid: true
 ---
 
 Managed APIs cover most needs but hand you neither the weights nor control over training details. TRL (Transformer Reinforcement Learning, despite the name it covers supervised fine-tuning too) is Hugging Face's library for the fully self-hosted alternative — full control, at the cost of managing your own training infrastructure.
+
+```mermaid
+flowchart LR
+    A[Load dataset + base model] --> B[Configure LoRA + SFTConfig]
+    B --> C[SFTTrainer.train]
+    C --> D{Eval loss improves?}
+    D -->|yes| E[Checkpoint saved]
+    D -->|no, best already found| F[load_best_model_at_end]
+    E --> G[Save adapter]
+    F --> G
+```
+
+This is the self-hosted counterpart to the managed OpenAI and Anthropic flows from the last two posts — same underlying training loop, but every stage from data loading through checkpoint selection runs on infrastructure you own.
 
 ## Loading Data and Model
 

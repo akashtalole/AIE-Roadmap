@@ -3,9 +3,21 @@ title: "Managed Vector Databases Compared: Pinecone, Bedrock KB, and More"
 date: 2026-11-09 08:00:00 +0530
 categories: [AI, Cloud AI]
 tags: [cloud-business-series, vector-database, comparison]
+mermaid: true
 ---
 
 March's vector database post compared FAISS, Qdrant, and ChromaDB, mostly self-hosted options. This post extends that comparison with fully-managed services — trading operational control for reduced infrastructure burden, following the same tradeoff pattern as this month's cloud AI platform comparisons.
+
+```mermaid
+flowchart TD
+    A[Choosing a vector database] --> B{Already deep in one cloud?}
+    B -->|yes, no advanced hybrid search needed| C[Cloud-native managed]
+    B -->|no| D{Need max control or massive scale?}
+    D -->|yes| E[Self-hosted - March's post]
+    D -->|no| F[Pinecone or dedicated managed service]
+```
+
+The decision tree runs through the same three tiers as the comparison table below — cloud-native for minimal vendor sprawl, a dedicated specialist like Pinecone for maximum feature depth, and self-hosting only once scale or control genuinely demands it.
 
 ## The Managed Options
 

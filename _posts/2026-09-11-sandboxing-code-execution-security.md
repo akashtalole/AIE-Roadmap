@@ -3,9 +3,23 @@ title: "Sandboxing Code Execution for AI Agents"
 date: 2026-09-11 08:00:00 +0530
 categories: [AI, Security]
 tags: [security, ai-security-series, sandboxing, agents, python]
+mermaid: true
 ---
 
 April's coding-agent post covered sandboxing from a reliability and correctness angle. This post revisits the same territory through a dedicated security threat-model lens — what a genuinely adversarial actor could attempt against a code-execution tool, and what defenses hold up against that, not just against accidental bad output.
+
+```mermaid
+flowchart LR
+    A[Agent-generated code] --> B[Ephemeral container]
+    B --> C[network_mode: none]
+    B --> D[Read-only root filesystem]
+    B --> E[seccomp profile]
+    B --> F[Resource limits]
+    C & D & E & F --> G[Monitor for blocked syscalls / network attempts]
+    G --> H[Container destroyed after execution]
+```
+
+Each hardening layer defends specifically against a deliberate escape attempt, not just an accidental infinite loop — logging blocked syscalls and attempted network access, not only successful ones, is what turns this sandbox into a threat-intelligence source rather than just a containment mechanism.
 
 ## The Threat Model Is Different From "Buggy Generated Code"
 

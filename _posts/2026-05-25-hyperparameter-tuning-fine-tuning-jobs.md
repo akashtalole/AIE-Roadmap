@@ -3,9 +3,20 @@ title: "Hyperparameter Tuning for LLM Fine-Tuning Jobs"
 date: 2026-05-25 08:00:00 +0530
 categories: [AI, Fine-Tuning]
 tags: [fine-tuning, fine-tuning-series, hyperparameters, python]
+mermaid: true
 ---
 
 Every fine-tuning code example this month has hardcoded reasonable hyperparameter defaults. This post covers how to actually find good values for your specific dataset and task, rather than trusting a default that was tuned for someone else's use case.
+
+```mermaid
+flowchart LR
+    A[Coarse grid: small data, few epochs] --> B[Identify promising region]
+    B --> C[Fine search around it, e.g. Optuna]
+    C --> D[Best config on held-out val set]
+    D --> E[Confirm on untouched test set]
+```
+
+The coarse-then-fine search keeps expensive full-budget training runs reserved for the small number of configurations that survive the cheap first pass, and the final test-set check guards against overfitting to the validation set itself.
 
 ## The Hyperparameters That Matter Most, Ranked
 

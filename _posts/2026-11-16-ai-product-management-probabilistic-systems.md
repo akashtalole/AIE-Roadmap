@@ -3,9 +3,20 @@ title: "AI Product Management: Writing Specs for Probabilistic Systems"
 date: 2026-11-16 08:00:00 +0530
 categories: [AI, Cloud AI]
 tags: [cloud-business-series, product-management, business]
+mermaid: true
 ---
 
 Every technical and business practice this roadmap has covered assumes a spec exists to build against. This post covers what's genuinely different about writing that spec for an AI feature — a traditional deterministic-software spec doesn't transfer cleanly.
+
+```mermaid
+flowchart LR
+    A[Spec: Success Criteria] --> B[June's Golden Set]
+    C[Spec: Quality Bar] --> B
+    D[Spec: Cost Ceiling] --> E[Nov 11's Cost Model]
+    F[Spec: Escalation Path] --> G[April's Escalation Pattern]
+```
+
+Every field in the spec template below maps to a technical practice already covered elsewhere in this roadmap — the product manager's job is making the business decision each field represents, which engineering then implements against using exactly these existing tools.
 
 ## Why "It Should Do X" Isn't a Complete Spec for AI Features
 

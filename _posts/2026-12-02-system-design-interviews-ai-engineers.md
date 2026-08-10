@@ -3,9 +3,20 @@ title: "System Design Interviews for AI Engineers: What's Different"
 date: 2026-12-02 08:00:00 +0530
 categories: [AI, Career]
 tags: [career, career-series, interviews]
+mermaid: true
 ---
 
 A traditional system design interview asks you to design a URL shortener or a chat system. An AI engineering system design interview asks the same structural question but tests a genuinely different set of instincts — this post covers what interviewers are actually evaluating.
+
+```mermaid
+flowchart TD
+    A[Clarify requirements] --> B[Choose approach:<br/>RAG vs fine-tune vs prompt]
+    B --> C[Design the pipeline]
+    C --> D[Address evaluation]
+    D --> E[Address failure modes]
+```
+
+This is the answer sequence a strong candidate follows for almost any AI system design prompt — jumping straight to architecture (skipping step 1) or never reaching evaluation (skipping step 4) are the two most common ways candidates lose points, as the rest of this post explains.
 
 ## The Core Additional Dimensions Being Tested
 

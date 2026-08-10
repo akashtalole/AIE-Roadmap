@@ -3,9 +3,23 @@ title: "Giving Agents Memory: Short-Term, Long-Term, and Episodic"
 date: 2026-03-27 08:00:00 +0530
 categories: [AI, Agents]
 tags: [agents, agents-series, memory, vector-database, rag]
+mermaid: true
 ---
 
 An agent without memory forgets everything the moment its context window fills up or the session ends. Real agents need three distinct kinds of memory, and conflating them is the most common design mistake.
+
+```mermaid
+flowchart TD
+    A[Agent step] --> B[Working memory: current context window]
+    A --> C[(Long-term memory: facts across sessions)]
+    A --> D[(Episodic memory: past goal + plan + outcome)]
+    C --> E[Retrieved before each step]
+    D --> E
+    B --> E
+    E --> F[Next action]
+```
+
+Each memory type answers a different question — what's happening right now, what's true in general, and what worked last time — and an agent typically draws on all three before deciding its next action. The sections below cover each in turn.
 
 ## Working Memory: The Context Window Itself
 

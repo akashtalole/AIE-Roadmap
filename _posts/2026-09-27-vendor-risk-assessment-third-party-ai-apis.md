@@ -3,9 +3,21 @@ title: "Vendor Risk Assessment for Third-Party AI APIs"
 date: 2026-09-27 08:00:00 +0530
 categories: [AI, Security]
 tags: [security, ai-security-series, vendor-risk, compliance]
+mermaid: true
 ---
 
 Every application in this roadmap depends on at least one third-party model provider, and often several additional vendors — observability platforms, vector databases, MCP servers. Each is a dependency whose security and compliance posture becomes, transitively, your own.
+
+```mermaid
+flowchart LR
+    A[Vendor: provider, MCP server, platform] --> B[Assess data handling, compliance, security]
+    B --> C[Assign risk rating]
+    C --> D[Approve with contractual protections]
+    D --> E[Periodic re-review]
+    E -->|policy changed| B
+```
+
+The assessment doesn't end at onboarding — the loop back into periodic re-review is what catches a vendor's policy change (say, a new default to train on customer data) before it surfaces as a surprise during your own audit.
 
 ## What a Vendor Risk Assessment Actually Evaluates
 

@@ -3,9 +3,18 @@ title: "Onboarding Engineers into an Existing AI Codebase"
 date: 2026-11-19 08:00:00 +0530
 categories: [AI, Cloud AI]
 tags: [cloud-business-series, team-structure, onboarding]
+mermaid: true
 ---
 
 Yesterday's post covered hiring the right mix of roles. This post covers what happens next — getting a new engineer, of any of those three types, productive in an existing AI codebase, which has onboarding challenges a typical software codebase doesn't.
+
+```mermaid
+flowchart LR
+    A[Week 1: run eval harness, trace requests, read registry] --> B[Week 2: small evaluated prompt change, shadow on-call]
+    B --> C[Weeks 3-4: own a feature end to end]
+```
+
+Starting with reading traces and running evaluations, not writing code, is the deliberate ordering here — it gives a new engineer an evidence-based understanding of system behavior faster than reading prompt text alone ever could.
 
 ## Why AI Codebases Are Harder to Onboard Into
 

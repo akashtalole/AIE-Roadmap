@@ -3,9 +3,21 @@ title: "AutoGen Deep Dive: Code Execution Environments"
 date: 2026-10-06 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [autogen, deep-dive-series, python, sandboxing]
+mermaid: true
 ---
 
 April's coding-agent post and September's sandboxing security post covered the general principles. This post covers AutoGen's specific code execution configuration options and how to harden them to the standard those earlier posts established.
+
+```mermaid
+flowchart LR
+    A[Code to execute] --> B{Trusted dev use only?}
+    B -->|yes| C[LocalCommandLineCodeExecutor]
+    B -->|no| D[DockerCommandLineCodeExecutor]
+    D --> E[Hardened: no network, read-only, resource limits]
+    E --> F[Sanitize output before it re-enters the conversation]
+```
+
+The executor choice is the first decision, but hardening and output sanitization matter just as much — a Docker executor with default settings is a reasonable start, not a finished security posture, per September's sandbox checklist.
 
 ## AutoGen's Executor Options
 

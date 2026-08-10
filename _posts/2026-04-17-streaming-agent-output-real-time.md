@@ -3,9 +3,28 @@ title: "Streaming Agent Output to the UI in Real Time"
 date: 2026-04-17 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [agents, agentic-frameworks-series, streaming, fastapi, python]
+mermaid: true
 ---
 
 A multi-step agent that takes 30 seconds and shows nothing until the end feels broken, even when it isn't. Streaming intermediate state — the current step, tool calls as they happen, tokens as they generate — is what makes a slow agent feel responsive.
+
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant S as Server (SSE)
+    participant A as Agent
+
+    C->>S: GET /agent/run
+    S->>A: Start run
+    A-->>S: event: "calling search"
+    S-->>C: data: event
+    A-->>S: token: "The"
+    S-->>C: data: token
+    A-->>S: event: "completed"
+    S-->>C: data: event + final state
+```
+
+Tokens, structural events, and full state snapshots are three different things worth streaming, and mixing them up is the most common mistake — each has its own place in the payload, covered below.
 
 ## What to Stream, Not Just How
 

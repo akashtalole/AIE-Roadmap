@@ -3,9 +3,22 @@ title: "Fallback Strategies When a Model Provider Goes Down"
 date: 2026-08-16 08:00:00 +0530
 categories: [AI, Infrastructure]
 tags: [infrastructure, ai-infra-series, resilience, python]
+mermaid: true
 ---
 
 Yesterday's router mentioned provider fallback in passing. Every application built on a managed LLM API throughout this roadmap has an implicit dependency on that provider's uptime — this post covers making that dependency's failure mode a managed, tested one rather than an unplanned outage.
+
+```mermaid
+stateDiagram-v2
+    [*] --> Closed
+    Closed --> Open: failures reach threshold
+    Open --> HalfOpen: recovery timeout elapses
+    HalfOpen --> Closed: test request succeeds
+    HalfOpen --> Open: test request fails
+    Closed --> Closed: request succeeds
+```
+
+The circuit breaker's `half_open` state is what makes fallback self-healing — after the recovery timeout, exactly one test request is allowed through, and only fully closing on success avoids a thundering-herd retry storm the moment a struggling provider starts recovering.
 
 ## Detecting a Provider Outage vs a Transient Error
 

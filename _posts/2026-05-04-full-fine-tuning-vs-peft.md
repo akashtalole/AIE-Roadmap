@@ -3,9 +3,19 @@ title: "Full Fine-Tuning vs Parameter-Efficient Fine-Tuning (PEFT)"
 date: 2026-05-04 08:00:00 +0530
 categories: [AI, Fine-Tuning]
 tags: [fine-tuning, fine-tuning-series, peft, lora]
+mermaid: true
 ---
 
 LoRA and QLoRA are both instances of a broader category, PEFT — training a small subset of parameters instead of the whole model. It's worth being explicit about what you give up relative to full fine-tuning, because it isn't nothing.
+
+```mermaid
+flowchart LR
+    A[Fine-tuning need] --> B{Validated PEFT can't reach the quality bar?}
+    B -->|no, start here| C[LoRA / QLoRA: cheap, fast iteration]
+    B -->|yes, and budget allows| D[Full fine-tuning: higher ceiling, higher cost]
+```
+
+The practical default below is to start on the left branch for nearly every project, and move right only once real evaluation data — not intuition — shows PEFT genuinely falling short.
 
 ## What Full Fine-Tuning Still Does Better
 

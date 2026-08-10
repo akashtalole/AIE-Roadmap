@@ -3,9 +3,20 @@ title: "Why LLM Evaluation Is Different from Traditional Software Testing"
 date: 2026-06-01 08:00:00 +0530
 categories: [AI, Evaluation]
 tags: [evaluation, evaluation-series, testing, roadmap]
+mermaid: true
 ---
 
 Every fine-tuning post last month leaned on "evaluate against a held-out set" without fully unpacking what that means for LLM systems specifically. June opens by making the difference from traditional software testing explicit, because it changes how you should approach testing from day one, not just for fine-tuned models.
+
+```mermaid
+flowchart LR
+    A[Traditional test] --> B{"assert output == expected"}
+    B -->|pass or fail| C[Binary result]
+    D[LLM output] --> E{Measure properties: faithfulness, coverage, tone}
+    E -->|degrees of quality| F[Spectrum result]
+```
+
+Traditional testing collapses to a single pass/fail bit; LLM evaluation has to score a spectrum of acceptable variation instead. That shift in what "correct" even means is the thread every post this month pulls on.
 
 ## Traditional Tests Are Binary; LLM Outputs Are a Spectrum
 

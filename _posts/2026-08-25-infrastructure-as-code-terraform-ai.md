@@ -3,9 +3,21 @@ title: "Infrastructure as Code for AI Platforms with Terraform"
 date: 2026-08-25 08:00:00 +0530
 categories: [AI, Infrastructure]
 tags: [infrastructure, ai-infra-series, terraform, iac]
+mermaid: true
 ---
 
 Every piece of infrastructure this month — GPU node pools, load balancers, multi-region deployments, the gateway service — needs to be reproducible, reviewable, and recoverable, which is exactly what infrastructure-as-code provides over manually clicking through a cloud console.
+
+```mermaid
+flowchart LR
+    A[Edit .tf config] --> B[terraform plan]
+    B --> C{Review diff}
+    C -->|looks wrong| A
+    C -->|approved| D[terraform apply]
+    D --> E[Remote state store]
+```
+
+Every change to GPU node pools or multi-region deployments flows through this plan-review-apply loop before touching real infrastructure. The remote state store at the end is what lets a team collaborate on the same infrastructure without conflicting, undocumented changes.
 
 ## Why This Matters More for AI Infrastructure
 

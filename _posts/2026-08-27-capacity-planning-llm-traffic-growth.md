@@ -3,9 +3,21 @@ title: "Capacity Planning for LLM Traffic Growth"
 date: 2026-08-27 08:00:00 +0530
 categories: [AI, Infrastructure]
 tags: [infrastructure, ai-infra-series, capacity-planning, python]
+mermaid: true
 ---
 
 Yesterday's monitoring tells you current state. Capacity planning uses that data to answer a forward-looking question — how much infrastructure will you need in three months, and when do you need to start provisioning it, given GPU lead times that autoscaling alone can't fully absorb.
+
+```mermaid
+flowchart LR
+    A[Monitoring data] --> B[Forecast traffic growth]
+    B --> C[Translate to GPU count]
+    C --> D[Match lead time to provisioning path]
+    D --> E[Load test the assumption]
+    E --> F[Provision ahead of need]
+```
+
+This is yesterday's monitoring output feeding forward into a proactive plan, not a reactive one — each step exists because the previous one alone isn't trustworthy enough to provision expensive GPU capacity against.
 
 ## Why Reactive Autoscaling Isn't Sufficient Alone
 

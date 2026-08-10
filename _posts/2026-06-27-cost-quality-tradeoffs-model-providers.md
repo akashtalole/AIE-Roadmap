@@ -3,9 +3,21 @@ title: "Evaluating Cost-Quality Tradeoffs Across Model Providers"
 date: 2026-06-27 08:00:00 +0530
 categories: [AI, Evaluation]
 tags: [evaluation, evaluation-series, cost-optimization, python]
+mermaid: true
 ---
 
 The internal eval harness from yesterday isn't just for catching regressions — it's the right tool for the recurring question every AI engineer eventually faces: is a cheaper model actually good enough for this task, or does quality genuinely require the expensive one?
+
+```mermaid
+flowchart LR
+    A[Incoming case] --> B{Easy by category or confidence heuristic?}
+    B -->|yes| C[Cheap model]
+    B -->|no| D[Expensive model]
+    C --> E[Quality bar cleared on this segment]
+    D --> E
+```
+
+Running the same golden set across providers usually reveals that the cheap model matches the expensive one on easy cases and falls off sharply on hard ones — which is exactly the case for routing by difficulty rather than defaulting every request to the most expensive model.
 
 ## Running the Same Golden Set Across Providers
 

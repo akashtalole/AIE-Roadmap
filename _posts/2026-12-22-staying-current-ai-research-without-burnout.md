@@ -3,9 +3,20 @@ title: "Staying Current: How to Keep Up with AI Research Without Burning Out"
 date: 2026-12-22 08:00:00 +0530
 categories: [AI, Career]
 tags: [career, career-series, learning]
+mermaid: true
 ---
 
 This roadmap itself is proof of how fast this field moves — nine months of content, and some specifics have likely already shifted by the time you're reading this. This post covers a sustainable practice for staying current, rather than an exhausting, unsustainable attempt to read everything.
+
+```mermaid
+flowchart TD
+    A[Incoming AI news / papers] --> B{Relevant tier?}
+    B -->|tier 1| C[Engage deeply:<br/>tools you use in production]
+    B -->|tier 2| D[Skim:<br/>headline + abstract]
+    B -->|tier 3| E[Ignore unless<br/>it resurfaces]
+```
+
+Most of the anxiety around "keeping up" comes from treating everything as tier 1 — this triage step, covered in detail below, is what makes sustained engagement possible without constant overwhelm.
 
 ## Why "Read Everything" Is a Losing Strategy
 

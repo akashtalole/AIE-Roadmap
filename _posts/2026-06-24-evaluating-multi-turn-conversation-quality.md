@@ -3,9 +3,26 @@ title: "Evaluating Multi-Turn Conversation Quality"
 date: 2026-06-24 08:00:00 +0530
 categories: [AI, Evaluation]
 tags: [evaluation, evaluation-series, multi-turn, python]
+mermaid: true
 ---
 
 Nearly every metric this month has scored a single input-output pair. Real conversations span many turns, and a conversation can fail in ways no single-turn evaluation would catch — even when every individual response looks fine in isolation.
+
+```mermaid
+sequenceDiagram
+    participant U as User simulator
+    participant S as System under test
+    participant J as Judge
+    U->>S: opening message
+    S-->>U: response
+    U->>S: next turn (persona-driven)
+    S-->>U: response
+    Note over U,S: repeat for max_turns
+    U->>J: full transcript
+    J-->>U: context_consistency, tone_drift, progress score
+```
+
+Judging the whole transcript at once, rather than each turn in isolation, is what lets the judge catch context loss and repetition — properties of the sequence that no single-turn evaluation, however good, can see.
 
 ## Failure Modes Specific to Multi-Turn Conversations
 

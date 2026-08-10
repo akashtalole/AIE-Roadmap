@@ -3,9 +3,22 @@ title: "Fine-Tuning Claude Models with Anthropic's Fine-Tuning API"
 date: 2026-05-09 08:00:00 +0530
 categories: [AI, Fine-Tuning]
 tags: [fine-tuning, fine-tuning-series, anthropic, claude, python]
+mermaid: true
 ---
 
 Anthropic's fine-tuning offering follows the same managed pattern as yesterday's OpenAI walkthrough, with a few Claude-specific considerations worth calling out explicitly rather than treating the two as interchangeable.
+
+```mermaid
+flowchart LR
+    A[Upload training file] --> B[Create fine-tuning job]
+    B --> C[Monitor job status]
+    C --> D[result_model_id]
+    D --> E{Evaluate vs base model}
+    E -->|clears the bar| F[Serve with consistent system prompt]
+    E -->|falls short| G[Move to self-hosted TRL]
+```
+
+Same managed shape as OpenAI's flow, but with two Claude-specific forks worth noting: keeping the runtime system prompt consistent with training, and the explicit evaluation gate before deciding between managed and self-hosted.
 
 ## Dataset Format
 

@@ -8,6 +8,19 @@ mermaid: true
 
 March's RAG series covered retrieval quality at a scale where a single vector index handles everything comfortably. This post covers what changes when a knowledge base grows into the millions of documents — the point where naive infrastructure choices start to break down.
 
+```mermaid
+flowchart LR
+    A[10K docs: flat index] -->|scale up| B[1M+ docs: flat index breaks]
+    B --> C[ANN index]
+    B --> D[Sharding]
+    B --> E[Incremental indexing]
+    C --> F[Sub-linear search at scale]
+    D --> F
+    E --> F
+```
+
+Each of the sections below addresses one specific way the naive approach breaks down — the fix is never a single silver bullet, but a combination of indexing strategy, sharding, and incremental updates working together.
+
 ## Where the Naive Approach Breaks
 
 ```python

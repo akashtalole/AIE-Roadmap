@@ -3,9 +3,22 @@ title: "Supply Chain Security for AI: Models, Weights, and Datasets"
 date: 2026-09-12 08:00:00 +0530
 categories: [AI, Security]
 tags: [security, ai-security-series, supply-chain, python]
+mermaid: true
 ---
 
 Traditional software supply chain security worries about compromised dependencies. AI systems have an additional supply chain most teams don't think about with the same rigor: the models, weights, and datasets flowing into fine-tuning pipelines and production deployments.
+
+```mermaid
+flowchart LR
+    A[Model weights / dataset / MCP server] --> B{Trusted org?}
+    B -->|no| X[Reject]
+    B -->|yes| C{Checksum matches?}
+    C -->|no| X
+    C -->|yes| D[Record in AI SBOM]
+    D --> E[Enter pipeline or production]
+```
+
+Every external component — weights, a fine-tuning dataset, a third-party MCP server — passes through the same two gates before it's trusted: is the source verified, and does the artifact match its expected checksum. The SBOM at the end is what makes "are we affected by this newly disclosed vulnerability" answerable quickly.
 
 ## The Expanded Attack Surface
 

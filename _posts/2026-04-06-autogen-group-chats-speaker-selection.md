@@ -3,9 +3,22 @@ title: "AutoGen Group Chats and Custom Speaker Selection"
 date: 2026-04-06 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [autogen, agentic-frameworks-series, python, multi-agent]
+mermaid: true
 ---
 
 Two agents in a conversation is simple: whoever didn't just speak, speaks next. Add a third agent and that rule breaks down — you need something deciding *who* talks next, turn by turn. That's what AutoGen's `GroupChat` and `GroupChatManager` exist for.
+
+```mermaid
+flowchart LR
+    M[GroupChatManager] -->|selects next speaker| P[Planner]
+    M --> C[Coder]
+    M --> R[Reviewer]
+    P -->|message| M
+    C -->|message| M
+    R -->|message| M
+```
+
+Every message passes back through the manager, whose only job is picking who speaks next — by default via an LLM call, or deterministically via round-robin or an allowed-transitions graph, as covered below.
 
 ## Setting Up a Group Chat
 

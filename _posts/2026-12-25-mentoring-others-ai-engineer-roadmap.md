@@ -3,9 +3,20 @@ title: "Mentoring Others Through the AI Engineer Roadmap"
 date: 2026-12-25 08:00:00 +0530
 categories: [AI, Career]
 tags: [career, career-series, mentoring]
+mermaid: true
 ---
 
 Having worked through this roadmap yourself, mentoring someone else through a similar journey is both a genuine way to give back and, per the "teaching is the best way to learn" principle, a way to deepen your own understanding further.
+
+```mermaid
+flowchart TD
+    A[Assess starting point] --> B[Scope a focused subset]
+    B --> C[Pair on a real project]
+    C --> D[Review with<br/>self-assessment rubrics]
+    D --> E[Socratic feedback<br/>builds judgment]
+```
+
+Each stage below matters, but the last one is what separates mentoring from simply pointing at documentation — feedback that surfaces the mentee's own reasoning builds independent judgment faster than direct correction alone.
 
 ## Why Mentoring Deepens Your Own Understanding
 

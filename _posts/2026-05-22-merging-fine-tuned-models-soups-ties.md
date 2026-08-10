@@ -3,9 +3,22 @@ title: "Merging Fine-Tuned Models with Model Soups and TIES"
 date: 2026-05-22 08:00:00 +0530
 categories: [AI, Fine-Tuning]
 tags: [fine-tuning, fine-tuning-series, model-merging, python]
+mermaid: true
 ---
 
 Instead of choosing between separate task-specific adapters from the multi-task post, weight-space merging combines multiple fine-tuned models — or checkpoints from the same run — directly, producing a single model that blends their behaviors without any additional training.
+
+```mermaid
+flowchart LR
+    A[Checkpoints, same task] --> B[Model soup: average weights]
+    C[Fine-tunes, different tasks] --> D[TIES: trim + resolve sign conflicts]
+    B --> E[Merged model]
+    D --> E
+    E --> F{Per-task quality checked?}
+    F -->|regression found| G[Revert or reweight]
+```
+
+Which path applies depends on whether the source models were trained on the same task or genuinely different ones — naive averaging works for the former, but conflicting weight updates from different tasks need TIES's explicit conflict resolution.
 
 ## Model Soups: Simple Weight Averaging
 

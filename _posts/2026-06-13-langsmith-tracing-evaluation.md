@@ -3,9 +3,23 @@ title: "LangSmith for Tracing and Evaluation"
 date: 2026-06-13 08:00:00 +0530
 categories: [AI, Evaluation]
 tags: [evaluation, evaluation-series, langsmith, observability, python]
+mermaid: true
 ---
 
 DeepEval focuses on the evaluation layer. LangSmith (from the LangChain team) combines that with full production tracing — every LLM call, tool invocation, and chain step captured automatically, with evaluation built on top of the same trace data.
+
+```mermaid
+sequenceDiagram
+    participant App as LangChain/LangGraph app
+    participant LS as LangSmith
+    participant D as Golden dataset
+    App->>LS: auto-traced call (input, output, latency, tokens)
+    LS->>LS: store trace tree
+    D->>LS: evaluate(golden-set, evaluators)
+    LS-->>App: experiment results, comparable to production traces
+```
+
+The same platform that captures what actually happened in production also runs golden-set experiments against traced data, and a real production trace can be promoted directly into that golden dataset — closing the loop without manual re-entry.
 
 ## Automatic Tracing with Minimal Instrumentation
 

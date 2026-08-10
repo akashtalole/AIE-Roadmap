@@ -3,9 +3,22 @@ title: "Monitoring GPU Utilization and Memory Fragmentation"
 date: 2026-08-26 08:00:00 +0530
 categories: [AI, Infrastructure]
 tags: [infrastructure, ai-infra-series, gpu, observability, python]
+mermaid: true
 ---
 
 June's observability series covered application-level metrics. GPU infrastructure needs its own dedicated monitoring layer — utilization and memory behave in ways that are easy to misread without understanding what's actually happening at the hardware level.
+
+```mermaid
+flowchart TD
+    A[Read util% and memory%] --> B{util > 80%?}
+    B -->|yes, memory < 50%| C[Compute-bound: raise batch size]
+    B -->|no| D{util < 30%?}
+    D -->|yes, memory > 80%| E[Memory-bound or fragmented]
+    D -->|yes, memory < 30%| F[Underutilized: consolidate or scale down]
+    D -->|no| G[Healthy utilization]
+```
+
+This mirrors the `interpret_gpu_utilization` logic below — the same raw percentage can mean opposite things depending on what memory is doing alongside it, which is why utilization alone is an unreliable health signal on its own.
 
 ## GPU Utilization Can Mislead
 

@@ -3,9 +3,25 @@ title: "Semantic Kernel Deep Dive: Planners and Plugins"
 date: 2026-10-09 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [semantic-kernel, deep-dive-series, dotnet, python]
+mermaid: true
 ---
 
 April's Semantic Kernel post introduced kernels, plugins, and planners at a high level. This post goes deeper into building genuinely production-grade plugins and understanding what the planner is actually doing when it composes them.
+
+```mermaid
+sequenceDiagram
+    participant P as Planner
+    participant M as Model
+    participant F as Plugin Function
+    P->>M: Present goal + registered function schemas
+    M->>P: Choose next function call
+    P->>F: Invoke function
+    F->>P: Result
+    P->>M: Feed result back
+    M->>P: Done, or choose next call
+```
+
+This loop is what "the planner composes functions" actually means under the hood — structurally identical to the ReAct loop from March, just expressed through Semantic Kernel's plugin abstraction instead of raw tool calls.
 
 ## Building a Full-Featured Plugin
 

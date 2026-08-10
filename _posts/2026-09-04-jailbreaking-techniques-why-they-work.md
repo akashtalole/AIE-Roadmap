@@ -3,9 +3,27 @@ title: "Jailbreaking Techniques and Why They Still Work"
 date: 2026-09-04 08:00:00 +0530
 categories: [AI, Security]
 tags: [security, ai-security-series, jailbreaking, python]
+mermaid: true
 ---
 
 Where prompt injection tries to hijack a model's task, jailbreaking tries to bypass its safety training entirely — getting it to produce content its provider explicitly trained it to refuse. Understanding the technique categories is what makes your own application-level defenses (distinct from the provider's built-in safety training) targeted rather than guesswork.
+
+```mermaid
+flowchart LR
+    A[Jailbreak attempt] --> B{Which category?}
+    B --> C[Persona override]
+    B --> D[Hypothetical framing]
+    B --> E[Instruction burying]
+    B --> F[Multi-turn escalation]
+    C --> G[Provider safety training]
+    D --> G
+    E --> G
+    F --> H[Conversation-level risk scoring]
+    G --> I[Output-side detection backstop]
+    H --> I
+```
+
+Every jailbreak technique category eventually has to get past both the provider's baseline safety training and whatever application-level backstop you add on top — multi-turn escalation specifically requires the conversation-level scoring shown here, since no single message in the sequence looks obviously harmful on its own.
 
 ## Why Provider Safety Training Isn't Sufficient Alone
 

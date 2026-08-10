@@ -3,9 +3,21 @@ title: "Structured Output, Prompt Caching, and Streaming Responses"
 date: 2026-03-08 08:00:00 +0530
 categories: [AI, Prompt Engineering]
 tags: [structured-output, prompt-caching, streaming, llm, production, roadmap]
+mermaid: true
 ---
 
 Three techniques that are essential for production-quality AI applications: structured output for reliable parsing, prompt caching for cost reduction, and streaming for better user experience. This post covers all three.
+
+```mermaid
+flowchart LR
+    A[Cached prefix: system prompt + docs] --> C[LLM request]
+    B[Dynamic user message] --> C
+    C --> D{response_format set?}
+    D -->|yes| E[Structured JSON output]
+    D -->|no| F[Streamed tokens to client]
+```
+
+These three techniques stack on the same request: a stable prefix gets cached to cut cost, a schema on the response guarantees parseable output, and streaming ships tokens to the user as they're generated instead of all at once. Each is covered in its own section below.
 
 ## Structured Output
 

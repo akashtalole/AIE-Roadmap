@@ -3,9 +3,23 @@ title: "System Prompting: Setting Role, Behavior, and Constraints for LLMs"
 date: 2026-03-06 08:00:00 +0530
 categories: [AI, Prompt Engineering]
 tags: [prompt-engineering, system-prompt, role, behavior, constraints, roadmap]
+mermaid: true
 ---
 
 The system prompt is the most powerful lever you have when working with LLMs. It runs before every conversation turn and shapes everything about how the model behaves. Master the system prompt and you've mastered the foundation of LLM application design.
+
+```mermaid
+flowchart TD
+    A[System prompt] --> B[Role / persona]
+    A --> C[Behavior instructions]
+    A --> D[Constraints]
+    B --> E[Every user turn]
+    C --> E
+    D --> E
+    E --> F[Model response]
+```
+
+The system prompt isn't one instruction — it's three layers (role, behavior, constraints) that all apply to every single turn of the conversation. The sections below cover each layer in detail.
 
 ## What is a System Prompt?
 

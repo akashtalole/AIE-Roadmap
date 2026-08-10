@@ -3,9 +3,21 @@ title: "Capstone Project 4: Build a Fine-Tuned Domain Model"
 date: 2026-12-13 08:00:00 +0530
 categories: [AI, Career]
 tags: [career, career-series, capstone, fine-tuning, python]
+mermaid: true
 ---
 
 Fourth capstone: a complete fine-tuning project end to end, following May's series and its closing project-walkthrough post specifically.
+
+```mermaid
+flowchart LR
+    A[Task] --> B[Baseline: prompting only]
+    A --> C[LoRA fine-tune]
+    B --> D{Compare accuracy,<br/>cost, regression}
+    C --> D
+    D --> E[Justified approach<br/>in the write-up]
+```
+
+The baseline-vs-fine-tuned comparison is the whole point of this capstone — a fine-tuning project without a measured baseline can't actually demonstrate that fine-tuning was the right call, as the pitfalls section below emphasizes.
 
 ## Project Brief
 

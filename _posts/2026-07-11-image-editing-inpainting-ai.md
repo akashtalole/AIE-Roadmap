@@ -3,9 +3,22 @@ title: "Image Editing and Inpainting with AI"
 date: 2026-07-11 08:00:00 +0530
 categories: [AI, Multimodal]
 tags: [multimodal, multimodal-series, image-generation, python]
+mermaid: true
 ---
 
 Generation from scratch is one use case; editing an existing image — removing an object, changing a background, extending a canvas — is a distinct capability with its own API shape and its own prompting considerations.
+
+```mermaid
+flowchart LR
+    A[Original image] --> B[Generate mask]
+    B --> C{Region}
+    C -->|white: editable| D[Regenerate per prompt]
+    C -->|black: preserved| E[Kept pixel-for-pixel]
+    D --> F[Edited image]
+    E --> F
+```
+
+The mask is the mechanism underlying every technique in this post — inpainting, outpainting, and object removal are all the same masked-region regeneration, differing only in how the mask is produced and what prompt targets the editable area.
 
 ## Inpainting: Editing Within a Masked Region
 

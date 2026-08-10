@@ -3,9 +3,20 @@ title: "Writing a Technical Blog to Build Your AI Engineering Brand"
 date: 2026-12-08 08:00:00 +0530
 categories: [AI, Career]
 tags: [career, career-series, writing]
+mermaid: true
 ---
 
 This entire roadmap has been a demonstration of exactly what this post recommends — writing consistently about real technical work is one of the highest-leverage things an AI engineer can do for their career, and it's worth understanding why and how to do it well.
+
+```mermaid
+flowchart LR
+    A[Real work] --> B[Mine a specific topic]
+    B --> C[Write honestly,<br/>incl. what didn't work]
+    C --> D[Publish consistently]
+    D --> E[Compounding portfolio + brand]
+```
+
+Each post feeds the next both directly (a growing body of evidence about how you think) and indirectly (writing forces the kind of clarity that using a technique in code alone doesn't) — the compounding effect described below only kicks in with the consistency this loop assumes.
 
 ## Why Writing Compounds in a Fast-Moving Field
 

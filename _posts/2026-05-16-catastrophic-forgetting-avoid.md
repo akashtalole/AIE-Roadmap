@@ -3,9 +3,22 @@ title: "Catastrophic Forgetting and How to Avoid It"
 date: 2026-05-16 08:00:00 +0530
 categories: [AI, Fine-Tuning]
 tags: [fine-tuning, fine-tuning-series, catastrophic-forgetting]
+mermaid: true
 ---
 
 Yesterday's regression test measured *whether* fine-tuning degraded general capability. This post covers *why* it happens and the concrete techniques for preventing it — the single most common way a fine-tuning project quietly makes a model worse overall while appearing to succeed on its narrow target metric.
+
+```mermaid
+flowchart TD
+    A[Forgetting detected] --> B[Use PEFT instead of full fine-tuning]
+    B --> C[Mix general data into training set]
+    C --> D[Stop early on general val loss]
+    D --> E{Still forgetting, full fine-tuning?}
+    E -->|yes| F[Elastic Weight Consolidation]
+    E -->|no| G[Done]
+```
+
+The four mitigations chain in priority order — try PEFT, then data mixing, then early stopping, and reach for EWC only in the rare full-fine-tuning case where the first three aren't enough.
 
 ## Why It Happens
 

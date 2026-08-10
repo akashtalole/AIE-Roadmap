@@ -3,9 +3,20 @@ title: "Take-Home Assignments: What Interviewers Actually Look For"
 date: 2026-12-06 08:00:00 +0530
 categories: [AI, Career]
 tags: [career, career-series, interviews]
+mermaid: true
 ---
 
 A take-home assignment gives more time than a whiteboard interview but is evaluated more holistically — this post covers what actually gets weighted in review, which is often not what candidates assume.
+
+```mermaid
+flowchart LR
+    A[Time budget] --> B[Core functionality: 40%]
+    A --> C[Evaluation & testing: 25%]
+    A --> D[Edge cases & errors: 20%]
+    A --> E[Docs & write-up: 15%]
+```
+
+Most candidates allocate their time roughly opposite of this split, over-investing in a polished demo and under-investing in evaluation and documentation — exactly the two categories a production-minded reviewer weights most heavily.
 
 ## What Gets More Weight Than Candidates Expect
 

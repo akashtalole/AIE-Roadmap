@@ -3,9 +3,20 @@ title: "Pricing Your AI Product: Per-Seat vs Usage-Based"
 date: 2026-11-12 08:00:00 +0530
 categories: [AI, Cloud AI]
 tags: [cloud-business-series, pricing, business]
+mermaid: true
 ---
 
 Yesterday's cost model gives the cost side. This post covers the pricing decision it feeds into — AI features have a cost structure genuinely different from traditional SaaS, and the common per-seat pricing model doesn't always fit well as a result.
+
+```mermaid
+flowchart LR
+    A[Customer Usage] --> B{Pricing Model}
+    B -->|Per-seat flat| C[Predictable for customer, margin risk on heavy users]
+    B -->|Usage-based| D[Margin-safe, unpredictable for customer]
+    B -->|Seat + allowance| E[Hybrid: predictable base, protected margin]
+```
+
+The hybrid path is the common middle ground for a reason — it captures per-seat pricing's sales-friendly predictability while protecting margin against the heavy-usage tail that flat pricing alone exposes you to.
 
 ## Why Per-Seat Pricing Breaks Down for AI Features
 

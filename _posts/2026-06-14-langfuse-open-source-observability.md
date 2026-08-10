@@ -3,9 +3,21 @@ title: "Langfuse: Open-Source LLM Observability"
 date: 2026-06-14 08:00:00 +0530
 categories: [AI, Evaluation]
 tags: [evaluation, evaluation-series, langfuse, observability, python]
+mermaid: true
 ---
 
 LangSmith is tightly coupled to the LangChain ecosystem and is closed-source, hosted-first. Langfuse covers similar ground — tracing, evaluation, prompt management — as an open-source, self-hostable alternative, relevant if data residency or vendor lock-in are concerns for your organization.
+
+```mermaid
+flowchart LR
+    A["@observe() + wrapped client"] --> B[Self-hosted Langfuse instance]
+    B --> C[Trace storage]
+    C --> D[Attach quality scores]
+    B --> E[Versioned prompt management]
+    D --> F[Filter/analyze by score in dashboard]
+```
+
+Instrumentation stays lightweight — a decorator plus a wrapped client — while the trace data itself stays entirely on your own infrastructure, which is the whole point when data residency or vendor lock-in rules out a hosted-first platform like LangSmith.
 
 ## Instrumenting a Call
 

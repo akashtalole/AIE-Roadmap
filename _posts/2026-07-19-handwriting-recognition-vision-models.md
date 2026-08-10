@@ -3,9 +3,21 @@ title: "Handwriting Recognition with Vision-Language Models"
 date: 2026-07-19 08:00:00 +0530
 categories: [AI, Multimodal]
 tags: [multimodal, multimodal-series, ocr, python]
+mermaid: true
 ---
 
 Handwriting is where VLM-based OCR has made the most dramatic improvement over traditional OCR engines — and remains, honestly, the least reliable document content type, worth its own dedicated treatment on both fronts.
+
+```mermaid
+flowchart LR
+    A[Handwritten image] --> B[VLM transcription]
+    B --> C{Confident on every field?}
+    C -->|yes| D[Auto-approved]
+    C -->|no| E[Flag uncertain fields]
+    E --> F[Route to human review]
+```
+
+The uncertainty-flagging step is the single most important technique for handwriting specifically — the real failure mode isn't garbage output, it's a confident misreading of an ambiguous character, which is why routing every low-confidence field to a human, rather than trusting an average accuracy number, matters more here than for printed text.
 
 ## Why VLMs Substantially Outperform Traditional OCR Here
 

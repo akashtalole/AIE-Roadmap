@@ -3,9 +3,22 @@ title: "Multimodal Guardrails: Filtering Unsafe Images and Audio"
 date: 2026-07-24 08:00:00 +0530
 categories: [AI, Multimodal]
 tags: [multimodal, multimodal-series, guardrails, security, python]
+mermaid: true
 ---
 
 March's guardrails posts covered text input and output filtering. Multimodal systems need the same discipline extended to images and audio — a modality where "unsafe content" takes different shapes and needs different detection tooling than text does.
+
+```mermaid
+flowchart LR
+    A[Uploaded image/audio] --> B[Moderation API check]
+    B --> C{Flagged?}
+    C -->|no, confident| D[Allowed]
+    C -->|yes, confident| E[Blocked]
+    C -->|low confidence| F[Human review]
+    G[Generated image] --> B
+```
+
+Both input and output content run through the same screening gate, with a third path — low-confidence results — routed to a human rather than auto-approved or auto-blocked, the same confidence-gating pattern this month's document extraction posts used for a different kind of risk.
 
 ## Input Filtering: Screening Uploaded Content
 

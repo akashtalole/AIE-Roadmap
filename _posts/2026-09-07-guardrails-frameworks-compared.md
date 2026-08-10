@@ -3,9 +3,21 @@ title: "Guardrails Frameworks Compared: NeMo, Llama Guard, and Guardrails AI"
 date: 2026-09-07 08:00:00 +0530
 categories: [AI, Security]
 tags: [security, ai-security-series, guardrails, comparison]
+mermaid: true
 ---
 
 Every guardrail technique this month and earlier in this roadmap has been hand-rolled. Several purpose-built frameworks package much of this into reusable tooling — worth knowing when to adopt one instead of maintaining custom guardrail code indefinitely.
+
+```mermaid
+flowchart LR
+    A[User input] --> B[Llama Guard: fast input/output classification]
+    B --> C[Model response]
+    C --> D[Guardrails AI: structural + PII validators]
+    D --> E[NeMo Guardrails: conversational rails]
+    E --> F[Final response]
+```
+
+The three frameworks aren't competitors so much as complementary layers — a common production pattern chains a fast classifier for safety screening, structural validators for output shape and PII, and a rules engine for conversational flow control, rather than picking exactly one.
 
 ## NeMo Guardrails: Programmable Conversational Rails
 

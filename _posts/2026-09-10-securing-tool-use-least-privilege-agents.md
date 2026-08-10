@@ -8,6 +8,16 @@ mermaid: true
 
 Every guardrail post this month has pointed back to the same underlying principle: limit what a compromised agent can actually do. This post makes least privilege for agentic tools explicit and concrete, as a design discipline rather than an afterthought.
 
+```mermaid
+flowchart LR
+    A[Agent tool call] --> B{Scoped to minimum necessary access?}
+    B -->|yes| C[Bounded blast radius if compromised]
+    B -->|no| D[Overprivileged tool: full DB/filesystem/API access]
+    D --> E[A single bad tool call can do maximum damage]
+```
+
+The gap between these two paths is the entire subject of this post — every technique below is a different way of narrowing an agent's tools down to exactly what its legitimate task requires, nothing more.
+
 ## The Principle, Stated Plainly
 
 An agent's tools should grant exactly the access needed for its legitimate purpose, and nothing more — the same principle underlying least-privilege access control in traditional systems, applied to what an LLM agent is capable of doing through its tool set.

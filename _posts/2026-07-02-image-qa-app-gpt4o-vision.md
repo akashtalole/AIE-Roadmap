@@ -3,9 +3,20 @@ title: "Building an Image Q&A App with GPT-4o Vision"
 date: 2026-07-02 08:00:00 +0530
 categories: [AI, Multimodal]
 tags: [multimodal, multimodal-series, openai, python, fastapi]
+mermaid: true
 ---
 
 A worked example, end to end: a FastAPI endpoint that accepts an image and a question, and returns a grounded answer — the multimodal equivalent of the FastAPI integration patterns from the LLM engineering series.
+
+```mermaid
+flowchart LR
+    A[Image upload + question] --> B[Validate type and size]
+    B --> C[base64-encode]
+    C --> D["chat.completions.create(image_url, detail)"]
+    D --> E[Answer returned]
+```
+
+Validation and encoding happen before the request ever reaches the API, and the `detail` parameter set here — high or low resolution — is the single biggest lever on both cost and fine-detail accuracy, covered in the cost-conscious defaults section below.
 
 ## The Endpoint
 

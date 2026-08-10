@@ -3,9 +3,19 @@ title: "CrewAI Basics: Defining Roles, Tasks, and Crews"
 date: 2026-04-03 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [crewai, agentic-frameworks-series, python, multi-agent]
+mermaid: true
 ---
 
 Where LangGraph models an agent system as a graph of arbitrary nodes, CrewAI models it as a team: **agents** with roles and personalities, **tasks** they're assigned, and a **crew** that runs them in a defined process. It trades some of LangGraph's flexibility for a much faster path to a working multi-agent system.
+
+```mermaid
+flowchart LR
+    A[Researcher agent] -->|research_task| B[Research findings]
+    B -->|context passed automatically| C[Writer agent]
+    C -->|writing_task| D[Final summary]
+```
+
+`Process.sequential` is CrewAI's simplest coordination pattern: each task runs in order, and `context=[research_task]` wires the researcher's output straight into the writer's prompt without any manual state passing. Later sections cover the role/goal/backstory fields that shape each agent and how this compares to LangGraph's more explicit graph.
 
 ## Defining Agents by Role
 

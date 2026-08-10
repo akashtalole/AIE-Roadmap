@@ -3,9 +3,24 @@ title: "Audit Logging for Compliance in AI Systems"
 date: 2026-09-25 08:00:00 +0530
 categories: [AI, Security]
 tags: [security, ai-security-series, audit-logging, python]
+mermaid: true
 ---
 
 Every compliance framework this month — GDPR, HIPAA, SOC 2, the EU AI Act — ultimately requires the same underlying capability: a complete, tamper-evident record of what the system did, when, and why. This post builds that logging layer concretely.
+
+```mermaid
+sequenceDiagram
+    participant Ag as Agent
+    participant Ap as App code
+    participant Lg as Audit log store
+    participant Au as Auditor
+    Ag->>Ap: Tool call / data access
+    Ap->>Lg: Append entry, hash chained to previous
+    Au->>Lg: Query: access to patient X, last 90 days
+    Lg->>Au: Matching entries
+```
+
+Chaining each entry's hash to the previous one is what makes tampering detectable after the fact — and the real test of this system is whether the query on the right returns fast, specific answers during an actual audit or incident, not a manual log-archaeology exercise.
 
 ## What Belongs in an AI-Specific Audit Log
 

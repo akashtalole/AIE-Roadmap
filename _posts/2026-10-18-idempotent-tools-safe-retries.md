@@ -3,9 +3,26 @@ title: "Designing Idempotent Tools for Safe Retries"
 date: 2026-10-18 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [agents, deep-dive-series, python, reliability]
+mermaid: true
 ---
 
 Every retry mechanism this month — Temporal's activity retries, the workflow engine's retry policy, the event queue's redelivery — assumes it's safe to run a tool's action more than once. That assumption only holds if the tool was actually designed to be idempotent, which most tools aren't by default.
+
+```mermaid
+sequenceDiagram
+    participant A as Agent
+    participant T as Tool
+    participant S as Downstream Service
+    A->>T: call(args, idempotency_key)
+    T->>S: check idempotency_key
+    S-->>T: not seen — process and store result
+    Note over A,T: timeout — agent retries
+    A->>T: retry: call(args, same idempotency_key)
+    T->>S: check idempotency_key
+    S-->>T: already processed — return stored result
+```
+
+The idempotency key is what makes the retry in the second half of this sequence safe — without it, the retry after a timeout would trigger the action a second time, exactly the double-charge scenario the next section walks through concretely.
 
 ## The Problem, Concretely
 

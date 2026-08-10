@@ -3,9 +3,22 @@ title: "Evaluating Agentic Workflows: Task Success Rate and Efficiency"
 date: 2026-06-11 08:00:00 +0530
 categories: [AI, Evaluation]
 tags: [evaluation, evaluation-series, agents, python]
+mermaid: true
 ---
 
 March's agent-evaluation post established task success rate as the core metric. With this month's broader evaluation toolkit in hand — golden datasets, calibrated judges, human review workflows — this post builds that out into a complete agent evaluation practice.
+
+```mermaid
+flowchart LR
+    A[Agent trace] --> B[Task success]
+    A --> C[Efficiency: steps vs budget]
+    A --> D[Cost vs budget]
+    A --> E[Tool-call precision]
+    A --> F[No unsafe actions]
+    B & C & D & E & F --> G[Deploy gate]
+```
+
+Scoring these dimensions separately, rather than collapsing to one pass/fail number, is what lets you tell "got the right answer but took twice as long" apart from "failed outright" — each needs a different fix, and each feeds its own threshold into the deploy gate.
 
 ## A Structured Agent Golden Set
 

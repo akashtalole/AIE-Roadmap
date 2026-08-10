@@ -3,9 +3,21 @@ title: "Statistical Significance in LLM Evaluation Results"
 date: 2026-06-25 08:00:00 +0530
 categories: [AI, Evaluation]
 tags: [evaluation, evaluation-series, statistics, python]
+mermaid: true
 ---
 
 Earlier this month's A/B testing post flagged statistical rigor as a topic worth its own treatment. With non-deterministic outputs and inherently noisy judge scores, it's easy to see a difference between two prompts that's actually just sampling noise — this post covers the specific discipline that prevents that mistake.
+
+```mermaid
+flowchart TD
+    A[Variant A scored higher than B] --> B{p-value < 0.05?}
+    B -->|no| C[Not significant — likely noise]
+    B -->|yes| D{Effect size meaningful?}
+    D -->|no| E[Statistically real, practically irrelevant]
+    D -->|yes| F[Worth shipping]
+```
+
+A lower p-value alone isn't sufficient — a large enough sample can make a trivially small difference statistically significant, so effect size has to clear the bar too before a result is worth acting on.
 
 ## Why "It Scored Higher" Isn't Enough
 

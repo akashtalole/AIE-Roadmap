@@ -3,9 +3,23 @@ title: "Cost Attribution: Tracking Spend by Team and Feature"
 date: 2026-08-19 08:00:00 +0530
 categories: [AI, Infrastructure]
 tags: [infrastructure, ai-infra-series, cost-optimization, python]
+mermaid: true
 ---
 
 Yesterday's budget management assumed accurate attribution already exists. This post covers actually building that — turning a lump-sum monthly provider bill into a precise breakdown by team, feature, and even individual user, which is the foundation every budget and forecasting decision depends on.
+
+```mermaid
+flowchart LR
+    A[Request tagged: team, feature, user] --> B[Gateway logs usage + cost]
+    B --> C[Aggregate by team]
+    B --> D[Aggregate by feature]
+    B --> E[Aggregate by model]
+    C --> F[Dashboard + anomaly detection]
+    D --> F
+    E --> F
+```
+
+Attribution has to happen at the gateway, tagging every request as it's made — retrofitting it later from raw provider logs (which typically only show API-key-level usage) is far harder, and the same tagged data feeds every downstream slice: by team, by feature, and by model.
 
 ## Tagging Every Request at the Source
 

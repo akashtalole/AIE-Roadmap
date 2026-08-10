@@ -3,9 +3,24 @@ title: "Feature Flags for Agentic Behavior"
 date: 2026-10-28 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [agents, deep-dive-series, python, feature-flags]
+mermaid: true
 ---
 
 Yesterday's versioning system controls which configuration is active. Feature flags provide finer-grained, runtime-adjustable control within that — enabling or disabling specific agent capabilities without a full configuration version change or deployment.
+
+```mermaid
+flowchart TD
+    A[Session starts] --> B{Flag: tool enabled?}
+    B -->|yes| C[Add tool to available set]
+    B -->|no, e.g. incident| D[Omit tool]
+    C --> E[Agent runs]
+    D --> E
+    E --> F{Error rate spikes?}
+    F -->|yes| G[Automatic kill switch disables flag]
+    F -->|no| E
+```
+
+The loop back from error-rate monitoring to the flag itself is the key idea — a kill switch is just a feature flag toggled programmatically based on live metrics rather than manually by an engineer, closing the loop between observability and mitigation.
 
 ## Why Agents Need Feature Flags Beyond Config Versioning
 

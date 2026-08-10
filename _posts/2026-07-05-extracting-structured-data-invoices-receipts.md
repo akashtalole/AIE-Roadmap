@@ -3,9 +3,23 @@ title: "Extracting Structured Data from Invoices and Receipts"
 date: 2026-07-05 08:00:00 +0530
 categories: [AI, Multimodal]
 tags: [multimodal, multimodal-series, document-ai, python, pydantic]
+mermaid: true
 ---
 
 Invoice and receipt extraction is one of the most common production multimodal use cases — and one where getting the schema and validation right matters more than the extraction prompt itself, since these documents feed directly into financial systems where an extraction error has real cost.
+
+```mermaid
+flowchart LR
+    A[Invoice image] --> B[VLM extraction]
+    B --> C{Schema + arithmetic valid?}
+    C -->|no| D[Retry with error feedback]
+    D --> B
+    C -->|yes| E{Any low-confidence field?}
+    E -->|yes| F[Route to human review]
+    E -->|no| G[Auto-approved]
+```
+
+The diagram lays out the full pipeline from this post: extraction isn't a single call, it's a validate-and-retry loop feeding a confidence-based routing decision. Both gates — schema/arithmetic validation and per-field confidence — matter independently, since a numerically self-consistent extraction can still contain a confidently wrong digit.
 
 ## Defining a Strict Schema
 

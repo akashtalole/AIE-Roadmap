@@ -3,9 +3,23 @@ title: "Build vs Buy: When to Use a Vendor vs Build In-House"
 date: 2026-11-13 08:00:00 +0530
 categories: [AI, Cloud AI]
 tags: [cloud-business-series, build-vs-buy, business]
+mermaid: true
 ---
 
 This decision has come up implicitly throughout this roadmap — managed RAG vs hand-built (November's cloud posts), a guardrails framework vs hand-rolled (September), Pinecone vs self-hosted (yesterday's comparison). This post makes the decision framework explicit and reusable across all of them.
+
+```mermaid
+flowchart TD
+    A[Capability to evaluate] --> B{Core differentiator?}
+    B -->|yes| C{Vendor solutions generic?}
+    C -->|yes| D[Build]
+    C -->|no| E[Buy, differentiate elsewhere]
+    B -->|no| F{Good vendor exists?}
+    F -->|yes| G[Buy]
+    F -->|no| D
+```
+
+This single question — is the capability a genuine differentiator with only generic vendor options available — is the highest-leverage filter in the framework, and it's what makes "build the orchestration logic, buy the infrastructure" the recurring pattern across nearly every comparison this roadmap has made.
 
 ## The Core Framework
 

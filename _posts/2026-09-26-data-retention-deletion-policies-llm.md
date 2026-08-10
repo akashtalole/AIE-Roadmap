@@ -3,9 +3,20 @@ title: "Data Retention and Deletion Policies for LLM Applications"
 date: 2026-09-26 08:00:00 +0530
 categories: [AI, Security]
 tags: [security, ai-security-series, data-retention, python]
+mermaid: true
 ---
 
 Every data store this roadmap has built — conversation history, long-term agent memory, training datasets, audit logs — accumulates data indefinitely unless a deliberate retention policy says otherwise. This post covers designing that policy across every data type this roadmap has introduced.
+
+```mermaid
+flowchart LR
+    A[Record older than retention window] --> B{Under legal hold?}
+    B -->|yes| C[Preserve]
+    B -->|no| D[Delete record]
+    D --> E[Log deletion for audit]
+```
+
+Automated, policy-driven deletion is what makes retention actually enforced rather than aspirational — the legal-hold check is the one override that has to run before every deletion, since active litigation or an inquiry can require preserving data past its normal schedule.
 
 ## An Inventory of Data Stores Needing a Retention Policy
 

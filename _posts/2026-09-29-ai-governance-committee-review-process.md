@@ -3,9 +3,21 @@ title: "Building an AI Governance Committee and Review Process"
 date: 2026-09-29 08:00:00 +0530
 categories: [AI, Security]
 tags: [security, ai-security-series, governance]
+mermaid: true
 ---
 
 Every framework and process this month — model risk assessments, vendor risk reviews, incident response — needs an organizational home: a body that actually reviews, approves, and holds the whole practice accountable. This post covers building that governance structure.
+
+```mermaid
+flowchart LR
+    A[New system or capability] --> B{Risk tier?}
+    B -->|high| C[Full committee review]
+    B -->|medium| D[Platform team review + notify committee]
+    B -->|low| E[Team lead self-certification]
+    C --> F[Approved / rejected / conditional]
+```
+
+Routing review effort by risk tier is what keeps the committee from becoming either a rubber stamp or a bottleneck teams route around — full review is reserved for genuinely high-stakes deployments, the same tiering the model risk management post established.
 
 ## What a Governance Committee Actually Does
 

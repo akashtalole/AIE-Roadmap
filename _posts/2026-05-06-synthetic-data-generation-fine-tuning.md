@@ -3,9 +3,21 @@ title: "Synthetic Data Generation for Fine-Tuning"
 date: 2026-05-06 08:00:00 +0530
 categories: [AI, Fine-Tuning]
 tags: [fine-tuning, fine-tuning-series, synthetic-data, python]
+mermaid: true
 ---
 
 Real data is the gold standard, but it's rarely enough on its own — rare edge cases and adversarial inputs are, by definition, underrepresented in whatever you've collected so far. Synthetic generation fills those gaps, as long as it's done with the verification discipline yesterday's post insisted on.
+
+```mermaid
+flowchart LR
+    A[Seed example or gap category] --> B[Generate variations, high temperature]
+    B --> C{Passes verification pass?}
+    C -->|no| D[Discard]
+    C -->|yes| E[Human spot-check sample]
+    E --> F[Add to training set]
+```
+
+Generation is the easy part — the verification and spot-checking steps are what keep synthetic data from quietly inheriting the generating model's hallucinations and generic phrasing.
 
 ## The Basic Pattern: Seed and Expand
 

@@ -8,6 +8,19 @@ mermaid: true
 
 The last two posts covered Temporal (a full durable-execution platform) and event-driven queues (a lighter, hand-rolled decoupling pattern). This post builds a minimal workflow engine from scratch — useful directly for teams not ready for Temporal's operational overhead, and useful as a lens for understanding what either heavier option is actually providing.
 
+```mermaid
+flowchart LR
+    A[Define steps + dependencies] --> B[Execution engine]
+    B --> C{Step ready? deps satisfied}
+    C -->|yes| D[Run step, retry on failure]
+    C -->|no| B
+    D --> E{More steps?}
+    E -->|yes| B
+    E -->|no| F[Workflow complete]
+```
+
+Stripped to its essentials, a workflow engine is just this loop: track which steps have satisfied dependencies, run the ready ones (with retry policy), and repeat until nothing's left — everything else Temporal and hosted queues add on top is durability, scaling, and operational tooling around this same core.
+
 ## The Minimal Workflow Abstraction
 
 ```python

@@ -3,9 +3,21 @@ title: "OCR and Document Understanding with Vision Models"
 date: 2026-07-04 08:00:00 +0530
 categories: [AI, Multimodal]
 tags: [multimodal, multimodal-series, ocr, document-ai, python]
+mermaid: true
 ---
 
 Traditional OCR engines (Tesseract, cloud OCR APIs) extract raw text but have no understanding of document structure or meaning. Vision-language models do both at once — reading text and reasoning about what it means, which changes how you should approach document extraction tasks entirely.
+
+```mermaid
+flowchart LR
+    A[Document image] --> B[Traditional OCR: raw text + boxes]
+    A --> C[VLM: image + OCR text]
+    B --> C
+    C --> D[Structured JSON output]
+    D --> E[Validate schema + plausibility]
+```
+
+The hybrid pattern feeds both the raw image and the OCR text into the VLM together, giving the model a text fallback for anything the vision pass alone might misread, while the model still reasons over layout — what's a header, what's a table row — that flat OCR text discards entirely.
 
 ## Traditional OCR vs VLM-Based Extraction
 

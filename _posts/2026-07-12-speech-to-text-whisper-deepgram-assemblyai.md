@@ -3,9 +3,20 @@ title: "Speech-to-Text: Comparing Whisper, Deepgram, and AssemblyAI"
 date: 2026-07-12 08:00:00 +0530
 categories: [AI, Multimodal]
 tags: [multimodal, multimodal-series, speech, comparison, python]
+mermaid: true
 ---
 
 April's voice-agent post deferred the STT provider comparison to this series — here it is. The right choice depends heavily on whether your use case is real-time streaming or batch transcription, more than on raw accuracy alone.
+
+```mermaid
+flowchart LR
+    A{Real-time streaming needed?} -->|yes| B[Deepgram: native streaming, lowest latency]
+    A -->|no| C{Need diarization / sentiment / chapters?}
+    C -->|yes| D[AssemblyAI: batch + streaming, built-in analysis]
+    C -->|no| E[Whisper: strong accuracy, self-hostable]
+```
+
+The decision tree here mirrors the post's core argument — pick a provider by latency and feature requirements first, since word error rate alone is a weak differentiator once you've measured it on your own audio.
 
 ## The Three Options at a Glance
 

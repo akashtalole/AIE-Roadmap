@@ -3,9 +3,21 @@ title: "Handling AI Feature Failures Gracefully in the UI"
 date: 2026-11-23 08:00:00 +0530
 categories: [AI, Cloud AI]
 tags: [cloud-business-series, ux, product]
+mermaid: true
 ---
 
 Yesterday's trust post established that failures cost trust disproportionately. This post covers the concrete UI/UX design layer that determines how much a given failure actually costs — the same underlying failure can feel like a minor hiccup or a serious breach of trust depending entirely on how it's presented.
+
+```mermaid
+flowchart TD
+    A[AI Response] --> B{Confidence Level}
+    B -->|Full success| C[Clean, confident presentation]
+    B -->|Partial success| D[Explicitly flag what's missing]
+    B -->|Low confidence| E[Visual indicator + easy escalation]
+    B -->|Hard failure| F[Honest message + escalation, no dead end]
+```
+
+Four distinct states, not a binary success/error, is the point — collapsing degraded-but-not-fully-failed responses into a two-state UI forces every partial success to either overstate confidence or understate what actually went wrong.
 
 ## The Core Principle: Never Let a Failure Look Like Success
 

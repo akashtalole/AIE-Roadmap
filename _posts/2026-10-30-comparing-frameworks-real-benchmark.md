@@ -8,6 +8,19 @@ mermaid: true
 
 April's framework comparison post was qualitative — a decision table based on mental models and fit. This post runs an actual empirical benchmark across LangGraph, CrewAI, and AutoGen on the same task, applying June's evaluation rigor to the framework choice itself.
 
+```mermaid
+flowchart LR
+    A[Same task: company briefing] --> B[LangGraph implementation]
+    A --> C[CrewAI implementation]
+    A --> D[AutoGen implementation]
+    B --> E[Same golden set + judge]
+    C --> E
+    D --> E
+    E --> F[Accuracy, cost, latency per framework]
+```
+
+Holding the task, prompts, and evaluation criteria constant across all three implementations is what makes the comparison meaningful — without that control, differences in results could just as easily reflect prompt-engineering effort as genuine framework capability.
+
 ## The Benchmark Task
 
 A representative, moderately complex task: given a company name, research its recent news, competitive position, and produce a one-page briefing with citations — chosen because it exercises retrieval, multi-step reasoning, and synthesis, a reasonable proxy for many real production agent use cases.

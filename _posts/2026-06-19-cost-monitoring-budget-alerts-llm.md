@@ -3,9 +3,22 @@ title: "Cost Monitoring and Budget Alerts for LLM Applications"
 date: 2026-06-19 08:00:00 +0530
 categories: [AI, Evaluation]
 tags: [evaluation, evaluation-series, cost-optimization, observability, python]
+mermaid: true
 ---
 
 April's agent cost-control post covered budgets at run-time, stopping an individual agent from overspending. This post covers the observability side — visibility into where spend is actually going across an entire application, which is what makes those runtime budgets well-calibrated in the first place.
+
+```mermaid
+flowchart LR
+    A[Every LLM call] --> B[Log cost tagged by feature + user]
+    B --> C[Aggregate by feature/user/model]
+    C --> D{z-score anomaly?}
+    D -->|yes| E[Alert on-call]
+    C --> F{User over tier limit?}
+    F -->|yes| G[Downgrade to cheaper model]
+```
+
+Tagging every call with feature and user is what makes spend attributable after the fact, and the same data feeds two guardrails at once — an anomaly alert for a genuine spend spike, and a graceful per-user downgrade rather than a hard block when a budget is exceeded.
 
 ## Structured Cost Logging at the Request Level
 

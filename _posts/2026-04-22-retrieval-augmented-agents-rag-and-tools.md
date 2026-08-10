@@ -3,9 +3,21 @@ title: "Retrieval-Augmented Agents: Combining RAG and Tools"
 date: 2026-04-22 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [agents, agentic-frameworks-series, rag, tools, python]
+mermaid: true
 ---
 
 March's RAG series built pipelines that retrieve once and generate once. Real questions often need *iterative* retrieval — search, notice the results are insufficient, refine the query, search again — which is exactly what treating retrieval as an agent tool unlocks instead of a fixed pipeline step.
+
+```mermaid
+flowchart TD
+    A[Question] --> B[search_knowledge_base]
+    B --> C{Results sufficient?}
+    C -->|no, reformulate query| B
+    C -->|yes| D[Combine with other tools: account status, calculator]
+    D --> E[Final answer]
+```
+
+A fixed RAG pipeline retrieves once against one index and stops; an agent can loop back with a reformulated query, or chain retrieval with live system checks, until the question is actually answerable. The rest of this post covers reformulation and the prompt-injection risk of treating retrieved text as trusted.
 
 ## Retrieval as a Tool, Not a Pipeline Stage
 

@@ -3,9 +3,20 @@ title: "Documentation Practices for AI Systems"
 date: 2026-11-20 08:00:00 +0530
 categories: [AI, Cloud AI]
 tags: [cloud-business-series, documentation]
+mermaid: true
 ---
 
 Yesterday's onboarding post identified the documentation a new engineer needs most. This post covers documentation practice for AI systems more broadly — what to document, how to keep it from going stale (the single biggest documentation failure mode), and who the audience actually is for each type.
+
+```mermaid
+flowchart LR
+    A[Architecture Docs] --> B[New Engineers]
+    C[Eval Methodology] --> D[Engineers, Product, Governance]
+    E[Prompt Rationale] --> F[Anyone Modifying It Later]
+    G[Runbooks] --> H[On-call Engineers]
+```
+
+Matching each documentation type to who actually reads it is the organizing idea behind the taxonomy below — a runbook written for an on-call engineer and a prompt rationale written for a future maintainer serve genuinely different needs and shouldn't be collapsed into one generic "docs" folder.
 
 ## What's Genuinely Different About Documenting an AI System
 

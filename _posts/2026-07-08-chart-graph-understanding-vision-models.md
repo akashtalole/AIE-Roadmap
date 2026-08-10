@@ -3,9 +3,22 @@ title: "Chart and Graph Understanding with Vision-Language Models"
 date: 2026-07-08 08:00:00 +0530
 categories: [AI, Multimodal]
 tags: [multimodal, multimodal-series, charts, data-visualization, python]
+mermaid: true
 ---
 
 Charts pack numeric information into a visual encoding — bar height, line slope, pie slice angle — that VLMs read with real but bounded reliability. Understanding exactly where that reliability breaks down is what determines whether you can trust chart-derived answers in a production system.
+
+```mermaid
+flowchart TD
+    A[Chart image + question] --> B{Value has a printed label?}
+    B -->|yes| C[Read label: high reliability]
+    B -->|no| D[Visual estimate]
+    D --> E{Dense multi-series chart?}
+    E -->|yes| F[Low reliability, report as range]
+    E -->|no| G[Moderate reliability, report as estimate]
+```
+
+This is the reliability split the whole post is organized around — labeled data points behave like OCR, while unlabeled estimation degrades further as chart density increases. Treating every extracted number with this same confidence tag is what the prompting pattern below is designed to enforce.
 
 ## What VLMs Read Reliably
 

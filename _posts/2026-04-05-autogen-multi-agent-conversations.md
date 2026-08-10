@@ -3,9 +3,24 @@ title: "AutoGen: Multi-Agent Conversations That Get Things Done"
 date: 2026-04-05 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [autogen, agentic-frameworks-series, python, multi-agent]
+mermaid: true
 ---
 
 LangGraph models coordination as a graph; CrewAI models it as roles and tasks. AutoGen models it as a **conversation** — agents are chat participants that send messages to each other, and the "workflow" emerges from that conversation rather than being declared up front.
+
+```mermaid
+sequenceDiagram
+    participant U as user_proxy
+    participant A as assistant
+
+    U->>A: "Write a function that dedupes a list"
+    A->>U: Code + explanation
+    U->>U: Execute code in sandbox
+    U->>A: Execution result
+    A->>U: "TERMINATE"
+```
+
+There's no declared graph or task list here — the workflow emerges purely from agents replying to each other's messages, with `user_proxy` executing code and feeding results back until a termination condition fires. That open-endedness is AutoGen's core trade-off, covered at the end of this post.
 
 ## The Core Abstraction: ConversableAgent
 

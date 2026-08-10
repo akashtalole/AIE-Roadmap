@@ -3,9 +3,21 @@ title: "Chain of Thought and ReAct: Advanced Reasoning Techniques for LLMs"
 date: 2026-03-05 08:00:00 +0530
 categories: [AI, Prompt Engineering]
 tags: [prompt-engineering, chain-of-thought, react, reasoning, agents, roadmap]
+mermaid: true
 ---
 
 LLMs make more mistakes when forced to answer immediately — they perform significantly better when prompted to reason step by step. Chain of Thought (CoT) and ReAct are two of the most impactful techniques for improving LLM reasoning quality.
+
+```mermaid
+flowchart LR
+    A[Task] --> B[Thought: reason about next step]
+    B --> C[Action: call a tool]
+    C --> D[Observation: tool result]
+    D -->|not done| B
+    D -->|done| E[Answer]
+```
+
+This is the ReAct loop: reasoning (which CoT supplies) alternates with acting on the outside world until the model has enough grounded observations to answer. It's the same Thought/Action/Observation pattern that underlies most agent frameworks covered later in this series.
 
 ## Chain of Thought (CoT) Prompting
 

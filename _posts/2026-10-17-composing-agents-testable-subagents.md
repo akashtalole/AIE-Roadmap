@@ -8,6 +8,18 @@ mermaid: true
 
 October 2's LangGraph subgraphs showed one framework's implementation of this idea. This post generalizes the principle across any framework — decomposing a large agent into small, independently testable subagents is the single highest-leverage design practice for keeping a complex agentic system maintainable.
 
+```mermaid
+flowchart LR
+    A[Orchestrator] --> B[Subagent: research]
+    A --> C[Subagent: writing]
+    A --> D[Subagent: review]
+    B --> E[Tested independently]
+    C --> E
+    D --> E
+```
+
+Each subagent has its own narrow interface contract and its own test suite, so a failure in the writing subagent can be diagnosed and fixed without touching research or review — the same separation-of-concerns discipline that keeps large codebases maintainable, applied to agent architecture.
+
 ## Why Monolithic Agents Become Unmaintainable
 
 A single agent with one system prompt, twenty tools, and complex multi-step reasoning logic accumulates the same problems a 5,000-line function does — hard to test in isolation, hard to reason about which part is responsible for a given failure, and every change risks breaking unrelated behavior.

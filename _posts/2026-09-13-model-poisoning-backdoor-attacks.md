@@ -3,9 +3,21 @@ title: "Model Poisoning and Backdoor Attacks Explained"
 date: 2026-09-13 08:00:00 +0530
 categories: [AI, Security]
 tags: [security, ai-security-series, model-poisoning]
+mermaid: true
 ---
 
 Yesterday's supply chain post flagged dataset poisoning as a risk to defend against. This post explains the mechanism in depth — how a poisoned dataset or compromised training process can implant behavior that survives into a deployed model, invisible until specifically triggered.
+
+```mermaid
+flowchart LR
+    A[Poisoned examples in dataset] --> B[Fine-tuning]
+    B --> C[Deployed model]
+    C --> D{Trigger present in input?}
+    D -->|no| E[Normal behavior on golden set]
+    D -->|yes| F[Malicious behavior]
+```
+
+The whole danger of a backdoor is that path D-to-E is what every standard evaluation exercises, since a golden set built from representative traffic almost never contains the attacker's rare trigger — path D-to-F only shows up when someone knows to look for it specifically.
 
 ## What Makes This Different From a Normal Training Bug
 

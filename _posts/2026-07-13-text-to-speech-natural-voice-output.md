@@ -3,9 +3,28 @@ title: "Text-to-Speech: Building Natural-Sounding Voice Output"
 date: 2026-07-13 08:00:00 +0530
 categories: [AI, Multimodal]
 tags: [multimodal, multimodal-series, speech, python]
+mermaid: true
 ---
 
 Modern TTS has moved well past the robotic, choppy voices of a few years ago — but "natural-sounding" in a demo and "natural-sounding across an entire production conversation" are different bars, and this post covers what closes that gap.
+
+```mermaid
+sequenceDiagram
+    participant L as LLM
+    participant B as Sentence buffer
+    participant T as TTS
+    participant U as User
+
+    L->>B: stream tokens
+    B->>B: accumulate until sentence boundary
+    B->>T: complete sentence
+    T->>U: audio chunk (streamed)
+    L->>B: stream tokens
+    B->>T: next complete sentence
+    T->>U: audio chunk (streamed)
+```
+
+Chunking at sentence boundaries rather than a fixed token count is what keeps the lowest-latency pipeline (streaming LLM output directly into TTS) sounding natural — a TTS model given a full clause produces noticeably better prosody than one fed arbitrary text fragments.
 
 ## Basic Streaming TTS
 

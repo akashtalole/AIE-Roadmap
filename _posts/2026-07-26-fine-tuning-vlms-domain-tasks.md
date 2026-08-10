@@ -3,9 +3,21 @@ title: "Fine-Tuning Vision-Language Models for Domain Tasks"
 date: 2026-07-26 08:00:00 +0530
 categories: [AI, Multimodal]
 tags: [multimodal, multimodal-series, fine-tuning, python]
+mermaid: true
 ---
 
 May's fine-tuning series covered text-only models throughout. VLMs can be fine-tuned too, and the decision framework from that series — style vs knowledge, when it's worth the cost — applies with a few multimodal-specific wrinkles worth calling out.
+
+```mermaid
+flowchart TD
+    A[Task quality gap identified] --> B{Good prompting alone reaches the bar?}
+    B -->|yes| C[Stop — no fine-tuning needed]
+    B -->|no| D{Domain-specific visual vocabulary?}
+    D -->|yes| E[LoRA on vision encoder + LLM]
+    D -->|no| F[LoRA on LLM component only]
+```
+
+This is May's fine-tuning-vs-prompting decision framework applied to vision — confirming prompting genuinely can't reach the quality bar comes first, and only then does the question become which component (vision encoder, language model, or both) needs adaptation.
 
 ## When VLM Fine-Tuning Is Worth It
 

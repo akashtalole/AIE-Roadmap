@@ -3,9 +3,25 @@ title: "Bias and Fairness Testing for LLM Outputs"
 date: 2026-09-23 08:00:00 +0530
 categories: [AI, Security]
 tags: [security, ai-security-series, bias, fairness, python]
+mermaid: true
 ---
 
 Yesterday's risk management framework listed bias as a tracked risk category. This post covers testing for it concretely — LLMs trained on broad, imperfect data reflect and can amplify real-world biases, and testing for this needs to be as systematic as any other quality dimension from June's evaluation series.
+
+```mermaid
+flowchart LR
+    A[Prompt template] --> B[Substitute demographic variant A]
+    A --> C[Substitute demographic variant B]
+    A --> D[Substitute demographic variant C]
+    B --> E[LLM-as-judge quality score]
+    C --> E
+    D --> E
+    E --> F{Max disparity > threshold?}
+    F -->|yes| G[Flag bias finding]
+    F -->|no| H[Pass]
+```
+
+Holding the request constant and varying only the demographic marker is the core technique — the same LLM-as-judge scoring from June's evaluation series, applied to compare across variants instead of across model versions.
 
 ## What Bias Testing Looks Like in Practice
 

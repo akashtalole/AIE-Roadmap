@@ -3,9 +3,21 @@ title: "Domain Adaptation: Fine-Tuning for Legal, Medical, and Finance"
 date: 2026-05-17 08:00:00 +0530
 categories: [AI, Fine-Tuning]
 tags: [fine-tuning, fine-tuning-series, domain-adaptation, compliance]
+mermaid: true
 ---
 
 Regulated domains are where fine-tuning's tradeoffs get sharpest: the upside of consistent, domain-correct output is real, and the cost of a subtle error is much higher than in a general-purpose chatbot. This post covers what's different about fine-tuning for these fields specifically.
+
+```mermaid
+flowchart LR
+    A[Regulated domain need] --> B{Facts or style?}
+    B -->|facts needing a traceable source| C[RAG]
+    B -->|terminology, structure, calibrated caution| D[Fine-tuning]
+    D --> E[Domain expert evaluation]
+    E --> F[Audit trail: data, evals, limitations]
+```
+
+The conservative default this post lands on is right here: keep facts in retrieval where they stay traceable, and reserve fine-tuning specifically for the structural and tonal conventions these fields demand.
 
 ## Why General-Purpose Models Fall Short Here
 

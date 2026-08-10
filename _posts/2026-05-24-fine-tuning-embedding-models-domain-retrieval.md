@@ -3,9 +3,21 @@ title: "Fine-Tuning Embedding Models for Domain-Specific Retrieval"
 date: 2026-05-24 08:00:00 +0530
 categories: [AI, Fine-Tuning]
 tags: [fine-tuning, fine-tuning-series, embeddings, rag, python]
+mermaid: true
 ---
 
 Everything so far this month fine-tuned a generative model. Embedding models — the retrieval backbone of every RAG system from March — can be fine-tuned too, and it's often a higher-leverage investment than fine-tuning the generator, since retrieval quality caps everything downstream of it.
+
+```mermaid
+flowchart LR
+    A[Query-document pairs] --> D[Contrastive training]
+    B[Hard negatives] --> D
+    C[Synthetic queries] --> D
+    D --> E[Domain-tuned embedding model]
+    E --> F[recall@k / MRR against held-out queries]
+```
+
+Contrastive training pulls genuinely similar pairs together and pushes hard negatives apart, and the payoff is measured directly in retrieval metrics inside the actual pipeline — not embedding quality in isolation.
 
 ## Why General-Purpose Embeddings Fall Short
 

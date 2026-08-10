@@ -8,6 +8,17 @@ mermaid: true
 
 April's CrewAI posts covered `Process.sequential` and `Process.hierarchical` — both still LLM-driven at the coordination level. CrewAI Flows offer a third option: explicit, code-defined control flow around crews, for the parts of a system that shouldn't be left to LLM judgment at all.
 
+```mermaid
+flowchart LR
+    A[Order received] --> B{value > $10,000?}
+    B -->|yes| C[Crew: manager-approval workflow]
+    B -->|no| D[Crew: auto-process order]
+    C --> E[Final state]
+    D --> E
+```
+
+The routing decision itself — the `if` check — is plain code, not an LLM call; only the branches it routes to are handed off to a crew. That split is the core idea behind Flows: deterministic control for the parts of the system where a business rule is the right tool, agentic delegation for the parts that genuinely need judgment.
+
 ## Why Deterministic Control Sometimes Beats LLM Orchestration
 
 Not every step in a multi-agent system benefits from LLM-driven decision-making — routing logic that depends on a simple, well-defined business rule ("if the order value exceeds $10,000, require manager approval") is more reliable, faster, and cheaper as plain code than as an LLM inference call, even inside an otherwise agentic system.

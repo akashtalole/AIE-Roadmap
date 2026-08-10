@@ -3,9 +3,23 @@ title: "Containerizing LLM Applications for Production"
 date: 2026-08-24 08:00:00 +0530
 categories: [AI, Infrastructure]
 tags: [infrastructure, ai-infra-series, docker, kubernetes]
+mermaid: true
 ---
 
 Every deployment pattern this month — autoscaling, blue-green, multi-region — assumes a containerized application underneath. This post covers the specific considerations for containerizing LLM applications well, which differ meaningfully from typical web-service containerization.
+
+```mermaid
+flowchart LR
+    A[CUDA base layer] --> B[Dependencies layer]
+    B --> C[Application code layer]
+    C --> D{Weights: baked in or mounted?}
+    D -->|baked in| E[Large, immutable, reproducible image]
+    D -->|mounted at runtime| F[Small image + external volume]
+    E --> G[Health check verifies model actually loaded]
+    F --> G
+```
+
+Layering the Dockerfile so code changes reuse the cached dependency layer, and choosing whether weights are baked in or mounted, are the two build-time decisions this post centers on — both feed directly into image size and the startup-time problem the autoscaling post already raised, which is why the health check has to verify real model readiness, not just that the HTTP server is up.
 
 ## The Layered Dockerfile Pattern
 

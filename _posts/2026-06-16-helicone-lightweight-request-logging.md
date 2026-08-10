@@ -3,9 +3,28 @@ title: "Helicone: Lightweight LLM Request Logging"
 date: 2026-06-16 08:00:00 +0530
 categories: [AI, Evaluation]
 tags: [evaluation, evaluation-series, helicone, observability, python]
+mermaid: true
 ---
 
 The last three posts covered full observability platforms with real setup and conceptual overhead — projects, tracing SDKs, dashboards to configure. Helicone takes a deliberately lighter-weight approach: a proxy in front of your existing API calls, with essentially zero code change required to get request-level logging.
+
+```mermaid
+sequenceDiagram
+    participant App as Your app
+    participant H as Helicone proxy
+    participant P as Model provider
+    App->>H: chat.completions.create(base_url=helicone)
+    H->>H: log request, check cache
+    alt cache hit
+        H-->>App: cached response
+    else cache miss
+        H->>P: forward request
+        P-->>H: response
+        H-->>App: response (logged)
+    end
+```
+
+Just changing the client's base URL routes every call through the proxy, which logs, optionally caches, and can rate-limit — the tradeoff is a flat request log rather than the structured, related-calls trace tree the full platforms build.
 
 ## The Proxy Pattern
 

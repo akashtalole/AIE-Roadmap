@@ -3,9 +3,22 @@ title: "Prompting Techniques for Reliable Image Generation"
 date: 2026-07-10 08:00:00 +0530
 categories: [AI, Multimodal]
 tags: [multimodal, multimodal-series, image-generation, prompt-engineering]
+mermaid: true
 ---
 
 Prompt engineering for image generation is a genuinely different discipline from the text-prompting techniques covered earlier in this roadmap — the same "be specific and structured" principle applies, but expressed through different mechanics.
+
+```mermaid
+flowchart LR
+    A[Initial prompt] --> B[Generate image]
+    B --> C[VLM reviews against criteria]
+    C --> D{Meets all criteria?}
+    D -->|no| E[Refine prompt with issues]
+    E --> B
+    D -->|yes| F[Final image]
+```
+
+This generate-critique-refine loop is the highest-leverage technique in this post — rather than hand-tuning a single prompt, a VLM reviews each generation against explicit criteria and feeds specific issues back into the next attempt, closing the loop without a human in it for every round.
 
 ## Structure: Subject, Style, Composition, Detail
 

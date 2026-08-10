@@ -3,9 +3,25 @@ title: "Reviewing Your Own Capstone: A Self-Assessment Checklist"
 date: 2026-12-18 08:00:00 +0530
 categories: [AI, Career]
 tags: [career, career-series, capstone]
+mermaid: true
 ---
 
 Eight capstone briefs are now complete. This post consolidates their individual rubrics into one comprehensive self-assessment framework — a genuine, honest review pass before calling any capstone portfolio-ready.
+
+```mermaid
+flowchart TD
+    A[Capstone project] --> B[Functionality]
+    A --> C[Evaluation rigor]
+    A --> D[Guardrails & security]
+    A --> E[Documentation]
+    B --> F[Overall score]
+    C --> F
+    D --> F
+    E --> F
+    F --> G{Portfolio-ready?}
+```
+
+Scoring across five separate dimensions, rather than one holistic gut check, mirrors June's own multi-dimensional evaluation principle applied reflexively to your own work — a project that's functionally excellent but has zero evaluation rigor should score honestly lower than instinct alone would suggest.
 
 ## The Consolidated Checklist
 

@@ -3,9 +3,25 @@ title: "Cost-Aware Agent Design: Budgets and Circuit Breakers"
 date: 2026-04-20 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [agents, agentic-frameworks-series, cost-optimization, guardrails]
+mermaid: true
 ---
 
 March's `AgentBudget` stopped a single run from spending too much. Production agent systems need cost control at every layer above that — per-user, per-feature, and organization-wide — or a handful of expensive edge-case goals can quietly dominate your bill.
+
+```mermaid
+flowchart TD
+    A[Agent run spends] --> B{Over run_max?}
+    B -->|yes| Z[Block]
+    B -->|no| C{Over user_daily?}
+    C -->|yes| Z
+    C -->|no| D{Over org_daily?}
+    D -->|yes| Z
+    D -->|no| E{Spend spike in window?}
+    E -->|yes| F[Trip circuit breaker]
+    E -->|no| G[Allow run]
+```
+
+A single per-run cap isn't enough — a bug that keeps every run near its limit can still exhaust an org's daily budget through sheer volume, which is why the checks stack from run, to user, to org, with a circuit breaker as the final backstop against a cost spike.
 
 ## Layered Budgets
 

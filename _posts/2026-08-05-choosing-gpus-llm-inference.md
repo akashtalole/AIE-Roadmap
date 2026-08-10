@@ -3,9 +3,24 @@ title: "Choosing GPUs for LLM Inference: A Practical Guide"
 date: 2026-08-05 08:00:00 +0530
 categories: [AI, Infrastructure]
 tags: [infrastructure, ai-infra-series, gpu, hardware]
+mermaid: true
 ---
 
 Every inference server this week runs on top of a hardware decision that's easy to get wrong in either direction — over-provisioning wastes budget, under-provisioning caps throughput or forces unwanted quantization tradeoffs. This post covers the practical sizing math.
+
+```mermaid
+flowchart LR
+    A[Model param count] --> B[Choose precision: bf16 or quantized]
+    B --> C[Weights memory]
+    D[Expected concurrency + context length] --> E[KV cache memory]
+    C --> F[Total memory needed]
+    E --> F
+    F --> G{Fits one GPU?}
+    G -->|yes| H[Single-GPU tier]
+    G -->|no| I[Multi-GPU: tensor/pipeline parallelism]
+```
+
+Sizing comes down to two independently-computed numbers — weights memory from the parameter count and precision, and KV cache memory from expected concurrency and context length — summed to decide whether a single GPU suffices or multi-GPU parallelism is required.
 
 ## The Two Numbers That Matter Most
 

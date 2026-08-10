@@ -3,9 +3,20 @@ title: "Accessibility Applications of Multimodal AI"
 date: 2026-07-23 08:00:00 +0530
 categories: [AI, Multimodal]
 tags: [multimodal, multimodal-series, accessibility, python]
+mermaid: true
 ---
 
 Multimodal AI's ability to translate between modalities — image to text, speech to text, text to speech — maps directly onto some of the most impactful accessibility use cases available to an AI engineer today, and it's worth a dedicated post rather than treating it as an afterthought.
+
+```mermaid
+flowchart LR
+    A[Image] -->|VLM| B[Alt text for screen readers]
+    C[Live audio] -->|STT| D[Captions with speaker labels]
+    E[Text response] -->|TTS| F[Voice interface]
+    G[PDF/document] -->|structure extraction| H[Reading order + table descriptions]
+```
+
+Every branch in this diagram is a modality-translation capability covered earlier this month, repurposed here for a specific accessibility use case — the value isn't a new technique, it's applying existing pipelines with meaning-first framing (what's useful to convey) rather than exhaustive description.
 
 ## Image Description for Screen Readers
 

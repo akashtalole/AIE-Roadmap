@@ -3,9 +3,22 @@ title: "Building a Golden Dataset for LLM Evaluation"
 date: 2026-06-02 08:00:00 +0530
 categories: [AI, Evaluation]
 tags: [evaluation, evaluation-series, datasets, python]
+mermaid: true
 ---
 
 Every evaluation technique this month depends on having a good golden dataset to evaluate against — a curated set of representative inputs paired with what a correct or acceptable output looks like. This is the single highest-leverage investment in an evaluation practice, and it's frequently under-invested in relative to flashier tooling.
+
+```mermaid
+flowchart LR
+    A[Production failures] --> E[Golden dataset]
+    B[Traffic sampling] --> E
+    C[Expert-authored edge cases] --> E
+    D[Benchmark-inspired cases] --> E
+    E --> F[Frozen regression set]
+    E --> G[Rotating exploration set]
+```
+
+Four sourcing strategies feed one dataset, which then splits into two purposes: a frozen regression set that must never fail again, and a rotating exploration set that keeps pace with a shifting production distribution. Keeping that split explicit is what the last section below is about.
 
 ## What Goes Into a Golden Example
 

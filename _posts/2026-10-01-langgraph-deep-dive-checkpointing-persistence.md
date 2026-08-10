@@ -3,9 +3,25 @@ title: "LangGraph Deep Dive: Custom Checkpointing and Persistence"
 date: 2026-10-01 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [langgraph, deep-dive-series, python, state-management]
+mermaid: true
 ---
 
 April's LangGraph posts used the default `MemorySaver` checkpointer. Production deployments need durable, queryable persistence — this post covers building a custom checkpointer backed by a real database, and the patterns that come with it.
+
+```mermaid
+sequenceDiagram
+    participant G as Graph execution
+    participant C as PostgresCheckpointer
+    participant D as Postgres
+    G->>C: aput(checkpoint after each step)
+    C->>D: INSERT/UPDATE checkpoint row
+    Note over G,D: Process restart or regional failover
+    G->>C: aget(thread_id)
+    C->>D: SELECT latest checkpoint
+    D->>G: Resume from that checkpoint
+```
+
+Persisting every step to Postgres instead of in-memory is what survives a process restart or a regional failover — the "time travel" resume shown here is the same recovery path exercised by the checkpoint-recovery test near the end of this post.
 
 ## Implementing a Custom Checkpointer
 

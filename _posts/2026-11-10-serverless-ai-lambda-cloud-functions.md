@@ -3,9 +3,22 @@ title: "Serverless AI: Running LLM Workloads on Lambda and Cloud Functions"
 date: 2026-11-10 08:00:00 +0530
 categories: [AI, Cloud AI]
 tags: [cloud-business-series, serverless, python]
+mermaid: true
 ---
 
 August's infrastructure series assumed always-on servers (containers, Kubernetes). For many LLM application workloads — API-calling logic, not self-hosted model inference — serverless functions are a genuinely simpler, often cheaper alternative worth understanding explicitly.
+
+```mermaid
+flowchart LR
+    A[Durable Workflow / Temporal] --> B[Lambda: bounded LLM call 1]
+    A --> C[Lambda: bounded LLM call 2]
+    A --> D[Lambda: bounded LLM call 3]
+    B --> A
+    C --> A
+    D --> A
+```
+
+Because serverless functions have hard execution-time limits, a long-running agent needs a separate durable-execution layer orchestrating across multiple bounded invocations, rather than trying to fit the whole agent loop inside one function call — the pattern the timeout section below covers in detail.
 
 ## What Serverless Fits Well for AI Workloads
 

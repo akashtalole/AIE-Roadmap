@@ -3,9 +3,25 @@ title: "Capstone Project 6: Build a Voice-Enabled Support Agent"
 date: 2026-12-15 08:00:00 +0530
 categories: [AI, Career]
 tags: [career, career-series, capstone, voice, python]
+mermaid: true
 ---
 
 Sixth capstone: a complete voice-driven agent combining July's multimodal/voice series with March/April's agent fundamentals — the most technically demanding capstone in terms of number of integrated components.
+
+```mermaid
+sequenceDiagram
+    participant U as User (speech)
+    participant S as Streaming STT
+    participant Ag as Agent + Tools
+    participant T as Streaming TTS
+    U->>S: audio stream
+    S->>Ag: transcript
+    Ag->>Ag: reasons, calls tools
+    Ag->>T: response text
+    T->>U: streamed speech
+```
+
+This is the real-time pipeline the requirements below break into stages — streaming STT, an agent loop with at least two tools, and streaming TTS, with turn-taking layered on top once each stage works independently.
 
 ## Project Brief
 

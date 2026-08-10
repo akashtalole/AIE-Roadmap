@@ -3,9 +3,23 @@ title: "Human-in-the-Loop Patterns for Agentic Workflows"
 date: 2026-04-14 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [agents, agentic-frameworks-series, human-in-the-loop, guardrails]
+mermaid: true
 ---
 
 Every framework covered this month has some mechanism for pausing an agent and waiting for a human. What's less obvious is *when* to use it — inserting a human checkpoint everywhere kills the productivity gain of automating the task at all, and inserting one nowhere reproduces the guardrail failures from March.
+
+```mermaid
+flowchart TD
+    A[Agent proposes next action] --> B{needs_human_review?}
+    B -->|low confidence, irreversible, or out of scope| C[Enqueue approval request]
+    B -->|no| F[Execute directly]
+    C --> D[Pause run, checkpoint state]
+    D --> E{Reviewer decision}
+    E -->|approved| F
+    E -->|rejected| G[Cancel run]
+```
+
+This is the same checkpoint-pause-resume mechanism as LangGraph's `interrupt_before`, generalized across frameworks — the trigger conditions in the first diamond are what decide whether a given action needs a human at all, covered in the section below.
 
 ## Three Points Where Humans Belong in the Loop
 

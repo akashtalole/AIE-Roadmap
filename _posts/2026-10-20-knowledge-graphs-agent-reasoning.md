@@ -8,6 +8,17 @@ mermaid: true
 
 Yesterday's comparison established when a knowledge graph is the right tool. This post covers actually building one and giving an agent the ability to query and reason over it.
 
+```mermaid
+flowchart LR
+    A[Unstructured text] --> B[Extract entities + relations]
+    B --> C[Graph store]
+    D[Agent query] --> E[Multi-hop graph traversal]
+    C --> E
+    E --> F[Answer with reasoning chain]
+```
+
+The graph sits between raw text and the agent as a structured intermediate — extraction happens once, up front, and every subsequent query traverses relationships directly instead of re-deriving them from documents, which is what makes multi-hop reasoning tractable.
+
 ## Extracting a Knowledge Graph from Unstructured Text
 
 {% raw %}

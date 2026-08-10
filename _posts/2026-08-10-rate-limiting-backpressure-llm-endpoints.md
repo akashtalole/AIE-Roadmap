@@ -3,9 +3,24 @@ title: "Rate Limiting and Backpressure for LLM Endpoints"
 date: 2026-08-10 08:00:00 +0530
 categories: [AI, Infrastructure]
 tags: [infrastructure, ai-infra-series, rate-limiting, python]
+mermaid: true
 ---
 
 Batching, caching, and load balancing all help a system handle more traffic efficiently. None of them protect the system when demand genuinely exceeds capacity — that's what rate limiting and backpressure are for, and getting them wrong means either an outage or a terrible user experience during exactly the moments that matter most.
+
+```mermaid
+flowchart LR
+    A[Incoming request] --> B{Token bucket has budget?}
+    B -->|no| C[Reject: 429]
+    B -->|yes| D{Queue depth over limit?}
+    D -->|yes| E[Reject: 503, retry with backoff]
+    D -->|no| F[Enqueue and process]
+    C --> G[Client backs off with jitter]
+    E --> G
+    G -.retry.-> A
+```
+
+Rate limiting on token budget (not raw request count) and backpressure via an explicit 503 are the two layers that keep a system predictable under genuine overload — the jittered client retry loop closing the diagram is what prevents a wave of synchronized retries from re-triggering the same overload.
 
 ## Token Bucket Rate Limiting
 

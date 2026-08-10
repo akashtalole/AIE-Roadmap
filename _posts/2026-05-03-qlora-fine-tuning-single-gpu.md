@@ -3,9 +3,22 @@ title: "QLoRA: Fine-Tuning Large Models on a Single GPU"
 date: 2026-05-03 08:00:00 +0530
 categories: [AI, Fine-Tuning]
 tags: [fine-tuning, fine-tuning-series, qlora, quantization, python]
+mermaid: true
 ---
 
 LoRA shrinks the *trainable* parameters dramatically, but the frozen base model still has to sit in GPU memory at full precision — a 70B model in 16-bit still needs roughly 140GB just to load. QLoRA closes that gap by quantizing the frozen base model to 4-bit, while keeping the LoRA adapters themselves in higher precision.
+
+```mermaid
+flowchart LR
+    A[Base model weights] --> B[Quantize to 4-bit NF4]
+    B --> C[Frozen 4-bit base]
+    D[Small LoRA adapters] --> E[Trained in bf16]
+    C --> F[Forward + backward pass]
+    E --> F
+    F --> G[Only adapter weights updated]
+```
+
+The frozen base model stays quantized throughout training — only the small LoRA adapters, kept at higher precision, actually receive gradient updates, which is what makes fitting a 70B model's fine-tuning onto a single GPU possible.
 
 ## The Three Techniques QLoRA Combines
 

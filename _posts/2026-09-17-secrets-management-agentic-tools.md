@@ -3,9 +3,25 @@ title: "Secrets Management in Agentic Tool Configurations"
 date: 2026-09-17 08:00:00 +0530
 categories: [AI, Security]
 tags: [security, ai-security-series, secrets-management, python]
+mermaid: true
 ---
 
 Every tool an agent uses — a database connection, a third-party API, an internal service — needs credentials. This post covers keeping those credentials safe given the specific risk this month has established: an agent's behavior can be manipulated by content it processes.
+
+```mermaid
+sequenceDiagram
+    participant M as Model
+    participant A as App code
+    participant S as Secrets manager
+    participant T as Tool
+    M->>A: Tool call: issue_refund(order_id=123)
+    A->>S: Fetch credential for "issue_refund"
+    S->>A: Scoped credential
+    A->>T: Execute with credential
+    T->>M: Result (no credential included)
+```
+
+The credential never crosses into the model's context — it's fetched and injected entirely in application code between the tool call and its execution. This is what makes a prompt injection attack unable to exfiltrate a credential it never had access to in the first place.
 
 ## Never Let Credentials Enter the Model's Context
 

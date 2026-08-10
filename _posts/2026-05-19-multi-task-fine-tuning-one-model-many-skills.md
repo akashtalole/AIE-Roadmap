@@ -3,9 +3,21 @@ title: "Multi-Task Fine-Tuning: One Model, Many Skills"
 date: 2026-05-19 08:00:00 +0530
 categories: [AI, Fine-Tuning]
 tags: [fine-tuning, fine-tuning-series, multi-task, python]
+mermaid: true
 ---
 
 Everything so far has assumed one fine-tuning run targets one task. Production systems usually need a model that's good at several distinct things at once — classification, extraction, and drafting, say — and how you combine those tasks in training meaningfully affects the outcome.
+
+```mermaid
+flowchart TD
+    A[Multiple task datasets] --> B{Related and balanced?}
+    B -->|yes| C[Combine + weighted sampling]
+    C --> D[One model, task-prefixed prompts]
+    B -->|no, distinct capabilities| E[Separate LoRA adapters per task]
+    E --> F[Route request, swap active adapter]
+```
+
+The core choice is combined training versus separate adapters — related, balanced tasks share representations well in one run, while genuinely distinct capabilities do better isolated so a fix to one doesn't force retraining the other.
 
 ## The Naive Approach: Just Mix the Data
 

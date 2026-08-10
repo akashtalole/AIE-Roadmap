@@ -3,9 +3,22 @@ title: "Image Generation APIs: DALL-E, Imagen, and Midjourney Compared"
 date: 2026-07-09 08:00:00 +0530
 categories: [AI, Multimodal]
 tags: [multimodal, multimodal-series, image-generation, comparison]
+mermaid: true
 ---
 
 Everything so far this month has been about a model reading images. This post flips direction: generating them — and the practical differences between the major providers that determine which fits a given product need.
+
+```mermaid
+flowchart LR
+    A{What does the product need?} -->|programmatic, exact adherence| B[OpenAI DALL-E / GPT Image]
+    A -->|photorealistic, complex scenes| C[Google Imagen]
+    A -->|artistic style, human-curated| D[Midjourney]
+    B --> E[Production pipeline, REST API]
+    C --> E
+    D --> F[Interactive/creative workflow, limited API]
+```
+
+The decision splits mainly on API maturity and adherence-versus-aesthetic tradeoffs, not raw image quality — OpenAI and Google both offer stable REST APIs suited to automated pipelines, while Midjourney's Discord-centric access pattern fits interactive, human-in-the-loop creative use better than programmatic generation.
 
 ## The Landscape
 

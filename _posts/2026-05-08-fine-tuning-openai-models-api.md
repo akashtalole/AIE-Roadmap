@@ -3,9 +3,26 @@ title: "Fine-Tuning OpenAI Models via the API"
 date: 2026-05-08 08:00:00 +0530
 categories: [AI, Fine-Tuning]
 tags: [fine-tuning, fine-tuning-series, openai, python]
+mermaid: true
 ---
 
 Managed fine-tuning APIs trade control for convenience — no GPU provisioning, no training loop to write, just a dataset upload and a job to monitor. OpenAI's fine-tuning API is the most established example of this pattern.
+
+```mermaid
+sequenceDiagram
+    participant Dev as Developer
+    participant API as OpenAI API
+    Dev->>API: Upload train.jsonl + val.jsonl
+    Dev->>API: Create fine-tuning job
+    loop poll every 30s
+        Dev->>API: Retrieve job status
+        API->>Dev: status, trained_tokens, loss
+    end
+    API->>Dev: succeeded, fine_tuned_model id
+    Dev->>API: Chat completion with fine_tuned_model
+```
+
+The whole workflow is upload, create, poll, use — no training loop or GPU provisioning on your side, which is the entire value proposition of a managed fine-tuning API over self-hosting.
 
 ## Formatting the Dataset
 

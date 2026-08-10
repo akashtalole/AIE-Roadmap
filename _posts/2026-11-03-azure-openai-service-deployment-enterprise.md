@@ -3,9 +3,21 @@ title: "Azure OpenAI Service: Deployment and Enterprise Features"
 date: 2026-11-03 08:00:00 +0530
 categories: [AI, Cloud AI]
 tags: [cloud-business-series, azure, openai, python]
+mermaid: true
 ---
 
 Azure OpenAI Service provides OpenAI's models through Microsoft's enterprise cloud infrastructure — the natural choice for organizations already standardized on Azure, and worth understanding for how it differs from calling OpenAI's API directly.
+
+```mermaid
+flowchart TD
+    A[Expected traffic pattern] --> B{Predictable, high volume?}
+    B -->|yes| C[Provisioned Throughput Units]
+    B -->|no| D[Standard pay-as-you-go]
+    C --> E[Guaranteed dedicated capacity]
+    D --> F[Shared capacity, rate-limited]
+```
+
+This deployment choice is the first decision Azure OpenAI asks you to make, and it directly parallels August's capacity-planning tradeoff between reserved and on-demand infrastructure — dedicated capacity for predictable load, shared capacity for variable load.
 
 ## Deployment Model: Provisioned Capacity vs Pay-as-You-Go
 

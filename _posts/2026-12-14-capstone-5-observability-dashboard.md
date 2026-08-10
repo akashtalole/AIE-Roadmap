@@ -3,9 +3,23 @@ title: "Capstone Project 5: Build an Observability Dashboard"
 date: 2026-12-14 08:00:00 +0530
 categories: [AI, Career]
 tags: [career, career-series, capstone, observability, python]
+mermaid: true
 ---
 
 Fifth capstone: build a complete observability stack for an existing project (ideally one of your earlier capstones), following June's full evaluation and observability series.
+
+```mermaid
+flowchart LR
+    A[LLM application] --> B[Tracing]
+    A --> C[Cost tracking]
+    A --> D[Quality monitoring]
+    B --> E[Dashboard]
+    C --> E
+    D --> E
+    E --> F[CI regression gate]
+```
+
+The three instrumentation streams — tracing, cost, and quality — all feed one dashboard, and the dashboard in turn feeds a CI gate that can actually block a regression, which is the concrete demonstration the requirements below ask for.
 
 ## Project Brief
 

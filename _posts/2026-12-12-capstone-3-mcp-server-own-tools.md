@@ -3,9 +3,22 @@ title: "Capstone Project 3: Build an MCP Server for Your Own Tools"
 date: 2026-12-12 08:00:00 +0530
 categories: [AI, Career]
 tags: [career, career-series, capstone, mcp, python]
+mermaid: true
 ---
 
 Third capstone: build and publish a genuine MCP server — directly extending March's MCP series and October's advanced-patterns post, and connecting to December 9's open-source contribution advice.
+
+```mermaid
+flowchart LR
+    A[Your MCP server] --> B[Tools: 3+]
+    A --> C[Resources: 1+]
+    A --> D[Prompts: 1+]
+    B --> E[MCP client:<br/>Claude Code, Claude Desktop, etc.]
+    C --> E
+    D --> E
+```
+
+The requirements below map directly onto MCP's three primitive types — a server that only exposes tools and skips resources or prompts doesn't demonstrate the full protocol this roadmap's March and October coverage described.
 
 ## Project Brief
 

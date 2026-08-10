@@ -3,9 +3,21 @@ title: "CrewAI Hierarchical Processes and Delegation"
 date: 2026-04-04 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [crewai, agentic-frameworks-series, python, multi-agent, orchestration]
+mermaid: true
 ---
 
 Yesterday's crew ran a fixed sequence of tasks. `Process.hierarchical` replaces that fixed order with a manager agent that decides, at runtime, which worker handles which piece of work — the CrewAI equivalent of the manager-worker pattern from March's multi-agent post.
+
+```mermaid
+flowchart TD
+    A[Manager agent] -->|delegate_work| B[Pricing Analyst]
+    A -->|delegate_work| C[Feature Analyst]
+    B --> D[Manager synthesizes]
+    C --> D
+    D --> E[Final report]
+```
+
+Unlike yesterday's fixed sequence, nothing in your code decides which worker gets which piece — the manager reads the task at runtime and calls `delegate_work` itself, which trades predictability for flexibility. The rest of this post covers what the manager does under the hood and when that trade-off is worth it.
 
 ## Setting Up a Hierarchical Crew
 

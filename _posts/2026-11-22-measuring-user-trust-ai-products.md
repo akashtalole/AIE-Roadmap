@@ -3,9 +3,21 @@ title: "Measuring User Trust in AI-Powered Products"
 date: 2026-11-22 08:00:00 +0530
 categories: [AI, Cloud AI]
 tags: [cloud-business-series, user-trust, product]
+mermaid: true
 ---
 
 Yesterday's post flagged sustained usage as a stronger trust signal than initial adoption. This post covers measuring trust rigorously — a genuinely important but frequently under-measured dimension of an AI product's success, distinct from raw quality metrics.
+
+```mermaid
+flowchart LR
+    A[Success Interaction] -->|small increment| C[Trust Score]
+    B[Visible Failure] -->|large decrement| C
+    C --> D{Trust High Enough?}
+    D -->|yes| E[Sustained Usage]
+    D -->|no| F[Abandonment or Verification Behavior]
+```
+
+The asymmetric arrows are the key point — a visible failure costs far more trust than a success builds, which is exactly why November 21's phased rollout starts with the most forgiving audience rather than a skeptical general population.
 
 ## Why Trust Is a Distinct Metric From Quality
 

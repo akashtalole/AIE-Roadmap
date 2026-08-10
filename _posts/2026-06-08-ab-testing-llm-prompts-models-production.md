@@ -3,9 +3,23 @@ title: "A/B Testing LLM Prompts and Models in Production"
 date: 2026-06-08 08:00:00 +0530
 categories: [AI, Evaluation]
 tags: [evaluation, evaluation-series, ab-testing, python]
+mermaid: true
 ---
 
 A golden set catches known regressions before deploy. It can't tell you whether a genuinely new prompt variant performs better on the full diversity of real user traffic — for that, you need a live experiment.
+
+```mermaid
+flowchart LR
+    A[User request] --> B{hash user_id % 100}
+    B -->|control bucket| C[Control prompt]
+    B -->|treatment bucket| D[Treatment prompt]
+    C --> E{Guardrails hold?}
+    D --> E
+    E -->|yes| F[Ramp up allocation]
+    E -->|no| G[Kill experiment]
+```
+
+Hashing on user ID keeps a given user in one consistent variant across a session, and every result still has to clear independent guardrail metrics — cost, latency, hallucination rate — before the primary metric's improvement is trusted.
 
 ## Basic Setup: Traffic Splitting
 

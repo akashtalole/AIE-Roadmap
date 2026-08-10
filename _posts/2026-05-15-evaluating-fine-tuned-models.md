@@ -3,9 +3,24 @@ title: "Evaluating Fine-Tuned Models Against the Base Model"
 date: 2026-05-15 08:00:00 +0530
 categories: [AI, Fine-Tuning]
 tags: [fine-tuning, fine-tuning-series, evaluation, python]
+mermaid: true
 ---
 
 A fine-tuning job finishing successfully tells you the training loop ran without crashing — nothing about whether the resulting model is actually better than what you started with. This evaluation step is what separates a fine-tuning project that ships from one that quietly regresses quality.
+
+```mermaid
+flowchart TD
+    A[Base model] --> C[Task-specific eval]
+    B[Fine-tuned model] --> C
+    A --> D[General capability regression test]
+    B --> D
+    C --> E{Meets pre-committed bar?}
+    D --> E
+    E -->|yes| F[Ship]
+    E -->|no| G[Do not promote]
+```
+
+Both models run through the same two checks — did the target task improve, and did general capability quietly get worse — scored against a bar set before training started, not after seeing how the numbers look.
 
 ## Two Questions, Not One
 

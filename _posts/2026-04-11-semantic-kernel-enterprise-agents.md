@@ -3,9 +3,22 @@ title: "Semantic Kernel for Enterprise Agent Development"
 date: 2026-04-11 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [semantic-kernel, agentic-frameworks-series, dotnet, python, enterprise]
+mermaid: true
 ---
 
 Semantic Kernel is Microsoft's agent framework, and its defining trait is being genuinely first-class in both .NET and Python — which matters a lot if your organization's existing systems are built on C#/.NET rather than the Python-first tooling most of this series has covered.
+
+```mermaid
+flowchart LR
+    A[Kernel] --> B[Plugin: functions]
+    A --> C[Planner]
+    C -->|inspects function descriptions| B
+    C -->|chains calls| D[Goal satisfied]
+    A --> E[ChatCompletionAgent]
+    E --> A
+```
+
+The kernel is the shared registry every plugin and agent attaches to, and the planner is what turns registered functions into a sequence of calls automatically — similar in spirit to the ReAct loop, but scoped to functions you've explicitly registered rather than open-ended tool use.
 
 ## Kernels, Plugins, and Functions
 

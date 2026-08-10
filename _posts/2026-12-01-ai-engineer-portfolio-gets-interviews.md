@@ -3,9 +3,21 @@ title: "Building an AI Engineer Portfolio That Gets Interviews"
 date: 2026-12-01 08:00:00 +0530
 categories: [AI, Career]
 tags: [career, career-series, portfolio, roadmap]
+mermaid: true
 ---
 
 Nine months of this roadmap have built real technical depth. December turns that into career outcomes — starting with the portfolio that gets you in the door, before the capstone projects later this month give you the concrete things to put in it.
+
+```mermaid
+flowchart LR
+    A[Problem & approach] --> B[Architecture]
+    B --> C[Key decisions & why]
+    C --> D[Evaluation results]
+    D --> E[Known limitations]
+    E --> F[Live demo + code]
+```
+
+This is the project write-up structure the rest of this post argues for — each stage matters, but the evaluation and known-limitations stages are the ones a generic tutorial-follower's portfolio usually skips.
 
 ## What an AI Engineering Portfolio Needs That a General SWE Portfolio Doesn't
 

@@ -3,9 +3,24 @@ title: "The OWASP Top 10 for LLM Applications"
 date: 2026-09-01 08:00:00 +0530
 categories: [AI, Security]
 tags: [security, ai-security-series, owasp, roadmap]
+mermaid: true
 ---
 
 Every system built across this roadmap — agents, RAG pipelines, fine-tuned models, multimodal applications — has a security surface traditional web application security frameworks don't fully cover. The OWASP Top 10 for LLM Applications is the closest thing to an industry-standard checklist for what to defend against, and it's the right starting point for September.
+
+```mermaid
+flowchart LR
+    A[LLM application] --> B[Input surface]
+    A --> C[Model behavior]
+    A --> D[Output surface]
+    A --> E[Supply chain]
+    B --> F[Prompt injection, DoS]
+    C --> G[Excessive agency, overreliance]
+    D --> H[Insecure output handling, disclosure]
+    E --> I[Poisoning, model theft]
+```
+
+The OWASP Top 10 splits cleanly across four surfaces of an LLM application — this is the map September's posts fill in one category at a time, starting with prompt injection tomorrow.
 
 ## The List, and Where This Roadmap Already Touched Each
 

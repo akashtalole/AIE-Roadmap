@@ -3,9 +3,21 @@ title: "Reading Papers Efficiently as a Practicing Engineer"
 date: 2026-12-23 08:00:00 +0530
 categories: [AI, Career]
 tags: [career, career-series, learning, research]
+mermaid: true
 ---
 
 Yesterday's post covered the broader practice of staying current. This post drills into one specific skill within it — reading a research paper efficiently as a practicing engineer, whose goal differs from a researcher's goal of full technical mastery.
+
+```mermaid
+flowchart LR
+    A[Abstract] --> B{Relevant?}
+    B -->|no| C[Stop, move on]
+    B -->|yes| D[Figures & tables]
+    D --> E[Conclusion]
+    E --> F[Full methodology]
+```
+
+This deliberately front-loads the highest-information-density sections — most papers, read in this order, take 5-10 minutes to determine relevance, versus 45+ minutes reading linearly from introduction through methodology before knowing whether it was worth the time at all.
 
 ## The Engineer's Reading Goal Is Different From a Researcher's
 

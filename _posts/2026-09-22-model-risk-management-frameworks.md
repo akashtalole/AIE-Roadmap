@@ -3,9 +3,21 @@ title: "Model Risk Management Frameworks"
 date: 2026-09-22 08:00:00 +0530
 categories: [AI, Security]
 tags: [security, ai-security-series, risk-management]
+mermaid: true
 ---
 
 GDPR, HIPAA, SOC 2, and the EU AI Act all point back to the same underlying need: a systematic, documented process for identifying, assessing, and managing the risk each deployed model carries. This post covers building that process directly, drawing on established model risk management practice from financial services and adapting it for the broader range of systems this roadmap has covered.
+
+```mermaid
+flowchart LR
+    A[Identification] --> B[Assessment]
+    B --> C[Mitigation]
+    C --> D[Monitoring]
+    D --> E[Governance]
+    E -->|reassess periodically| A
+```
+
+This five-stage cycle isn't a one-time checklist — the loop back from governance to identification is what keeps a risk assessment current as models, traffic, and threats evolve, rather than becoming a stale approval nobody revisits.
 
 ## The Core Risk Management Cycle
 

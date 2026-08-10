@@ -3,9 +3,25 @@ title: "Output Filtering: Catching Unsafe Model Responses"
 date: 2026-09-09 08:00:00 +0530
 categories: [AI, Security]
 tags: [security, ai-security-series, output-filtering, python]
+mermaid: true
 ---
 
 Input moderation reduces what reaches the model. Output filtering is the backstop for everything that gets through anyway — a successful jailbreak, an unexpected model behavior, or a benign input that still produces a problematic response.
+
+```mermaid
+flowchart LR
+    A[Model response] --> B[Safety check]
+    A --> C[PII scan]
+    A --> D[Custom policy check]
+    B --> E{Any violations?}
+    C --> E
+    D --> E
+    E -->|PII only| F[Redact and serve]
+    E -->|safety violation| G[Block and log]
+    E -->|none| H[Serve response]
+```
+
+Not every violation gets the same treatment — an unredacted PII leak can be fixed and served, while a genuine safety violation warrants a full block, which is why this check fans out into three parallel scans before a single decision.
 
 ## Why Output Filtering Catches What Input Moderation Misses
 

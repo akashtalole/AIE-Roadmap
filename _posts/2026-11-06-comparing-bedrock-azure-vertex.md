@@ -3,9 +3,23 @@ title: "Comparing Bedrock, Azure OpenAI, and Vertex AI"
 date: 2026-11-06 08:00:00 +0530
 categories: [AI, Cloud AI]
 tags: [cloud-business-series, comparison, aws, azure, gcp]
+mermaid: true
 ---
 
 The last three posts covered each cloud platform individually. This post puts them side by side on the criteria that actually drive a real decision — and, following October 30's benchmarking methodology, argues for evaluating empirically on your own workload rather than trusting any comparison table alone, including this one.
+
+```mermaid
+flowchart TD
+    A[Choosing a cloud AI platform] --> B{Already deep on AWS?}
+    B -->|yes| C[Bedrock]
+    B -->|no| D{Already deep on Azure/M365?}
+    D -->|yes| E[Azure OpenAI/Foundry]
+    D -->|no| F{Already deep on GCP/BigQuery?}
+    F -->|yes| G[Vertex AI]
+    F -->|no| H[Evaluate on your own workload]
+```
+
+Existing cloud investment dominates this decision more than any per-platform feature difference — the diagram mirrors the table below's "best existing-infra fit" row as the actual first filter most organizations should apply.
 
 ## The Comparison Table
 

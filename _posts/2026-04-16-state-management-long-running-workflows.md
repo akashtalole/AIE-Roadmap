@@ -3,9 +3,24 @@ title: "State Management in Long-Running Agent Workflows"
 date: 2026-04-16 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [agents, agentic-frameworks-series, state-management, python]
+mermaid: true
 ---
 
 A demo agent lives and dies within one process. A production agent handling a multi-hour research task, or waiting days for a human approval, needs its state to outlive the process that started it. This is the problem every framework's checkpointer is solving.
+
+```mermaid
+sequenceDiagram
+    participant A as Agent run
+    participant S as Checkpoint store
+    A->>S: Save checkpoint (plan, completed steps, budget)
+    Note over A: Process restarts / days pass
+    A->>S: Load checkpoint
+    S->>A: Full state restored
+    A->>A: Skip already-completed steps
+    A->>A: Resume from next step
+```
+
+The checkpoint has to carry everything needed to resume correctly, not just the message history — and resumption has to skip steps already marked complete, or a replay can double-send an email or double-charge a card. The rest of this post covers what belongs in that checkpoint and how to persist it.
 
 ## What "State" Actually Means for an Agent
 

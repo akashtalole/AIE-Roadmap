@@ -3,9 +3,21 @@ title: "Deploying Your Capstone Project for Free"
 date: 2026-12-19 08:00:00 +0530
 categories: [AI, Career]
 tags: [career, career-series, deployment]
+mermaid: true
 ---
 
 Every capstone brief this month referenced "a working, deployed demo" as a requirement. This post covers actually doing that without incurring meaningful cost — a live demo is dramatically more persuasive in a portfolio than a "clone and run locally" README.
+
+```mermaid
+flowchart LR
+    A[Deploy demo] --> B[Free-tier hosting]
+    B --> C[Rate limit + cheap model]
+    C --> D{Daily spend<br/>cap hit?}
+    D -->|no| E[Demo stays live]
+    D -->|yes| F[Demo disabled gracefully]
+```
+
+The daily spend cap is the load-bearing piece here — it's what turns a public demo link from a surprise-bill risk into something you can share freely, as the cost-control and abuse-protection sections below detail.
 
 ## Why a Live Demo Matters So Much More Than Code Alone
 

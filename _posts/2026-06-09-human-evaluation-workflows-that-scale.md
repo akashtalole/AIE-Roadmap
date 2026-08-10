@@ -3,9 +3,23 @@ title: "Human Evaluation Workflows That Scale"
 date: 2026-06-09 08:00:00 +0530
 categories: [AI, Evaluation]
 tags: [evaluation, evaluation-series, human-evaluation]
+mermaid: true
 ---
 
 LLM-as-judge scales cheaply but has real blind spots — subtle correctness issues, genuinely subjective quality, and the judge biases from earlier this month. Human evaluation remains the ground truth those automated checks are calibrated against, and it needs its own workflow discipline to stay useful at any real volume.
+
+```mermaid
+flowchart LR
+    A[Low-confidence judge cases] --> D[Review sample]
+    B[Judge disagreements] --> D
+    C[Random baseline] --> D
+    D --> E[Human review against structured rubric]
+    E --> F[Judge calibration gap]
+    E --> G[Golden set addition]
+    E --> H[Safety escalation]
+```
+
+Sampling is weighted toward exactly the cases the automated judge was least confident about, not pure random traffic, and every reviewed example feeds back into the system — refining the judge, growing the golden set, or triggering escalation — rather than sitting in a standalone report.
 
 ## Sampling Strategically, Not Randomly
 

@@ -3,9 +3,24 @@ title: "LangGraph Cycles, Branching, and Human-in-the-Loop"
 date: 2026-04-02 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [langgraph, agentic-frameworks-series, python, human-in-the-loop]
+mermaid: true
 ---
 
 Yesterday's graph had one cycle: agent, tools, back to agent. Real workflows need more than that — parallel branches that reconverge, and points where the graph must pause and wait for a human before continuing.
+
+```mermaid
+flowchart LR
+    A[Start] --> B[Research pricing]
+    A --> C[Research features]
+    B --> D[Compare]
+    C --> D
+    D --> E[[Interrupt: send_email]]
+    E -->|human approves| F[Send email]
+    E -->|paused, state persisted| G[(Checkpointer)]
+    G -->|resume later| F
+```
+
+The interrupt node and the parallel branches both rely on the same underlying mechanic — the checkpointer persists full graph state, so a pause for human approval can last seconds or days and resume on a different process entirely. The rest of this post walks through both patterns.
 
 ## Interrupting a Graph for Human Approval
 

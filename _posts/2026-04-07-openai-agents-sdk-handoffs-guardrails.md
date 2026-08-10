@@ -3,9 +3,23 @@ title: "OpenAI Agents SDK: Handoffs and Guardrails"
 date: 2026-04-07 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [openai, agentic-frameworks-series, python, multi-agent, guardrails]
+mermaid: true
 ---
 
 OpenAI's Agents SDK (the successor to the earlier Swarm experiment) picks a narrower abstraction than LangGraph or AutoGen: agents, tools, and **handoffs** — a first-class primitive for one agent to transfer an entire conversation to another.
+
+```mermaid
+flowchart LR
+    U[User message] --> G{Input guardrail}
+    G -->|tripwire triggered| X[Halt before agent runs]
+    G -->|passes| T[Triage agent]
+    T -->|handoff: billing| B[Billing agent]
+    T -->|handoff: technical| E[Technical agent]
+    B --> F[Final output]
+    E --> F
+```
+
+A handoff is a full transfer of ownership, not a delegated subtask that returns control — once triage hands off, the receiving agent owns the rest of the conversation. Guardrails run alongside this, checked before the agent ever sees the input.
 
 ## Agents and Handoffs
 

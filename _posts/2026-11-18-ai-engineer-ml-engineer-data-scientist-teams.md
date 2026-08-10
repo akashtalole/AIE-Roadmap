@@ -3,9 +3,20 @@ title: "AI Engineer vs ML Engineer vs Data Scientist: Team Composition"
 date: 2026-11-18 08:00:00 +0530
 categories: [AI, Cloud AI]
 tags: [cloud-business-series, team-structure, career]
+mermaid: true
 ---
 
 March's first post in this entire roadmap drew the AI Engineer vs ML Engineer distinction conceptually. This post revisits it at the team-composition level — who you actually need, in what mix, to build and run everything this roadmap has covered.
+
+```mermaid
+flowchart TD
+    A[AI system need] --> B{What's needed?}
+    B -->|Build product with pretrained models| C[AI Engineer]
+    B -->|Train custom models from scratch| D[ML Engineer]
+    B -->|Statistical analysis & experimentation| E[Data Scientist]
+```
+
+The distinction that matters day to day is what each role actually builds, not a job title — since essentially all of March through October is AI engineering work by this definition, most teams building on this roadmap end up AI-engineer-heavy, as the team composition example below shows concretely.
 
 ## The Three Roles, Distinguished by What They Actually Do Day to Day
 

@@ -3,9 +3,23 @@ title: "Voice Activity Detection and Turn-Taking for Voice Agents"
 date: 2026-07-15 08:00:00 +0530
 categories: [AI, Multimodal]
 tags: [multimodal, multimodal-series, speech, python]
+mermaid: true
 ---
 
 Yesterday's pipeline used VAD and turn-taking as a black box. This post opens that up — it's genuinely the hardest part of a voice pipeline to get right, and the part users notice most when it's wrong.
+
+```mermaid
+flowchart TD
+    A[Silence detected] --> B{Partial transcript sounds complete?}
+    B -->|yes| C[Short wait: ~300ms]
+    B -->|no| D[Long wait: up to ~1000ms]
+    C --> E{Silence exceeds threshold?}
+    D --> E
+    E -->|yes| F[End turn]
+    E -->|no| G[Keep listening]
+```
+
+Fixed silence-duration thresholds are what cause both premature cutoffs and awkward over-long pauses — the adaptive approach in this post uses the content of the partial transcript itself to shorten or lengthen the wait, which is the single highest-leverage fix for turn-taking quality.
 
 ## What VAD Actually Does
 

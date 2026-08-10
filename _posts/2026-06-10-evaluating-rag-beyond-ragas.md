@@ -3,9 +3,21 @@ title: "Evaluating RAG Pipelines Beyond RAGAS"
 date: 2026-06-10 08:00:00 +0530
 categories: [AI, Evaluation]
 tags: [evaluation, evaluation-series, rag, python]
+mermaid: true
 ---
 
 March's RAGAS post covered faithfulness, answer relevancy, and context precision/recall — a strong default toolkit. This month's broader evaluation toolkit adds dimensions RAGAS alone doesn't fully capture, particularly around retrieval quality independent of generation.
+
+```mermaid
+flowchart TD
+    A[RAGAS: faithfulness, relevancy, precision/recall] --> E[RAG eval dashboard]
+    B[Retrieval-only: recall@k, MRR] --> E
+    C[Multi-hop coverage] --> E
+    D[Graceful failure on unanswerable queries] --> E
+    E --> F[Diagnose which layer is failing]
+```
+
+RAGAS's blended metrics tell you quality dropped; the layers added here — isolated retrieval, multi-hop coverage, and graceful failure on unanswerable questions — tell you which specific stage of the pipeline is responsible.
 
 ## Retrieval-Only Metrics, Isolated from Generation
 

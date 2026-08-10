@@ -3,9 +3,24 @@ title: "Cost and Latency Tradeoffs in Multimodal Pipelines"
 date: 2026-07-25 08:00:00 +0530
 categories: [AI, Multimodal]
 tags: [multimodal, multimodal-series, cost-optimization, python]
+mermaid: true
 ---
 
 Every post this month has mentioned image-token cost in passing. This post pulls that thread together — multimodal pipelines have a fundamentally different cost structure than text-only ones, and the optimization levers are different too.
+
+```mermaid
+flowchart LR
+    A[Incoming image] --> B{Seen before? content hash}
+    B -->|yes| C[Return cached result]
+    B -->|no| D{Task needs fine detail?}
+    D -->|no| E[Low-detail resolution]
+    D -->|yes| F[High-detail resolution]
+    E --> G[VLM call]
+    F --> G
+    G --> H[Cache result]
+```
+
+Caching and resolution choice are the two highest-leverage levers this post covers — skipping the VLM call entirely for a previously seen image, and defaulting to low-detail processing unless a task genuinely needs fine-grained reading, together address the two most common sources of wasted multimodal spend.
 
 ## Why Multimodal Cost Scales Differently
 

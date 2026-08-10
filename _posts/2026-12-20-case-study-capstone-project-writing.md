@@ -3,9 +3,21 @@ title: "Writing a Case Study About Your Capstone Project"
 date: 2026-12-20 08:00:00 +0530
 categories: [AI, Career]
 tags: [career, career-series, writing, portfolio]
+mermaid: true
 ---
 
 A live demo (yesterday's post) shows a capstone works. A case study explains how and why — directly combining December 1's portfolio principles and December 8's technical writing advice into the single most important piece of content for any capstone project.
+
+```mermaid
+flowchart LR
+    A[Problem] --> B[Why this approach]
+    B --> C[Architecture]
+    C --> D[Evaluation numbers]
+    D --> E[What I'd do differently]
+    E --> F[Try it: live demo]
+```
+
+This is the structure the rest of the post walks through — leading with the *reasoning* behind the approach, not the implementation, is what actually demonstrates the engineering judgment a reviewer is looking for.
 
 ## The Case Study Structure That Works
 

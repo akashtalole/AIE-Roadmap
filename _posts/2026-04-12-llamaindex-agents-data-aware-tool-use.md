@@ -3,9 +3,23 @@ title: "LlamaIndex Agents: Data-Aware Tool Use"
 date: 2026-04-12 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [llamaindex, agentic-frameworks-series, python, rag, agents]
+mermaid: true
 ---
 
 LlamaIndex started as a data-indexing library for RAG, and its agent layer inherits that focus: instead of a general-purpose graph or role framework, it's built around treating retrieval indexes themselves as first-class tools an agent can query.
+
+```mermaid
+flowchart LR
+    U[User query] --> A[FunctionAgent]
+    A -->|picks by description| P[product_docs tool]
+    A -->|picks by description| T[past_tickets tool]
+    P --> PI[(Product docs index)]
+    T --> TI[(Support tickets index)]
+    PI --> R[Synthesized answer]
+    TI --> R
+```
+
+Each "tool" here isn't a plain function — it's a full retrieval pipeline with its own chunking, embedding, and reranking, and the agent routes to the right one purely from its description, the same way it would pick between any two function tools.
 
 ## Query Engines as Tools
 

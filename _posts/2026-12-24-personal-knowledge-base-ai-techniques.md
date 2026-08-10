@@ -3,9 +3,20 @@ title: "Building a Personal Knowledge Base of AI Techniques"
 date: 2026-12-24 08:00:00 +0530
 categories: [AI, Career]
 tags: [career, career-series, learning, knowledge-management]
+mermaid: true
 ---
 
 Yesterday's paper-reading notes need a home. This post covers building a genuinely useful personal knowledge base — applying October's knowledge-graph and RAG content reflexively to your own accumulated learning, not just to production systems.
+
+```mermaid
+flowchart LR
+    A[Paper / technique notes] --> B[Structured KB entry]
+    B --> C[Organized by problem]
+    B --> D[Queried when facing<br/>a real problem]
+    B --> E[Polished into a blog post]
+```
+
+A single entry feeds three different later uses — the structure below (organized by problem, not technique name) is what makes it actually retrievable at the moment you need it, rather than just a private, rarely-revisited archive.
 
 ## Why a Personal Knowledge Base Beats Scattered Notes
 

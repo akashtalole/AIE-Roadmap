@@ -3,9 +3,21 @@ title: "Access Control and Authentication for AI Applications"
 date: 2026-09-16 08:00:00 +0530
 categories: [AI, Security]
 tags: [security, ai-security-series, authentication, python]
+mermaid: true
 ---
 
 Every AI-specific defense covered this month sits on top of a foundational layer this series hasn't addressed directly: standard authentication and authorization, applied to AI applications specifically. It's still essential, and it interacts with AI-specific concerns in ways worth making explicit.
+
+```mermaid
+flowchart LR
+    A[Request] --> B[Authenticate: verify JWT]
+    B --> C[Authorize: get_tools_for_role]
+    C --> D[Scoped agent built]
+    D --> E[Scoped retrieval: filter by tenant_id]
+    D --> F[Scoped tool access by role]
+```
+
+Authentication answers who's asking; authorization then scopes two separate things an agent can do — which tools it can call and which documents it can retrieve — so a compromised or over-broad session can't reach data or actions outside its role.
 
 ## Authentication: Knowing Who's Actually Asking
 

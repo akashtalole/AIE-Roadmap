@@ -3,9 +3,21 @@ title: "DSPy Deep Dive: Custom Metrics and Teleprompters"
 date: 2026-10-08 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [dspy, deep-dive-series, python, evaluation]
+mermaid: true
 ---
 
 April's DSPy optimizer post used a simple binary metric. Real optimization needs richer, well-designed metrics and an understanding of which teleprompter (DSPy's term for its optimizer algorithms) fits your specific situation — this post covers both.
+
+```mermaid
+flowchart TD
+    A[Training examples + compute budget] --> B{Fewer than 20 examples?}
+    B -->|yes| C[BootstrapFewShot]
+    B -->|no| D{Compute budget low?}
+    D -->|yes| E[BootstrapFewShotWithRandomSearch]
+    D -->|no| F[MIPROv2]
+```
+
+Which teleprompter is worth using depends on data volume and compute budget, not just which one produces the best results in the abstract — `MIPROv2` is strongest but most expensive, so the lighter bootstrap-based options are often the right call for a fast iteration cycle.
 
 ## Beyond Binary Metrics: Weighted Multi-Criteria Scoring
 

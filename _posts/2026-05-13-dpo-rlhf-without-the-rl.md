@@ -3,9 +3,23 @@ title: "Direct Preference Optimization (DPO): RLHF Without the RL"
 date: 2026-05-13 08:00:00 +0530
 categories: [AI, Fine-Tuning]
 tags: [fine-tuning, fine-tuning-series, dpo, rlhf, python]
+mermaid: true
 ---
 
 DPO's core insight: you can derive a loss function that has the same effect as full RLHF — optimizing toward human preferences — using ordinary supervised training on preference pairs, with no separate reward model and no reinforcement learning loop at all.
+
+```mermaid
+flowchart LR
+    A[SFT checkpoint] --> B{Path}
+    B -->|full RLHF| C[Train reward model]
+    C --> D[PPO loop against reward model]
+    B -->|DPO| E[Preference pairs: chosen vs rejected]
+    E --> F[Supervised loss, no RL loop]
+    D --> G[Aligned model]
+    F --> G
+```
+
+Both paths start from the same SFT checkpoint and end at the same kind of aligned model — DPO just collapses the reward-model-plus-PPO machinery into one ordinary supervised training step on preference pairs.
 
 ## The Data Format: Preference Pairs, Not Single Targets
 

@@ -3,9 +3,25 @@ title: "Vendor Evaluation Checklist for AI Tooling"
 date: 2026-11-29 08:00:00 +0530
 categories: [AI, Cloud AI]
 tags: [cloud-business-series, vendor-evaluation, checklist]
+mermaid: true
 ---
 
 This month has covered vendor decisions piecemeal — cloud platforms, vector databases, contract negotiation, September's risk assessment. This post consolidates it into one practical checklist for evaluating any AI vendor or tool, from a model provider to an evaluation platform to an MCP server.
+
+```mermaid
+flowchart TD
+    A[Vendor under review] --> B[Technical fit]
+    A --> C[Cost]
+    A --> D[Security & compliance]
+    A --> E[Operational]
+    B --> F{Weighted by risk tier}
+    C --> F
+    D --> F
+    E --> F
+    F --> G[Approve / reject / conditions]
+```
+
+The five checklist categories all feed one weighted decision, and the weighting itself shifts with risk tier — a low-stakes internal tool weights cost and speed higher, a regulated customer-facing system weights security and compliance higher, as the sections below detail.
 
 ## The Full Checklist
 

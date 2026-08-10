@@ -3,9 +3,20 @@ title: "Freelancing as an AI Engineer: Getting Your First Clients"
 date: 2026-12-21 08:00:00 +0530
 categories: [AI, Career]
 tags: [career, career-series, freelancing, business]
+mermaid: true
 ---
 
 Not every path from this roadmap leads to full-time employment — freelance and consulting work is a genuine, viable path for an AI engineer, and it draws directly on this month's portfolio and case-study content to find and win early clients.
+
+```mermaid
+flowchart LR
+    A[Portfolio + writing + OSS] --> B[Inbound network / referrals]
+    B --> C[Scoped first engagement]
+    C --> D[Delivered with real eval numbers]
+    D --> E[Referral to next client]
+```
+
+The loop closes on itself — a well-delivered, well-evaluated first engagement is the strongest source of the next client, making delivery quality the actual growth engine, more than marketing spend or platform reputation.
 
 ## Why AI Engineering Freelancing Has a Real Market Right Now
 

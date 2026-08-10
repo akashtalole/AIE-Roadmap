@@ -3,9 +3,19 @@ title: "Reference-Based vs Reference-Free Evaluation Metrics"
 date: 2026-06-04 08:00:00 +0530
 categories: [AI, Evaluation]
 tags: [evaluation, evaluation-series, metrics]
+mermaid: true
 ---
 
 Evaluation metrics split into two families based on whether they need a known-correct answer to compare against. Knowing which family a given check belongs to determines what data you need to run it, and which checks can run on live production traffic versus only on a labeled golden set.
+
+```mermaid
+flowchart LR
+    A{Do you have a known-correct answer?}
+    A -->|yes, golden set only| B[Reference-based: similarity/exact match to gold answer]
+    A -->|no, works on live traffic| C[Reference-free: faithfulness, coherence, relevancy]
+```
+
+That single yes/no question determines your evaluation architecture: reference-based metrics run only against the labeled golden set, while reference-free metrics can run continuously against unlabeled production traffic. Both are needed — neither substitutes for the other, as the closing section argues.
 
 ## Reference-Based: Requires a Known Correct Answer
 

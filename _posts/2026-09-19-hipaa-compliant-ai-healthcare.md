@@ -3,9 +3,21 @@ title: "HIPAA-Compliant AI in Healthcare Applications"
 date: 2026-09-19 08:00:00 +0530
 categories: [AI, Security]
 tags: [security, ai-security-series, hipaa, compliance, healthcare]
+mermaid: true
 ---
 
 May's domain adaptation post flagged healthcare as a regulated field requiring extra care. This post covers what HIPAA specifically requires of an AI system handling Protected Health Information (PHI), extending yesterday's GDPR post with healthcare-specific requirements.
+
+```mermaid
+flowchart LR
+    A[Request needing PHI] --> B{BAA covers this provider/tier?}
+    B -->|no| X[Cannot process PHI]
+    B -->|yes| C[Apply minimum necessary filter]
+    C --> D[LLM call with minimized PHI]
+    D --> E[Log PHI access: who, what, why]
+```
+
+Two gates sit in front of any PHI reaching a model: a signed Business Associate Agreement covering that specific provider and tier, then the minimum-necessary filter that extends yesterday's GDPR data-minimization pattern to HIPAA's stricter standard. The audit entry at the end feeds directly into the dedicated logging post later this month.
 
 ## PHI Is a Broader Category Than It Sounds
 

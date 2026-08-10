@@ -3,9 +3,21 @@ title: "Evaluating Tone, Style, and Brand Voice Consistency"
 date: 2026-06-06 08:00:00 +0530
 categories: [AI, Evaluation]
 tags: [evaluation, evaluation-series, prompt-engineering, brand-voice]
+mermaid: true
 ---
 
 Factuality and task success get most of the evaluation attention, but for any user-facing product, tone consistency shapes perceived quality just as much — a factually correct response in a jarringly wrong voice still feels broken to the user reading it.
+
+```mermaid
+flowchart LR
+    A[Response] --> B[Cheap deterministic checks: forbidden phrases, punctuation]
+    B --> C[LLM judge: rubric-scored tone dimensions]
+    C --> D[Tone consistency score]
+    D --> E{Multi-turn?}
+    E -->|yes| F[Check drift across turns]
+```
+
+Cheap deterministic checks catch the obvious violations before the more expensive judge pass runs, and a separate drift check applies the same rubric across a whole conversation rather than one response in isolation. Together they turn a vague style guide into a measurable, gateable score.
 
 ## Defining "On-Brand" Concretely Enough to Measure
 

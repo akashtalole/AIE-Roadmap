@@ -3,9 +3,23 @@ title: "Explaining LLM Tradeoffs to Non-Technical Stakeholders"
 date: 2026-12-07 08:00:00 +0530
 categories: [AI, Career]
 tags: [career, career-series, communication]
+mermaid: true
 ---
 
 Every technical decision this roadmap has covered eventually needs to be explained to someone without the technical background to follow the reasoning directly — a product manager, an executive, a customer. This is a distinct, learnable skill worth its own treatment.
+
+```mermaid
+flowchart LR
+    A[Technical tradeoff] --> B{Translate}
+    B --> C[Cost impact]
+    B --> D[Risk / failure rate]
+    B --> E[Speed of iteration]
+    C --> F[Stakeholder decision]
+    D --> F
+    E --> F
+```
+
+The translation step doesn't remove technical substance — it re-expresses the same tradeoff in the three terms (cost, risk, iteration speed) a stakeholder actually needs to make a good call, as the sections below work through concretely.
 
 ## Translating Technical Tradeoffs Into Business Language
 

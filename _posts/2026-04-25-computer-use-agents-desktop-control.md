@@ -3,9 +3,22 @@ title: "Computer-Use Agents: Controlling a Desktop with AI"
 date: 2026-04-25 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [agents, agentic-frameworks-series, computer-use, claude, automation]
+mermaid: true
 ---
 
 Browser automation gives an agent a DOM to reason over. Computer-use models go a level lower: no structured page, no element list — just pixels. The model looks at a screenshot, decides where to click or what to type, and the loop repeats, the same way a human uses any desktop application.
+
+```mermaid
+flowchart LR
+    A[Take screenshot] --> B[Model reasons over pixels]
+    B --> C{Action}
+    C -->|click / type / key| D[Execute action]
+    D --> E[Sleep, let UI settle]
+    E --> A
+    C -->|done| F[Return result]
+```
+
+Unlike the browser agent from yesterday, there's no structured element list here — the model works purely from pixels, which is exactly why coordinate precision and UI-settling delays matter so much more in this loop.
 
 ## The Perceive-Act Loop for Computer Use
 

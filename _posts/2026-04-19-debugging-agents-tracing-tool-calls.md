@@ -3,9 +3,23 @@ title: "Debugging Agents: Tracing Every Tool Call and Thought"
 date: 2026-04-19 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [agents, agentic-frameworks-series, debugging, observability, python]
+mermaid: true
 ---
 
 When a deterministic function fails, you get a stack trace pointing at a line of code. When an agent fails, the "bug" might be in the third of nine reasoning steps, in a tool that returned malformed data, or in a prompt that was ambiguous only for this specific input. You need the full trace, not just the final error.
+
+```mermaid
+flowchart LR
+    A[Thought] --> B[Tool call]
+    B --> C[Tool result]
+    C --> A
+    A --> D[Final answer]
+    C -->|failure| E{Reasoning wrong or data wrong?}
+    E -->|tool_result has errors| F[Fix the tool/retrieval]
+    E -->|results look clean| G[Fix the prompt/model]
+```
+
+Every step of the loop gets logged as it happens, not reconstructed after the fact, and a failed run is diagnosed by walking that trace to decide whether the reasoning was wrong or the information it had was wrong — two failures with completely different fixes.
 
 ## What a Useful Trace Captures
 

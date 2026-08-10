@@ -3,9 +3,22 @@ title: "Cost Modeling for AI Products: A Practical Framework"
 date: 2026-11-11 08:00:00 +0530
 categories: [AI, Cloud AI]
 tags: [cloud-business-series, cost-optimization, business]
+mermaid: true
 ---
 
 June and August covered cost monitoring and attribution at the engineering level. This post steps up to the product and business level — building a cost model that answers "what does this feature actually cost us per unit of value delivered," the number a pricing or investment decision actually needs.
+
+```mermaid
+flowchart LR
+    A[Inference Cost] --> F[Total Cost]
+    B[Supporting Infra] --> F
+    C[Engineering Cost] --> F
+    D[Eval & Safety Overhead] --> F
+    E[Human Review Cost] --> F
+    F --> G[Cost per Unit = Total Cost / Units Delivered]
+```
+
+Most cost conversations stop at the first box, inference cost — the diagram makes explicit that it's often a minority of the true total, particularly for a feature with meaningful human review or evaluation overhead.
 
 ## The Full Cost Stack for an AI Feature
 

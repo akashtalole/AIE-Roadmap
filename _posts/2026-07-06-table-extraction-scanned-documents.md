@@ -3,9 +3,22 @@ title: "Table Extraction from Scanned Documents with LLMs"
 date: 2026-07-06 08:00:00 +0530
 categories: [AI, Multimodal]
 tags: [multimodal, multimodal-series, document-ai, python]
+mermaid: true
 ---
 
 Tables are the specific document element that breaks most extraction pipelines — cell boundaries are visual, not textual, and a naive OCR pass turns a two-dimensional grid into a jumbled flat text stream that loses which value belonged to which row and column.
+
+```mermaid
+flowchart TD
+    A[Scanned table image] --> B[Traditional OCR]
+    A --> C[VLM direct extraction]
+    B --> D[Flat text stream, structure lost]
+    C --> E[Structured JSON: headers + rows]
+    E --> F[Row/column consistency checks]
+    F --> G[DataFrame for downstream use]
+```
+
+The diagram contrasts the two paths this post walks through: flattening a table into text loses the grid structure that gives each value meaning, while extracting directly into structured JSON from the image preserves it — which is why the validation and DataFrame-conversion sections that follow build on the VLM path, not the OCR one.
 
 ## Why Tables Are Uniquely Hard
 

@@ -3,9 +3,21 @@ title: "GDPR Considerations for AI Applications"
 date: 2026-09-18 08:00:00 +0530
 categories: [AI, Security]
 tags: [security, ai-security-series, gdpr, compliance]
+mermaid: true
 ---
 
 Every technical PII and data-handling practice from earlier this month exists, in part, to satisfy regulatory requirements like GDPR for any application serving EU users or processing EU residents' data. This post connects those technical practices to what GDPR specifically requires.
+
+```mermaid
+flowchart LR
+    A[Erasure request] --> B[Delete from databases]
+    A --> C[Delete from vector stores]
+    A --> D{Data in fine-tuned weights?}
+    D -->|yes| E[Flag for next retraining exclusion]
+    D -->|no| F[Erasure complete]
+```
+
+The right to erasure is straightforward for databases and vector indexes but genuinely hard for fine-tuned model weights — data baked into training can't be surgically removed, only excluded going forward, which is exactly why favoring RAG over fine-tuning for personal data reduces this compliance burden.
 
 ## The GDPR Principles Most Relevant to AI Systems
 

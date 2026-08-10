@@ -3,9 +3,21 @@ title: "Agent Frameworks Compared: Choosing the Right One"
 date: 2026-04-29 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [agents, agentic-frameworks-series, comparison, langgraph, crewai, autogen]
+mermaid: true
 ---
 
 A month of deep dives is worth collapsing into one decision table. Every framework covered this month solves the same underlying problem — an LLM, a loop, tools, and control flow — with a different opinion about where flexibility should live.
+
+```mermaid
+flowchart TD
+    A{What shape is your problem?} -->|team of specialists| B[CrewAI or Agents SDK handoffs]
+    A -->|arbitrary branching control flow| C[LangGraph]
+    A -->|retrieval-heavy| D[LlamaIndex]
+    A -->|measurable metric to optimize| E[DSPy]
+    A -->|simple single agent| F[Hand-rolled loop]
+```
+
+The table below fills in the rest of the lineup, but the real decision tree is this shape question — features are mostly interchangeable across frameworks, ergonomics for your problem shape are not.
 
 ## The Comparison
 

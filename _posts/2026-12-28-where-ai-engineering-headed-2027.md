@@ -3,9 +3,20 @@ title: "Where AI Engineering Is Headed in 2027"
 date: 2026-12-28 08:00:00 +0530
 categories: [AI, Career]
 tags: [career, career-series, future]
+mermaid: true
 ---
 
 Yesterday looked back. This post looks forward, deliberately cautiously — predicting specifics in a fast-moving field is a losing game, but reasoning about trajectories from what this roadmap covered is more durable than guessing at headlines.
+
+```mermaid
+flowchart LR
+    A[This roadmap's content] --> B[Durable principles]
+    A --> C[Specific tools & frameworks]
+    B --> D[Evaluation, guardrails,<br/>cost-awareness: stay stable]
+    C --> E[Framework dominance,<br/>pricing: will shift]
+```
+
+Splitting predictions this way is the reasoning framework this post argues for — betting on the left branch is what let this roadmap avoid betting its core content on any specific model generation remaining current.
 
 ## Trends Worth Watching, Reasoned From This Year's Content
 

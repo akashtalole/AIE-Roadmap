@@ -3,9 +3,18 @@ title: "Measuring ROI on AI Initiatives"
 date: 2026-11-15 08:00:00 +0530
 categories: [AI, Cloud AI]
 tags: [cloud-business-series, roi, business]
+mermaid: true
 ---
 
 Every cost model and pricing decision this month feeds into the question that ultimately justifies continued investment: is this AI initiative actually delivering a return. This post covers measuring that rigorously, avoiding the vague "AI is transformative" hand-waving that doesn't survive a budget review.
+
+```mermaid
+flowchart LR
+    A[Full Cost - Nov 11's model] --> C[ROI and Payback Period]
+    B[Quantified Value: savings, revenue, quality] --> C
+```
+
+Both sides of this equation need to be equally rigorous — an ROI figure is only as trustworthy as its weakest input, and quantifying value defensibly (the harder of the two, covered below) is usually where a shaky ROI case falls apart under scrutiny.
 
 ## The ROI Equation, Concretely
 

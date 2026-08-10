@@ -3,9 +3,23 @@ title: "AutoGen Deep Dive: Custom Agents and Termination Conditions"
 date: 2026-10-05 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [autogen, deep-dive-series, python]
+mermaid: true
 ---
 
 April's AutoGen posts used `ConversableAgent` with standard configuration. This post covers subclassing for genuinely custom agent behavior and building termination logic more sophisticated than a keyword match.
+
+```mermaid
+flowchart TD
+    A[New message] --> B{Contains TERMINATE?}
+    B -->|yes| F[Terminate]
+    B -->|no| C{Repeating previous response?}
+    C -->|yes| F
+    C -->|no| D{Looks genuinely complete?}
+    D -->|yes| F
+    D -->|no| E[Continue conversation]
+```
+
+Combining an explicit signal phrase, loop detection, and a semantic completeness check into one termination function — as shown below — produces more robust behavior than relying on any single condition alone.
 
 ## Subclassing ConversableAgent
 

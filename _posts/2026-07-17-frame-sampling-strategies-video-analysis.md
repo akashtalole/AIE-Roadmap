@@ -3,9 +3,24 @@ title: "Frame Sampling Strategies for Video Analysis"
 date: 2026-07-17 08:00:00 +0530
 categories: [AI, Multimodal]
 tags: [multimodal, multimodal-series, video, python]
+mermaid: true
 ---
 
 Yesterday's video pipeline sampled frames at a fixed 10-second interval — a reasonable default, but a real cost and quality lever worth its own treatment. Sample too sparsely and you miss visually important moments; too densely and cost scales with little added understanding.
+
+```mermaid
+flowchart TD
+    A[Video] --> B{Content type}
+    B -->|talking head| C[Sparse fixed interval]
+    B -->|screen recording / slideshow| D[Scene-change detection]
+    B -->|action footage| E[Dense fixed interval]
+    C --> F[Sampled frames]
+    D --> F
+    E --> F
+    F --> G[VLM processes only changed/key frames]
+```
+
+Classifying content type upfront and routing to the matching sampling strategy is the core idea of this post — scene-change detection alone, with sensible min/max bounds, captures most of the benefit of the more elaborate adaptive strategies described further down.
 
 ## Fixed-Interval Sampling: The Baseline
 

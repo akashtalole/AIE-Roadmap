@@ -3,9 +3,21 @@ title: "Common AI Engineering Interview Questions and How to Answer Them"
 date: 2026-12-05 08:00:00 +0530
 categories: [AI, Career]
 tags: [career, career-series, interviews]
+mermaid: true
 ---
 
 Beyond system design, most AI engineering interviews include a round of shorter, direct questions testing specific knowledge. This post compiles the most common ones with strong-answer frameworks, mapped back to where this roadmap covered each.
+
+```mermaid
+flowchart LR
+    A[Interview question] --> B{Question type}
+    B --> C[Conceptual]
+    B --> D[Behavioral]
+    B --> E[Practical / coding]
+    B --> F[Judgment]
+```
+
+The four categories below test genuinely different things — conceptual and practical questions probe knowledge, while behavioral and judgment questions probe whether that knowledge translates into good decisions under real constraints.
 
 ## Conceptual Questions
 

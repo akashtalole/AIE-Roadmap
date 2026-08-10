@@ -3,6 +3,7 @@ title: "Structuring an AI Platform Team"
 date: 2026-11-17 08:00:00 +0530
 categories: [AI, Cloud AI]
 tags: [cloud-business-series, team-structure, business]
+mermaid: true
 ---
 
 Every piece of shared infrastructure this roadmap has built — the gateway (August), the model registry (August), the evaluation harness (June), the governance process (September) — needs an owning team. This post covers structuring an AI platform team to actually own it well.

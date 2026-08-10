@@ -3,9 +3,22 @@ title: "Testing Agentic Workflows Without Flaky Assertions"
 date: 2026-04-18 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [agents, agentic-frameworks-series, testing, evaluation, python]
+mermaid: true
 ---
 
 `assert result == "The capital of France is Paris."` breaks the moment the model phrases things slightly differently, even when the answer is correct. Testing non-deterministic agent output needs a different toolkit than testing deterministic code.
+
+```mermaid
+flowchart TD
+    A[What are you testing?] -->|control flow, budgets, routing| B[Mock LLM, exact assertions]
+    A -->|model output quality| C[Real LLM call]
+    C --> D[Assert on properties, not exact text]
+    C --> E[Snapshot trace shape]
+    D --> F[Run 3-5x, require pass-rate threshold]
+    E --> F
+```
+
+Deterministic parts of an agent get exact-match tests against a mocked model; anything touching real model output needs looser, property-based assertions run multiple times, since a single pass or fail isn't a reliable signal for non-deterministic generation.
 
 ## Layer Your Tests: Mock the Model, Test the Logic
 

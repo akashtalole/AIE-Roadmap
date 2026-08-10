@@ -3,9 +3,23 @@ title: "Fine-Tuning for Tool Use and Function Calling"
 date: 2026-05-18 08:00:00 +0530
 categories: [AI, Fine-Tuning]
 tags: [fine-tuning, fine-tuning-series, function-calling, tool-use, python]
+mermaid: true
 ---
 
 Most models handle common tool-calling patterns well out of the box via prompting alone. Fine-tuning for tool use earns its cost in a narrower case: a fixed, high-volume set of tools where you need consistently correct argument formatting at a reliability level prompting alone doesn't reach.
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant M as Fine-tuned model
+    participant T as Tool
+    U->>M: "Cancel order 88213, wrong item"
+    M->>T: cancel_order(order_id="88213", reason="wrong_item")
+    T->>M: Error: order_id must be numeric
+    M->>U: Ask for the correct numeric order number
+```
+
+Training on this exact recovery path — not just the happy-path call — is what separates a fine-tuned tool-caller that gracefully handles malformed input from one that keeps retrying the same broken call.
 
 ## When This Is Worth Doing
 

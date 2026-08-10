@@ -3,9 +3,20 @@ title: "Building Your 2027 Learning Plan"
 date: 2026-12-29 08:00:00 +0530
 categories: [AI, Career]
 tags: [career, career-series, learning]
+mermaid: true
 ---
 
 Yesterday's forward-looking reasoning becomes concrete here — a practical template for planning your own next year of learning, applying December 22's sustainable-attention framework to a full year horizon.
+
+```mermaid
+flowchart LR
+    A[Self-assessment] --> B[Q1: growth area + project]
+    B --> C[Q2: production case study]
+    C --> D[Q3: revisit & update KB]
+    D --> E[Q4: retrospective]
+```
+
+Quarterly, not monthly, planning matches a more sustainable cadence than this roadmap's own intensive daily pace — the sections below flesh out each quarter's focus and how to set genuinely checkable milestones for it.
 
 ## Starting From Self-Assessment, Not a Generic Checklist
 

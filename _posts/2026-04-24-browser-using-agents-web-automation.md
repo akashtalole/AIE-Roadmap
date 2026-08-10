@@ -3,9 +3,23 @@ title: "Browser-Using Agents: Web Automation with LLMs"
 date: 2026-04-24 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [agents, agentic-frameworks-series, browser-automation, playwright, python]
+mermaid: true
 ---
 
 Some tasks don't have a clean API — filling out a legacy web form, checking a competitor's site for a price change, or navigating a portal that only exposes a UI. Browser-using agents give a model control of an actual browser instead of waiting for an API to exist.
+
+```mermaid
+flowchart LR
+    A[Extract text + elements] --> B{Model decides action}
+    B -->|click| C[click_element]
+    B -->|type| D[type_text]
+    C --> E{Goal reached?}
+    D --> E
+    E -->|no| A
+    E -->|yes| F[Return result]
+```
+
+This is the same ReAct-style perceive-then-act loop from earlier agent posts, just with browser-specific tools swapped in for the observation and action steps.
 
 ## The Toolset: Perceive, Then Act
 

@@ -3,9 +3,22 @@ title: "Detecting Prompt Drift and Model Behavior Drift"
 date: 2026-06-18 08:00:00 +0530
 categories: [AI, Evaluation]
 tags: [evaluation, evaluation-series, drift, observability, python]
+mermaid: true
 ---
 
 A prompt and model that scored well in last month's evaluation can silently degrade in production without anyone changing a line of code — a provider updates a model behind a stable API name, or the shape of real user queries shifts. Drift detection is what catches this before a golden-set-only evaluation practice would.
+
+```mermaid
+flowchart LR
+    A[Nothing in your code changed] --> B{What actually shifted?}
+    B -->|query distribution| C[Input drift]
+    B -->|same input, different output| D[Model behavior drift]
+    C --> E[Expand golden set coverage]
+    D --> F[Run canary set, compare to baseline]
+    F --> G[Re-evaluate or pin model version]
+```
+
+Both kinds of drift can degrade quality with zero code changes on your side, but they need different detection and different fixes — a canary set catches a provider silently updating a model, while an embedding-centroid check catches a shift in what users are even asking.
 
 ## Two Sources of Drift
 

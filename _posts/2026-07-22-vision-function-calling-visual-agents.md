@@ -3,9 +3,24 @@ title: "Combining Vision and Function Calling for Visual Agents"
 date: 2026-07-22 08:00:00 +0530
 categories: [AI, Multimodal]
 tags: [multimodal, multimodal-series, agents, function-calling, python]
+mermaid: true
 ---
 
 Everything in this month's series so far has been about understanding or generating visual content. This post connects that to March and April's agent material — a visual agent that *sees* something and *acts* on it, closing the loop between perception and tool use.
+
+```mermaid
+sequenceDiagram
+    participant G as Goal
+    participant M as Model
+    participant T as Tool
+
+    G->>M: image + goal
+    M->>T: tool_call flag_defect(location, description)
+    T->>M: result logged
+    M->>G: final_answer or next observation
+```
+
+Structurally this is exactly March's ReAct loop — the only difference is that the "observation" feeding the reasoning is an image, and the model's tool-call decision (flag a defect, request a closer photo) is grounded in what it sees rather than in text alone.
 
 ## The Pattern: Vision Feeds the Reasoning Loop
 

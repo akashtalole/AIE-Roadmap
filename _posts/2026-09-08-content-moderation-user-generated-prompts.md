@@ -3,9 +3,22 @@ title: "Content Moderation for User-Generated Prompts"
 date: 2026-09-08 08:00:00 +0530
 categories: [AI, Security]
 tags: [security, ai-security-series, content-moderation, python]
+mermaid: true
 ---
 
 Yesterday's frameworks provide the tooling; this post covers applying it specifically to the input side — moderating what users submit before it ever reaches your model, distinct from the output-filtering post that follows tomorrow.
+
+```mermaid
+flowchart LR
+    A[User input] --> B[Moderation API check]
+    B --> C{Category flagged?}
+    C -->|no| D[Proceed to model]
+    C -->|self-harm| E[Route to crisis resources]
+    C -->|other category| F[Refuse request]
+    B --> G[Log decision, hashed input]
+```
+
+Category-specific thresholds matter here — a flagged self-harm signal routes to a materially different response than a flagged violence signal, which is why this pipeline branches instead of applying one blanket allow/block decision.
 
 ## Why Input Moderation Is a Distinct Layer
 

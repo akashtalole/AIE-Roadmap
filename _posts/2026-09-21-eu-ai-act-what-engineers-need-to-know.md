@@ -3,9 +3,21 @@ title: "The EU AI Act: What AI Engineers Need to Know"
 date: 2026-09-21 08:00:00 +0530
 categories: [AI, Security]
 tags: [security, ai-security-series, eu-ai-act, compliance]
+mermaid: true
 ---
 
 Where GDPR and HIPAA regulate data handling generally, the EU AI Act is the first major regulatory framework specifically targeting AI systems by their capability and risk level — worth understanding as the likely template other jurisdictions will follow.
+
+```mermaid
+flowchart TD
+    A[Classify system] --> B{Risk tier?}
+    B -->|unacceptable| C[Banned outright]
+    B -->|high| D[Risk management, documentation, human oversight]
+    B -->|limited| E[Transparency: disclose it's AI]
+    B -->|minimal| F[Largely unregulated]
+```
+
+Classifying which tier a system falls into is the first, most consequential step — a support chatbot's transparency obligation is a one-line disclosure, while a hiring or credit-decision system's high-risk obligations mean substantially more documentation and process, covered next.
 
 ## The Risk-Tier Framework
 

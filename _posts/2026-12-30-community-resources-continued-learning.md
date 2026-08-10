@@ -3,9 +3,20 @@ title: "Community and Resources for Continued Learning"
 date: 2026-12-30 08:00:00 +0530
 categories: [AI, Career]
 tags: [career, career-series, community]
+mermaid: true
 ---
 
 The second-to-last post of this roadmap. Learning AI engineering doesn't have to be a solitary activity — this post covers the communities and resource types worth engaging with as you continue past this roadmap's final post tomorrow.
+
+```mermaid
+flowchart LR
+    A[Lurking] --> B[Asking good questions]
+    B --> C[Answering others' questions]
+    C --> D[Sharing your own work]
+    D --> E[Network & opportunities compound]
+```
+
+Moving up this engagement ladder — even partially — compounds the value of community involvement well beyond passive consumption, and it's how the writing (December 8) and open-source (December 9) practices from earlier this month connect to a real audience.
 
 ## Why Community Matters More in a Fast-Moving Field
 

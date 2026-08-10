@@ -3,9 +3,22 @@ title: "Deploying Models with Text Generation Inference (TGI)"
 date: 2026-08-03 08:00:00 +0530
 categories: [AI, Infrastructure]
 tags: [infrastructure, ai-infra-series, tgi, huggingface, docker]
+mermaid: true
 ---
 
 TGI, Hugging Face's inference server, solves the same core problems as vLLM — continuous batching, efficient memory management — with tighter integration into the Hugging Face ecosystem and a Docker-first deployment model worth comparing directly rather than assuming interchangeability.
+
+```mermaid
+flowchart LR
+    A[Request] --> B[TGI server]
+    B --> C{Grammar/schema constraint set?}
+    C -->|yes| D[Constrain generation to schema-valid tokens]
+    C -->|no| E[Standard generation]
+    D --> F[Response]
+    E --> F
+```
+
+TGI's built-in grammar constraints are its most distinctive feature relative to vLLM — constraining token generation server-side is a stronger guarantee than the prompt-and-validate retry loop from the structured-output posts earlier in this roadmap, eliminating the retry step entirely for supported cases.
 
 ## Deploying with Docker
 

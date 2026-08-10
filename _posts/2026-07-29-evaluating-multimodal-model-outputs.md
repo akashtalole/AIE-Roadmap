@@ -3,9 +3,22 @@ title: "Evaluating Multimodal Model Outputs"
 date: 2026-07-29 08:00:00 +0530
 categories: [AI, Multimodal]
 tags: [multimodal, multimodal-series, evaluation, python]
+mermaid: true
 ---
 
 June's evaluation series was text-first throughout. This post is the explicit bridge — every principle from that series (golden datasets, LLM-as-judge, reference-based vs reference-free metrics) applies to multimodal outputs, with modality-specific implementation details.
+
+```mermaid
+flowchart TD
+    A[Multimodal golden dataset] --> B{Task type}
+    B -->|extraction| C[Reference-based: field match vs known-correct]
+    B -->|generation/open-ended| D[Reference-free: VLM-as-judge]
+    C --> E[CI regression gate]
+    D --> E
+    E --> F[Block merge on regression]
+```
+
+The split between reference-based scoring (for extraction, where a known-correct answer exists) and reference-free VLM-as-judge (for generation, where it doesn't) directly extends June's evaluation framework, feeding into the same CI regression gate for both.
 
 ## Golden Datasets for Multimodal Tasks
 

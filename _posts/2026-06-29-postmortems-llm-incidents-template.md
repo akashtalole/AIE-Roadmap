@@ -3,9 +3,23 @@ title: "Postmortems for LLM Incidents: A Practical Template"
 date: 2026-06-29 08:00:00 +0530
 categories: [AI, Evaluation]
 tags: [evaluation, evaluation-series, incident-response, mlops]
+mermaid: true
 ---
 
 Every piece of infrastructure this month — golden sets, drift detection, canary rollback, continuous evaluation — will still occasionally miss something, and a real incident will happen. How you run the postmortem determines whether the incident makes the whole system meaningfully better or just gets quietly forgotten.
+
+```mermaid
+flowchart LR
+    A[Change introduced] --> B[User impact begins]
+    B --> C[Detected]
+    C --> D[Mitigated]
+    D --> E[Resolved]
+    E --> F[Postmortem: root cause + detection gap]
+    F --> G[New golden set example]
+    F --> H[New guardrail or alert threshold]
+```
+
+The timeline itself surfaces the detection gap — how long between impact starting and it actually being caught — and every postmortem should close with at least one concrete addition back into the golden set or alerting thresholds, not just a written record.
 
 ## What Makes an LLM Incident Postmortem Different
 

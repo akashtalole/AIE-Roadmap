@@ -3,9 +3,23 @@ title: "LLM-as-a-Judge: Using Models to Grade Models"
 date: 2026-06-03 08:00:00 +0530
 categories: [AI, Evaluation]
 tags: [evaluation, evaluation-series, llm-as-judge, python]
+mermaid: true
 ---
 
 Human evaluation doesn't scale to thousands of examples on every prompt change. LLM-as-a-judge — using a capable model to score another model's output against a rubric — is what makes evaluation cheap enough to run continuously, with real, well-understood limitations to design around.
+
+```mermaid
+sequenceDiagram
+    participant S as System under test
+    participant J as Judge model
+    participant H as Human (calibration)
+    S->>J: response + rubric criteria
+    J->>J: check each criterion, met/not met
+    J-->>S: overall_pass + reasons
+    H->>J: score same sample, compare agreement
+```
+
+The judge scores against explicit criteria rather than a vague quality number, and its agreement with human judgment gets calibrated before it's trusted at scale — both choices covered in the sections below.
 
 ## A Basic Judge Prompt
 

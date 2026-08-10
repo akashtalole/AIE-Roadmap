@@ -3,9 +3,20 @@ title: "Building an Image Q&A App with Claude Vision"
 date: 2026-07-03 08:00:00 +0530
 categories: [AI, Multimodal]
 tags: [multimodal, multimodal-series, anthropic, claude, python]
+mermaid: true
 ---
 
 Same task as yesterday's GPT-4o walkthrough, on Claude's Vision API — worth doing as its own post because the practical differences (image ordering sensitivity, size limits, prompting style) are exactly the kind of detail that costs real debugging time if you assume the two APIs behave identically.
+
+```mermaid
+flowchart LR
+    A[Image bytes] --> B[base64-encode]
+    B --> C["content: image block, then text question"]
+    C --> D["messages.create(model=claude-sonnet-5)"]
+    D --> E[Grounded answer]
+```
+
+The content order matters here in a way it doesn't for OpenAI's API — placing the image block before the text question is Anthropic's documented best practice and measurably affects response quality, one of several concrete behavioral differences covered below.
 
 ## The Basic Call
 

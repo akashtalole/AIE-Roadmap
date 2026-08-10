@@ -3,9 +3,25 @@ title: "Shadow Testing New Prompts Against Production Traffic"
 date: 2026-06-22 08:00:00 +0530
 categories: [AI, Evaluation]
 tags: [evaluation, evaluation-series, shadow-testing, python]
+mermaid: true
 ---
 
 April's production deployment post introduced shadow mode for agents — running a new version against real traffic without letting it affect real outcomes. This is that same pattern, applied specifically to evaluating a candidate prompt or model change before it ever reaches a real user.
+
+```mermaid
+sequenceDiagram
+    participant U as Real user request
+    participant P as Production prompt
+    participant C as Candidate prompt
+    participant L as Shadow log
+    U->>P: generate(request)
+    U->>C: generate(request)
+    P-->>U: response shown to user
+    C-->>L: response logged, never shown
+    P-->>L: score + log for comparison
+```
+
+Both variants run against the same real request, but only production's output is ever returned — the candidate's score is purely observational, which is what lets shadow testing surface real-traffic regressions with zero risk before a candidate ever reaches an actual A/B test.
 
 ## The Shadow Testing Loop
 

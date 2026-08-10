@@ -3,9 +3,21 @@ title: "Model Context Protocol Advanced Patterns: Resources and Prompts"
 date: 2026-10-15 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [mcp, deep-dive-series, python]
+mermaid: true
 ---
 
 March's MCP series focused almost entirely on tools. MCP defines two other primitives — resources and prompts — that are underused relative to how useful they are, worth their own dedicated treatment.
+
+```mermaid
+flowchart TD
+    A[New MCP capability] --> B{Has side effects?}
+    B -->|yes| C[Tool]
+    B -->|no| D{Reusable template?}
+    D -->|yes| E[Prompt]
+    D -->|no| F[Resource]
+```
+
+Picking the right primitive for a given capability — rather than defaulting everything to a tool — matters for cost and latency, since resources and prompts don't require a model reasoning step to access the way a tool call does.
 
 ## Resources: Exposing Data Without a Tool Call
 

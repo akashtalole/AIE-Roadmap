@@ -3,9 +3,22 @@ title: "Fine-Tuning vs RAG vs Prompting: Choosing the Right Approach"
 date: 2026-05-01 08:00:00 +0530
 categories: [AI, Fine-Tuning]
 tags: [fine-tuning, fine-tuning-series, rag, prompt-engineering, roadmap]
+mermaid: true
 ---
 
 By this point in the roadmap you have three genuinely different tools for making a model behave the way you need: prompting, retrieval, and fine-tuning. May is dedicated to the third one — but the most important skill isn't knowing how to fine-tune, it's knowing when *not* to.
+
+```mermaid
+flowchart TD
+    A{Needs current or proprietary facts?} -->|yes| B[RAG]
+    A -->|no| C{Solvable with better instructions?}
+    C -->|yes| D[Prompting]
+    C -->|no| E{Needs consistent format or a narrow, cheaper skill?}
+    E -->|yes| F[Fine-tuning]
+    E -->|no| D
+```
+
+This mirrors the `choose_approach` function below almost line for line — prompting is the default fallback at every branch, and fine-tuning is reached only after the cheaper options are ruled out.
 
 ## What Each Tool Actually Changes
 

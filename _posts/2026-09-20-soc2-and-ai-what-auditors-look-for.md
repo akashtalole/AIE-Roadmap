@@ -3,9 +3,26 @@ title: "SOC 2 and AI: What Auditors Actually Look For"
 date: 2026-09-20 08:00:00 +0530
 categories: [AI, Security]
 tags: [security, ai-security-series, soc2, compliance]
+mermaid: true
 ---
 
 GDPR and HIPAA are domain- and region-specific. SOC 2 is a broader trust-and-security attestation many B2B AI products need regardless of industry — this post covers what a SOC 2 audit actually examines in an AI-powered product, and how this month's practices map onto its trust service criteria.
+
+```mermaid
+flowchart TD
+    A[SOC 2 Trust Service Criteria] --> B[Security]
+    A --> C[Availability]
+    A --> D[Processing Integrity]
+    A --> E[Confidentiality]
+    A --> F[Privacy]
+    B --> G[Access control, secrets, sandboxing]
+    C --> H[Disaster recovery, fallback, autoscaling]
+    D --> I[Eval and quality gates]
+    E --> J[PII redaction, least privilege]
+    F --> K[GDPR/HIPAA-aligned handling]
+```
+
+Each trust service criterion maps onto specific technical practice already covered this month and in August — the audit itself mostly examines whether these controls are documented and demonstrably operating, not whether AI-specific new controls exist.
 
 ## The Trust Service Criteria, Mapped to This Month's Content
 

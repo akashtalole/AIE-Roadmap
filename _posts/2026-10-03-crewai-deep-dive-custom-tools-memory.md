@@ -3,9 +3,22 @@ title: "CrewAI Deep Dive: Custom Tools and Memory Backends"
 date: 2026-10-03 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [crewai, deep-dive-series, python, memory]
+mermaid: true
 ---
 
 April's CrewAI posts covered basics and hierarchical processes. This post goes deeper into two areas that matter for production use: building genuinely custom tools beyond simple functions, and configuring CrewAI's memory system to persist across sessions rather than resetting every run.
+
+```mermaid
+flowchart LR
+    A[Crew Run] --> B[Short-Term Memory]
+    A --> C[Long-Term Memory]
+    A --> D[Entity Memory]
+    B -->|working memory, this run| E[Task Execution]
+    C -->|insights across runs| E
+    D -->|facts about recurring entities| E
+```
+
+CrewAI's three memory types feed into every task execution differently — short-term memory resets each run, while long-term and entity memory persist across separate runs, which is exactly the taxonomy from March's memory post made concrete in CrewAI's configuration API below.
 
 ## Building a Custom Tool Class
 

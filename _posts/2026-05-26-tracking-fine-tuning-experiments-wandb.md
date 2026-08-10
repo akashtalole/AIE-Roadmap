@@ -3,9 +3,22 @@ title: "Tracking Fine-Tuning Experiments with Weights & Biases"
 date: 2026-05-26 08:00:00 +0530
 categories: [AI, Fine-Tuning]
 tags: [fine-tuning, fine-tuning-series, wandb, mlops, python]
+mermaid: true
 ---
 
 Yesterday's hyperparameter sweep produces dozens of runs with different configs and results. Without systematic tracking, "which config produced the model we shipped" becomes an unanswerable question within a few weeks — exactly the kind of gap experiment tracking exists to close.
+
+```mermaid
+flowchart LR
+    A[Training run] --> B[Loss curves logged to wandb]
+    A --> C[Task + regression eval metrics logged]
+    A --> D[Dataset + model artifacts versioned]
+    B --> E[Comparable dashboard across runs]
+    C --> E
+    D --> F[Traceable lineage: data to deployed model]
+```
+
+Everything a run produces — loss curves, eval scores, and versioned artifacts — lands in the same dashboard, which is what turns "which config did we ship" from a scroll through logs into a queryable answer.
 
 ## Instrumenting a Training Run
 

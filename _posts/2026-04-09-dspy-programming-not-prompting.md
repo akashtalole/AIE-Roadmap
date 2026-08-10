@@ -3,9 +3,20 @@ title: "DSPy: Programming, Not Prompting, Language Models"
 date: 2026-04-09 08:00:00 +0530
 categories: [AI, Agentic Frameworks]
 tags: [dspy, agentic-frameworks-series, python, prompt-engineering]
+mermaid: true
 ---
 
 Every framework so far has you write prompts by hand — system messages, few-shot examples, careful phrasing — and tune them manually when quality slips. DSPy takes a different position: define *what* each step should accomplish as a typed signature, and let DSPy compile the actual prompt text for you, then optimize it automatically against your metric.
+
+```mermaid
+flowchart LR
+    A[Typed signature: inputs/outputs] --> B[DSPy compiler]
+    B --> C[Generated prompt]
+    C --> D[LLM call]
+    D --> E[Structured result]
+```
+
+Where every other framework in this series has you hand-write the prompt string, DSPy generates it from the signature and can rewrite it automatically — the compiler step is what tomorrow's post on optimizers builds on.
 
 ## Signatures Instead of Prompts
 

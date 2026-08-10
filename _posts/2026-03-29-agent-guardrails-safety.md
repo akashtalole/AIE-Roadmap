@@ -3,9 +3,25 @@ title: "Agent Guardrails: Stopping Runaway Loops and Unsafe Actions"
 date: 2026-03-29 08:00:00 +0530
 categories: [AI, Agents]
 tags: [agents, agents-series, guardrails, safety]
+mermaid: true
 ---
 
 An agent that can call tools can also call the wrong tool, call the right tool with the wrong arguments, or call a perfectly correct tool an unbounded number of times. Guardrails are the layer between "the model decided to do X" and "X actually happens."
+
+```mermaid
+flowchart TD
+    A[Model wants to call a tool] --> B{Budget exceeded?}
+    B -->|yes| Z[Stop agent]
+    B -->|no| C{Loop detected?}
+    C -->|yes| Z
+    C -->|no| D{Irreversible action?}
+    D -->|yes| E[Require human confirmation]
+    D -->|no| F[Execute tool]
+    E -->|denied or timeout| Z
+    E -->|approved| F
+```
+
+Every check on this path defaults to stopping the agent, not letting it proceed — that "fail closed" rule, covered at the end of this post, is what keeps a bug in any single guardrail from becoming a safety bypass.
 
 ## Step and Cost Budgets
 

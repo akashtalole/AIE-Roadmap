@@ -3,9 +3,21 @@ title: "Evaluating Factuality and Hallucination Rates"
 date: 2026-06-05 08:00:00 +0530
 categories: [AI, Evaluation]
 tags: [evaluation, evaluation-series, hallucination, factuality, python]
+mermaid: true
 ---
 
 Hallucination — a model stating something false with the same fluent confidence as something true — is the single failure mode users trust an AI product least once they've caught it happening. Measuring it rigorously is worth its own dedicated post beyond the general faithfulness metric from March's RAG series.
+
+```mermaid
+flowchart TD
+    A[Model response] --> B{Retrieved context provided?}
+    B -->|yes| C[Context-unfaithful: check claims against context]
+    B -->|no| D[Parametric: check claims against trusted fact source]
+    C --> E[Faithfulness score]
+    D --> F[Parametric accuracy score]
+```
+
+The two hallucination types need different detection machinery: one checks claims against the context you actually retrieved, the other has no context to check against and needs an external ground truth instead. Confusing which one you're measuring is a common source of misleading hallucination-rate numbers.
 
 ## Two Distinct Kinds of Hallucination
 
