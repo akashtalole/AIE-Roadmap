@@ -8,6 +8,15 @@ tags: [ai-engineer, ml-engineer, roles, career]
 
 The term "AI Engineer" has become one of the most searched job titles in tech over the past two years. But what does the role actually mean - and how is it different from a Machine Learning Engineer or a Data Scientist?
 
+```mermaid
+flowchart LR
+    A[Foundation model] --> B[ML Engineer: trains/fine-tunes the model]
+    A --> C[AI Engineer: builds products on top via APIs/SDKs]
+    C --> D[Chatbots, copilots, RAG systems, agents]
+```
+
+ML Engineers and AI Engineers work on opposite sides of the same model — one builds it, the other builds with it. This roadmap is entirely about the right-hand side of that diagram: everything from March's prompting fundamentals through December's capstones is AI Engineer work.
+
 ## Defining the AI Engineer
 
 An AI Engineer is a software engineer who builds products and systems **using** AI models - primarily large language models (LLMs) - rather than creating the models themselves. The key distinction is:

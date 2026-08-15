@@ -3,9 +3,22 @@ title: "LLM Terminology Explained: Embeddings, RAG, Fine-tuning, Inference, and 
 date: 2026-03-03 08:00:00 +0530
 categories: [AI, LLMs]
 tags: [llm, embeddings, rag, fine-tuning, inference, terminology, roadmap]
+mermaid: true
 ---
 
 The AI space is full of jargon that gets thrown around loosely. This post cuts through the noise and gives clear, practical definitions for the core terminology every AI Engineer needs to know.
+
+```mermaid
+flowchart LR
+    A[Documents] --> B[Embeddings]
+    B --> C[(Vector DB)]
+    D[User query] --> E[Embed query]
+    E --> C
+    C -->|nearest chunks| F[LLM inference]
+    F --> G[Grounded answer]
+```
+
+RAG ties together several of the terms below — embeddings, vector databases, and inference — into a single pipeline that grounds an LLM's answer in retrieved knowledge rather than its training data alone. Keep this diagram in mind as you read the individual definitions.
 
 ## AI vs AGI
 

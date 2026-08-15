@@ -3,9 +3,21 @@ title: "Zero-Shot and Few-Shot Prompting: Techniques Every AI Engineer Must Know
 date: 2026-03-04 08:00:00 +0530
 categories: [AI, Prompt Engineering]
 tags: [prompt-engineering, zero-shot, few-shot, llm, roadmap]
+mermaid: true
 ---
 
 Prompt engineering is the foundation of working with LLMs effectively. Among all techniques, zero-shot and few-shot prompting are the most fundamental — and often the most powerful. This post breaks them down with practical examples.
+
+```mermaid
+flowchart TD
+    A[New task] --> B{Examples needed?}
+    B -->|no, common task| C[Zero-shot: task description only]
+    B -->|yes, custom format| D[Few-shot: task + 2-8 examples]
+    C --> E[Model output]
+    D --> E
+```
+
+The two approaches trade setup effort for reliability: zero-shot relies entirely on the model's pretrained knowledge, while few-shot spends context tokens on examples to pin down format and edge cases. The rest of this post covers when each one pays off.
 
 ## Zero-Shot Prompting
 

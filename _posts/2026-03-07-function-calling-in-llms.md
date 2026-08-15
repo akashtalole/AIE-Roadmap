@@ -3,9 +3,27 @@ title: "Function Calling in LLMs: Giving Models the Ability to Use Tools"
 date: 2026-03-07 08:00:00 +0530
 categories: [AI, Prompt Engineering]
 tags: [function-calling, tool-use, llm, agents, openai, roadmap]
+mermaid: true
 ---
 
 Function calling (also called "tool use") is the capability that transforms an LLM from a text generator into an agent. It lets models decide when to call external functions, what arguments to pass, and how to use the results — unlocking real-world actions like searching the web, querying databases, or sending emails.
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant M as Model
+    participant A as App code
+    participant T as Tool/API
+
+    U->>M: "What's the weather in Mumbai?"
+    M->>A: tool_call get_weather(city="Mumbai")
+    A->>T: Execute function
+    T->>A: Result: 32°C, Sunny
+    A->>M: Feed result back
+    M->>U: "It's 32°C and Sunny in Mumbai."
+```
+
+The model never touches the network or the database itself — it only emits a structured call spec. Your application code is the one that executes the tool and hands the result back, which is what makes function calling safe to put in production.
 
 ## What is Function Calling?
 
